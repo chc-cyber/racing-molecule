@@ -1,5 +1,5 @@
 // Isolated static preview: no race preparation, no existing service modified.
-const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{spawn}=require('node:child_process');
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict'),{spawn}=require('node:child_process');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'C:/Users/22845/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const root=path.resolve(__dirname,'..'),out=path.join(root,process.env.WEB_TEST_URL?'outputs/workshop-bugfix-public':'outputs/workshop-bugfix');fs.mkdirSync(out,{recursive:true});
 const serverCode=`from http.server import ThreadingHTTPServer
@@ -25,7 +25,9 @@ async function main(){
  const pass=(name,data={})=>{report.checks.push({name,...data});console.log('PASS',name,JSON.stringify(data));};
  const manifest=await page.request.get(base+'/site-manifest.json');assert(manifest.ok());
  const remote=await manifest.json(),local=JSON.parse(fs.readFileSync(path.join(root,'wasm/dist/site-manifest.json')));
- for(const name of ['browser/runtime/molecular-car.wasm','editor/vendor/ketcher-c60-manifest.json','editor/vendor/ketcher-c60/index.html'])assert.equal(remote.files.find(f=>f.path===name)?.sha256,local.files.find(f=>f.path===name)?.sha256,name+' deployed hash');
+ for(const name of ['browser/runtime/molecular-car.wasm','browser/runtime/build.json','editor/vendor/ketcher-c60/index.html']){const expected=local.files.find(f=>f.path===name)?.sha256;assert(expected,name+' local asset');assert.equal(remote.files.find(f=>f.path===name)?.sha256,expected,name+' deployed hash');}
+ const assetChecks=[];report.loadedAssets=[];
+ page.on('response',response=>{const name=response.url().slice(base.length+1).split('?')[0];if(!['browser/runtime/molecular-car.wasm','editor/vendor/ketcher-c60/index.html'].includes(name))return;assetChecks.push(response.body().then(body=>{const digest=crypto.createHash('sha256').update(body).digest('hex');assert.equal(digest,local.files.find(f=>f.path===name).sha256,name+' loaded bytes');report.loadedAssets.push({path:name,sha256:digest});}));});
  report.deployedAssetsVerified=true;
  await page.goto(base+'/editor/index.html');
  const settled=async()=>{await page.waitForFunction(()=>window.workshop?.mature?.ready&&workshop.views?.ready&&!workshop.pendingGeometry&&!workshop.mature.suspended&&!workshop.views.suspended);await page.evaluate(async()=>{await workshop.mature.settled();await workshop.views.settled();});};
@@ -49,6 +51,7 @@ async function main(){
  let n=await nitrogen();assert.equal(n.badConn,true);assert.equal(n.implicitH,0);assert.equal((await snapshot()).bonds.length,3);await page.screenshot({path:path.join(out,'imine-invalid.png')});pass('native bond drag: neutral imine shows valence error without phantom H',n);
  await page.locator('#undo').click();await settled();assert.equal((await snapshot()).bonds.length,2);assert(!(await nitrogen()).badConn);await page.locator('#redo').click();await settled();assert.equal((await nitrogen()).badConn,true);pass('nitrogen error decoration follows shared undo and redo');
  await page.evaluate(()=>workshop.model.commit('charge',p=>p.atoms.find(a=>a.element==='N').charge=1));await settled();n=await nitrogen();assert(!n.badConn);assert.equal(n.implicitH,0);await dimensional(3);pass('positive iminium charge restores valid nitrogen and permits 3D');
+ await Promise.all(assetChecks);assert.equal(report.loadedAssets.length,2);
  assert.deepEqual(report.errors,[]);assert.deepEqual(report.apiCalls,[]);report.passed=true;
 }
 main().catch(e=>{report.failure=e.stack;process.exitCode=1;console.error(e);}).finally(async()=>{fs.writeFileSync(path.join(out,'browser-report.json'),JSON.stringify(report,null,2));await browser?.close();server?.kill();});
