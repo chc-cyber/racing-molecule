@@ -1,0 +1,40 @@
+{
+  "schema": "seven-neutral-race-fixtures-v1",
+  "fixtures": [
+    {
+      "id": "benzene-12",
+      "file": "benzene-12.mol",
+      "sha256": "fc58919a23f0d1c03de5ff3e71c14d69ddc7f7589944b1922ee3246cb53fe20f"
+    },
+    {
+      "id": "benzonitrile-13",
+      "file": "benzonitrile-13.mol",
+      "sha256": "4728d75f636280efc7725cff21d5f021b70195b00039126ac61f8ac0bab96925"
+    },
+    {
+      "id": "coronene-36",
+      "file": "coronene-36.mol",
+      "sha256": "f99fdeb98c5b2dec55c3340d86f110b32c6b7dcad470f537c48757fcdb6a489a"
+    },
+    {
+      "id": "ethynyl-rigid",
+      "file": "ethynyl-rigid.mol",
+      "sha256": "6b67cccb984370c5128b9c57452e98d49414a689463cc9f5663fb0c2202eb395"
+    },
+    {
+      "id": "fullerene-c60",
+      "file": "fullerene-c60.mol",
+      "sha256": "b230545612efd9732dfbba1250eb0e102ebecd419bc2953ff31ce804b2335854"
+    },
+    {
+      "id": "pyridine-11",
+      "file": "pyridine-11.mol",
+      "sha256": "aa1192150dbdbb99dd18f9c4c0a478c2626fc58b1bf50a19071cfa5b9517a439"
+    },
+    {
+      "id": "test-car-52",
+      "file": "test-car-52.mol",
+      "sha256": "42be2b019cc5a058506cb2a485e8289e24c3df068390734a61e67da087d2bebe"
+    }
+  ]
+}

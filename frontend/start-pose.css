@@ -1,0 +1,14 @@
+.start-pose-content {padding-bottom: 18px;}
+.start-pose-content .surface-select {margin-bottom: 12px;}
+.start-pose-content p {font-size: 10px; line-height: 1.7; color: #849175; margin: 10px 0;}
+.start-pose-content #apply-start-pose {width: 100%; min-height: 36px;}
+.pose-angle-grid {display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px;}
+.pose-angle-grid label, .pose-atom-row label {font-size: 10px; color: #738266;}
+.pose-angle-grid input, .pose-atom-row select {display: block; width: 100%; min-width: 0; border: 1px solid #dce4d0; border-radius: 6px; padding: 7px 5px; margin: 6px 0; background: #f6f8ef; color: #496142; font-size: 11px;}
+.pose-angle-grid small {display: block; font-size: 8px; color: #95a382;}
+.pose-atom-row {display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 10px;}
+.pose-atom-row button {font-size: 10px; color: #496142; background: #e9efdf; padding: 9px; border: 1px solid #d7e1c8; border-radius: 6px;}
+.pose-atom-row button[aria-pressed="true"] {background: #dce7ca; border-color: #8a9e6b;}
+.start-pose-content #start-pose-result {color: #6b7d5b;}
+.start-pose-pick-banner {position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%); z-index: 4; max-width: calc(100% - 24px); background: #f9fbf3ed; color: #496142; border: 1px solid #d7e1c8; border-radius: 9px; padding: 12px 16px; font-size: 12px; white-space: nowrap; pointer-events: none;}
+@media(max-width:760px) {.start-pose-section {grid-column: 1/-1;} .pose-angle-grid small {font-size: 10px;} .start-pose-content p {font-size: 12px;}}

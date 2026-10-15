@@ -1,0 +1,8 @@
+.venv/
+.local/
+outputs/
+__pycache__/
+*.py[cod]
+log.lammps
+wasm/dist/
+wasm/*.zip

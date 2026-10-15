@@ -1,0 +1,69 @@
+diff --git a/packages/ketcher-react/src/components/Icon/utils/iconNameToIcon.ts b/packages/ketcher-react/src/components/Icon/utils/iconNameToIcon.ts
+index c85182a..eb0f91f 100644
+--- a/packages/ketcher-react/src/components/Icon/utils/iconNameToIcon.ts
++++ b/packages/ketcher-react/src/components/Icon/utils/iconNameToIcon.ts
+@@ -124,6 +124,7 @@ import Template4Icon from '../../../assets/icons/files/template-4.svg';
+ import Template5Icon from '../../../assets/icons/files/template-5.svg';
+ import Template6Icon from '../../../assets/icons/files/template-6.svg';
+ import Template7Icon from '../../../assets/icons/files/template-7.svg';
++import Template8Icon from '../../../assets/icons/files/template-8.svg';
+ import TemplateDialogIcon from '../../../assets/icons/files/template-dialog.svg';
+ import TemplateLibIcon from '../../../assets/icons/files/template-lib.svg';
+ import TextBold from '../../../assets/icons/files/text-bold.svg';
+@@ -426,6 +427,7 @@ export const iconNameToIcon = {
+   'template-5': Template5Icon,
+   'template-6': Template6Icon,
+   'template-7': Template7Icon,
++  'template-8': Template8Icon,
+   'template-dialog': TemplateDialogIcon,
+   'template-lib': TemplateLibIcon,
+   'snake-mode': SnakeModeIcon,
+diff --git a/packages/ketcher-react/src/script/editor/tool/template.ts b/packages/ketcher-react/src/script/editor/tool/template.ts
+index 4118749..57121fd 100644
+--- a/packages/ketcher-react/src/script/editor/tool/template.ts
++++ b/packages/ketcher-react/src/script/editor/tool/template.ts
+@@ -189,6 +189,10 @@ class TemplateTool implements Tool {
+     this.event = event;
+ 
+     this.templatePreview?.hidePreview();
++    if (this.template.molecule.name === 'C60 Fullerene' && this.editor.findItem(event, this.findItems)) {
++      this.editor.event.message.dispatch({info: '请先将 C₆₀ 放在空白处，再用单键连接。'});
++      return;
++    }
+ 
+     if (this.functionalGroups.size) {
+       this.targetGroupsIds = getGroupIdsFromItemArrays(this.struct, {
+diff --git a/packages/ketcher-react/src/script/ui/action/action.types.ts b/packages/ketcher-react/src/script/ui/action/action.types.ts
+index f5ac6bc..3ba2ea6 100644
+--- a/packages/ketcher-react/src/script/ui/action/action.types.ts
++++ b/packages/ketcher-react/src/script/ui/action/action.types.ts
+@@ -97,6 +97,7 @@ type ToolVariant =
+   | 'template-5'
+   | 'template-6'
+   | 'template-7'
++  | 'template-8'
+   | 'template-lib'
+   | 'text'
+   | 'transform-flip-h'
+diff --git a/packages/ketcher-react/src/script/ui/data/templates.js b/packages/ketcher-react/src/script/ui/data/templates.js
+index 90d88a8..8a48191 100644
+--- a/packages/ketcher-react/src/script/ui/data/templates.js
++++ b/packages/ketcher-react/src/script/ui/data/templates.js
+@@ -154,4 +154,16 @@ M  END`,
+   8  3  1  0     0  0
+   3  2  1  0     0  0
+ M  END`,
+-].map((structStr) => molSerializer.deserialize(structStr));
++  // Molecular Car extension: real C60 graph; see ketcher-source/README.md.
++  "C60 Fullerene\n  Ketcher  10132600002D\n\n 60 90  0  0  0  0            999 V2000\n    8.0683    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.4932    7.6734    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.5274   -4.7424    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.5274    4.7424    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.4932   -7.6734    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    4.4014    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.9420    1.2118    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.1288   -0.4454    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.9420   -1.2118    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.1288    0.4454    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.3601    4.1860    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.0616    2.4235    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.2342    2.1622    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.2433    3.1724    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.0815    1.8869    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.4119   -0.6340    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.0393   -1.1469    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.0160   -0.2460    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.5950   -0.4323    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.5480   -0.8902    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.1667    1.5387    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.7696    1.3428    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.0799    1.0423    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.2273    0.6995    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.6773    0.7962    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.5608   -2.5871    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.0924   -0.7489    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.6679   -2.7096    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.9841   -0.8909    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.4604   -1.6116    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.5608    2.5871    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.6679    2.7096    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.4604    1.6116    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.0924    0.7489    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.9841    0.8909    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.3601   -4.1860    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.0616   -2.4235    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.0815   -1.8869    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.2433   -3.1724    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.2342   -2.1622    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.4119    0.6340    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.0393    1.1469    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.0160    0.2460    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.5480    0.8902    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.5950    0.4323    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.2653   -0.1927    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.1013    0.3118    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.2653    0.1927    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.3279   -0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.1013   -0.3118    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.9666    0.3981    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.5149   -0.3170    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.5149    0.3170    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.7355   -0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.9666   -0.3981    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.0799   -1.0423    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.7696   -1.3428    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.1667   -1.5387    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.2273   -0.6995    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.6773   -0.7962    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n  1  6  2  0  0  0  0\n  1  2  1  0  0  0  0\n  1  5  1  0  0  0  0\n  2 11  2  0  0  0  0\n  2  4  1  0  0  0  0\n  3 26  2  0  0  0  0\n  3  4  1  0  0  0  0\n  3  5  1  0  0  0  0\n  4 31  2  0  0  0  0\n  5 36  2  0  0  0  0\n  6  7  1  0  0  0  0\n  6  9  1  0  0  0  0\n  7 12  2  0  0  0  0\n  7 10  1  0  0  0  0\n  8 16  2  0  0  0  0\n  8  9  1  0  0  0  0\n  8 10  1  0  0  0  0\n  9 37  2  0  0  0  0\n 10 41  2  0  0  0  0\n 11 12  1  0  0  0  0\n 11 14  1  0  0  0  0\n 12 15  1  0  0  0  0\n 13 21  2  0  0  0  0\n 13 14  1  0  0  0  0\n 13 15  1  0  0  0  0\n 14 32  2  0  0  0  0\n 15 42  2  0  0  0  0\n 16 17  1  0  0  0  0\n 16 18  1  0  0  0  0\n 17 38  2  0  0  0  0\n 17 20  1  0  0  0  0\n 18 43  2  0  0  0  0\n 18 19  1  0  0  0  0\n 19 46  2  0  0  0  0\n 19 20  1  0  0  0  0\n 20 56  2  0  0  0  0\n 21 22  1  0  0  0  0\n 21 23  1  0  0  0  0\n 22 33  2  0  0  0  0\n 22 25  1  0  0  0  0\n 23 44  2  0  0  0  0\n 23 24  1  0  0  0  0\n 24 47  2  0  0  0  0\n 24 25  1  0  0  0  0\n 25 51  2  0  0  0  0\n 26 27  1  0  0  0  0\n 26 28  1  0  0  0  0\n 27 34  2  0  0  0  0\n 27 29  1  0  0  0  0\n 28 39  2  0  0  0  0\n 28 30  1  0  0  0  0\n 29 52  2  0  0  0  0\n 29 30  1  0  0  0  0\n 30 57  2  0  0  0  0\n 31 32  1  0  0  0  0\n 31 34  1  0  0  0  0\n 32 33  1  0  0  0  0\n 33 35  1  0  0  0  0\n 34 35  1  0  0  0  0\n 35 53  2  0  0  0  0\n 36 37  1  0  0  0  0\n 36 39  1  0  0  0  0\n 37 38  1  0  0  0  0\n 38 40  1  0  0  0  0\n 39 40  1  0  0  0  0\n 40 58  2  0  0  0  0\n 41 42  1  0  0  0  0\n 41 43  1  0  0  0  0\n 42 44  1  0  0  0  0\n 43 45  1  0  0  0  0\n 44 45  1  0  0  0  0\n 45 48  2  0  0  0  0\n 46 48  1  0  0  0  0\n 46 50  1  0  0  0  0\n 47 48  1  0  0  0  0\n 47 49  1  0  0  0  0\n 49 54  2  0  0  0  0\n 49 50  1  0  0  0  0\n 50 59  2  0  0  0  0\n 51 53  1  0  0  0  0\n 51 54  1  0  0  0  0\n 52 53  1  0  0  0  0\n 52 55  1  0  0  0  0\n 54 55  1  0  0  0  0\n 55 60  2  0  0  0  0\n 56 58  1  0  0  0  0\n 56 59  1  0  0  0  0\n 57 58  1  0  0  0  0\n 57 60  1  0  0  0  0\n 59 60  1  0  0  0  0\nM  STY  1   1 SUP\nM  SAL   1 15   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15\nM  SAL   1 15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30\nM  SAL   1 15  31  32  33  34  35  36  37  38  39  40  41  42  43  44  45\nM  SAL   1 15  46  47  48  49  50  51  52  53  54  55  56  57  58  59  60\nM  SMT   1 C₆₀\nM  SAP   1  1   1   0  1\nM  END",
++].map((structStr) => {
++  const struct = molSerializer.deserialize(structStr);
++  if (struct.name === 'C60 Fullerene') {
++    const group = struct.sgroups.values().next().value;
++    // This marker originates only in this native template source. fromPaste
++    // explicitly maps ordered SUP members to newly allocated live Pool IDs.
++    group.data.molecularCarTemplate = {id: 'c60', version: 2};
++    group.data.expanded = false;
++  }
++  return struct;
++});

@@ -1,0 +1,8 @@
+{
+  "emsdk.tar.gz": "b1d10c3d4a5dc714cc558622f9828f591635aec3f9172a63925f0a71280ec07a",
+  "lammps.tar.gz": "68b9644841208a7409a34e38e1fd8d4f260f44c3eada58ad5d15b00975c8d6bb",
+  "rdkit.tar.gz": "e403131567f2f55998f6dbbf40d05b049fbaeb991e0c90703c07f58168ab0e78",
+  "boost.tar.gz": "be0d91732d5b0cc6fbb275c7939974457e79b54d6f07ce2e3dfdd68bef883b0b",
+  "catch2.tar.gz": "122928b814b75717316c71af69bd2b43387643ba076a6ec16e7882bfb2dfacbb",
+  "better-enums.tar.gz": "9b78dcef7f88d1345b6f25335bfbcba5f024b08990c7d6dc605b833f4128b8dd"
+}

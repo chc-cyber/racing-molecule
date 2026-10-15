@@ -1,0 +1,422 @@
+[
+  {
+    "phase": "browser-confirm",
+    "molecule": "benzene-12",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 2718281,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "coronene-36",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 2718281,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "ethynyl-rigid",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 2718281,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "test-car-52",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 2718281,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "fullerene-c60",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 2718281,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "pyridine-11",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 2718281,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "benzonitrile-13",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 2718281,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "benzene-12",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 1234567,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "coronene-36",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 1234567,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "ethynyl-rigid",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 1234567,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "test-car-52",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 1234567,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "fullerene-c60",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 1234567,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "pyridine-11",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 1234567,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "benzonitrile-13",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 1234567,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "benzene-12",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 31415927,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "coronene-36",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 31415927,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "ethynyl-rigid",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 31415927,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "test-car-52",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 31415927,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "fullerene-c60",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 31415927,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "pyridine-11",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 31415927,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "benzonitrile-13",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 1,
+    "seed": 31415927,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "benzene-12",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 2718281,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "coronene-36",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 2718281,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "ethynyl-rigid",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 2718281,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "test-car-52",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 2718281,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "fullerene-c60",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 2718281,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "pyridine-11",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 2718281,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "benzonitrile-13",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 2718281,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "benzene-12",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 1234567,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "coronene-36",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 1234567,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "ethynyl-rigid",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 1234567,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "test-car-52",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 1234567,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "fullerene-c60",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 1234567,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "pyridine-11",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 1234567,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "benzonitrile-13",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 1234567,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "benzene-12",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 31415927,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "coronene-36",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 31415927,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "ethynyl-rigid",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 31415927,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "test-car-52",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 31415927,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "fullerene-c60",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 31415927,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "pyridine-11",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 31415927,
+    "limit_ps": 400
+  },
+  {
+    "phase": "browser-confirm",
+    "molecule": "benzonitrile-13",
+    "temperature_K": 150,
+    "strength": 0.6,
+    "lattice_scale": 1.5,
+    "growth": 0.25,
+    "seed": 31415927,
+    "limit_ps": 400
+  }
+]

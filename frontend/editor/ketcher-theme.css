@@ -1,0 +1,12 @@
+/* Integration theme, loaded by the host into the pinned editor iframe. */
+@import url('../design-system.css');
+body { font-family:var(--rm-font); color:var(--rm-ink); }
+button { border-radius:0!important; box-shadow:none!important; background-image:none!important; clip-path:var(--rm-cut); }
+button:not(:disabled):hover { background-color:var(--rm-soft)!important; }
+button.active,button[aria-pressed=true],button[aria-selected=true],button[class*="_selected_"],[data-is-selected=true]>button { background:var(--rm-accent)!important; color:white!important; }
+button.active:hover,button[aria-pressed=true]:hover,button[class*="_selected_"]:hover { background:var(--rm-hover)!important; }
+button:focus-visible { outline:2px solid var(--rm-accent); outline-offset:1px; box-shadow:inset 0 0 0 2px var(--rm-ink)!important; }
+input,select { accent-color:var(--rm-accent); border-radius:0!important; }
+[role=dialog] { border-radius:0!important; }
+[role=dialog] button { background:var(--rm-control); color:var(--rm-ink); }
+/* Element labels and molecule atoms retain the editor's chemistry colors. */

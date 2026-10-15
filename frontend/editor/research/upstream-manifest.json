@@ -1,0 +1,280 @@
+{
+  "verified_date": "2026-10-11",
+  "source_files": [
+    {
+      "tool": "ketcher",
+      "revision": "6fb746d04f86ec368ebcfe020d51367ce354502e",
+      "source": "https://raw.githubusercontent.com/epam/ketcher/6fb746d04f86ec368ebcfe020d51367ce354502e/LICENSE",
+      "path": "upstream/ketcher/LICENSE",
+      "bytes": 11342,
+      "sha256": "3d54b234fa88c11d1d96380ff5fe29f3c5d8e1078ef914dfe8185ce4b1fbeac7"
+    },
+    {
+      "tool": "ketcher",
+      "revision": "6fb746d04f86ec368ebcfe020d51367ce354502e",
+      "source": "https://raw.githubusercontent.com/epam/ketcher/6fb746d04f86ec368ebcfe020d51367ce354502e/package.json",
+      "path": "upstream/ketcher/package.json",
+      "bytes": 3307,
+      "sha256": "da2431e7e71e6043747a535112eab66ac05c21e021f92ad144f8b0318ee580bd"
+    },
+    {
+      "tool": "ketcher",
+      "revision": "6fb746d04f86ec368ebcfe020d51367ce354502e",
+      "source": "https://raw.githubusercontent.com/epam/ketcher/6fb746d04f86ec368ebcfe020d51367ce354502e/packages/ketcher-core/src/domain/entities/pool.ts",
+      "path": "upstream/ketcher/packages__ketcher-core__src__domain__entities__pool.ts",
+      "bytes": 2505,
+      "sha256": "f8d1314380554507f38b58d4636f8a0bebf246b509474b6ec59e0e78946201c1"
+    },
+    {
+      "tool": "ketcher",
+      "revision": "6fb746d04f86ec368ebcfe020d51367ce354502e",
+      "source": "https://raw.githubusercontent.com/epam/ketcher/6fb746d04f86ec368ebcfe020d51367ce354502e/packages/ketcher-core/src/domain/entities/atom.ts",
+      "path": "upstream/ketcher/packages__ketcher-core__src__domain__entities__atom.ts",
+      "bytes": 31239,
+      "sha256": "ec0917069c785b3bf30afd2194419fd4b7d7ddd953980d615cb4f7c35abbff44"
+    },
+    {
+      "tool": "ketcher",
+      "revision": "6fb746d04f86ec368ebcfe020d51367ce354502e",
+      "source": "https://raw.githubusercontent.com/epam/ketcher/6fb746d04f86ec368ebcfe020d51367ce354502e/packages/ketcher-core/src/domain/serializers/ket/toKet/moleculeToKet.ts",
+      "path": "upstream/ketcher/packages__ketcher-core__src__domain__serializers__ket__toKet__moleculeToKet.ts",
+      "bytes": 8827,
+      "sha256": "697673022cfa4fef4974ecfab86f85f08a487ff712c2f1c06cb403a5b28d1f6a"
+    },
+    {
+      "tool": "ketcher",
+      "revision": "6fb746d04f86ec368ebcfe020d51367ce354502e",
+      "source": "https://raw.githubusercontent.com/epam/ketcher/6fb746d04f86ec368ebcfe020d51367ce354502e/packages/ketcher-core/src/domain/serializers/ket/fromKet/atomBondToStruct.ts",
+      "path": "upstream/ketcher/packages__ketcher-core__src__domain__serializers__ket__fromKet__atomBondToStruct.ts",
+      "bytes": 5212,
+      "sha256": "e10a31936a567f77a0590c8d7fb31d4e1d0665fa5bd7d144f4ee6f849713e681"
+    },
+    {
+      "tool": "ketcher",
+      "revision": "6fb746d04f86ec368ebcfe020d51367ce354502e",
+      "source": "https://raw.githubusercontent.com/epam/ketcher/6fb746d04f86ec368ebcfe020d51367ce354502e/packages/ketcher-core/src/domain/serializers/mol/molfile.ts",
+      "path": "upstream/ketcher/packages__ketcher-core__src__domain__serializers__mol__molfile.ts",
+      "bytes": 20645,
+      "sha256": "fc1233bd36c5fc4ee0a0925df656b2fee8e08a56c984ac0c4c653d0741f8433d"
+    },
+    {
+      "tool": "ketcher",
+      "revision": "6fb746d04f86ec368ebcfe020d51367ce354502e",
+      "source": "https://raw.githubusercontent.com/epam/ketcher/6fb746d04f86ec368ebcfe020d51367ce354502e/packages/ketcher-core/src/application/editor/operations/atom/AtomDelete.ts",
+      "path": "upstream/ketcher/packages__ketcher-core__src__application__editor__operations__atom__AtomDelete.ts",
+      "bytes": 2131,
+      "sha256": "0361754f1f57b43a9597379d017193153b8d59945dc5d8f5be19958b074e822a"
+    },
+    {
+      "tool": "ketcher",
+      "revision": "6fb746d04f86ec368ebcfe020d51367ce354502e",
+      "source": "https://raw.githubusercontent.com/epam/ketcher/6fb746d04f86ec368ebcfe020d51367ce354502e/packages/ketcher-core/src/application/editor/operations/atom/AtomAdd.ts",
+      "path": "upstream/ketcher/packages__ketcher-core__src__application__editor__operations__atom__AtomAdd.ts",
+      "bytes": 2452,
+      "sha256": "d0c2dc167209e2d294e81dc82cbfc2a0c52c5bccb2ef8645d2001f9e5312b07f"
+    },
+    {
+      "tool": "ketcher",
+      "revision": "6fb746d04f86ec368ebcfe020d51367ce354502e",
+      "source": "https://raw.githubusercontent.com/epam/ketcher/6fb746d04f86ec368ebcfe020d51367ce354502e/packages/ketcher-core/src/application/ketcher.ts",
+      "path": "upstream/ketcher/packages__ketcher-core__src__application__ketcher.ts",
+      "bytes": 28778,
+      "sha256": "cb273b49baadc53c7eea506960a0297ef7f5e4935d16fa2fcd0242a7130855e9"
+    },
+    {
+      "tool": "jsmol",
+      "revision": "9308996bb219424b6cadd3fc8dc2cee04fa58e28",
+      "source": "https://raw.githubusercontent.com/BobHanson/Jmol-SwingJS/9308996bb219424b6cadd3fc8dc2cee04fa58e28/LICENSE.txt",
+      "path": "upstream/jsmol/LICENSE.txt",
+      "bytes": 26432,
+      "sha256": "6095e9ffa777dd22839f7801aa845b31c9ed07f3d6bf8a26dc5d2dec8ccc0ef3"
+    },
+    {
+      "tool": "jsmol",
+      "revision": "9308996bb219424b6cadd3fc8dc2cee04fa58e28",
+      "source": "https://raw.githubusercontent.com/BobHanson/Jmol-SwingJS/9308996bb219424b6cadd3fc8dc2cee04fa58e28/src/org/jmol/modelkit/ModelKit.java",
+      "path": "upstream/jsmol/src__org__jmol__modelkit__ModelKit.java",
+      "bytes": 144589,
+      "sha256": "a614b4e05c0c2aefa5865ae691c7cc2f3eb440dd557822659b510331e7c40ca9"
+    },
+    {
+      "tool": "jsmol",
+      "revision": "9308996bb219424b6cadd3fc8dc2cee04fa58e28",
+      "source": "https://raw.githubusercontent.com/BobHanson/Jmol-SwingJS/9308996bb219424b6cadd3fc8dc2cee04fa58e28/src/org/jmol/adapter/writers/MOLWriter.java",
+      "path": "upstream/jsmol/src__org__jmol__adapter__writers__MOLWriter.java",
+      "bytes": 13591,
+      "sha256": "364892425c7d080b73f043b6f5bc3aa921958e12eface2631f65190d2147a8ec"
+    },
+    {
+      "tool": "jsmol",
+      "revision": "9308996bb219424b6cadd3fc8dc2cee04fa58e28",
+      "source": "https://raw.githubusercontent.com/BobHanson/Jmol-SwingJS/9308996bb219424b6cadd3fc8dc2cee04fa58e28/src/org/jmol/modelset/ModelSet.java",
+      "path": "upstream/jsmol/src__org__jmol__modelset__ModelSet.java",
+      "bytes": 163879,
+      "sha256": "b8247be7ee54b393c39d70daeff0050b9bc4aeb0af870d78f428860eabdf87ab"
+    },
+    {
+      "tool": "jsmol",
+      "revision": "9308996bb219424b6cadd3fc8dc2cee04fa58e28",
+      "source": "https://raw.githubusercontent.com/BobHanson/Jmol-SwingJS/9308996bb219424b6cadd3fc8dc2cee04fa58e28/src/org/jmol/modelset/AtomCollection.java",
+      "path": "upstream/jsmol/src__org__jmol__modelset__AtomCollection.java",
+      "bytes": 91742,
+      "sha256": "8f0e41ab581e6cde4b9a11c0fbfbd6418c984cfb64035a1e0b14d21ec79809c1"
+    },
+    {
+      "tool": "jsmol",
+      "revision": "9308996bb219424b6cadd3fc8dc2cee04fa58e28",
+      "source": "https://raw.githubusercontent.com/BobHanson/Jmol-SwingJS/9308996bb219424b6cadd3fc8dc2cee04fa58e28/src/org/jmol/viewer/Jmol.properties",
+      "path": "upstream/jsmol/src__org__jmol__viewer__Jmol.properties",
+      "bytes": 807567,
+      "sha256": "6194aac654e1bc3ff03ae8376a8911b7dba1fc060cc252ce448ce4ff2a2e7926"
+    },
+    {
+      "tool": "ketcher",
+      "revision": "6fb746d04f86ec368ebcfe020d51367ce354502e",
+      "source": "https://raw.githubusercontent.com/epam/ketcher/6fb746d04f86ec368ebcfe020d51367ce354502e/packages/ketcher-core/src/domain/serializers/ket/helpers.ts",
+      "path": "upstream/ketcher/packages__ketcher-core__src__domain__serializers__ket__helpers.ts",
+      "bytes": 5438,
+      "sha256": "a2486f15a398f780a323190386eb9d45f6b2395543be3b9aa0b188135363c2fa"
+    },
+    {
+      "tool": "ketcher",
+      "revision": "6fb746d04f86ec368ebcfe020d51367ce354502e",
+      "source": "https://raw.githubusercontent.com/epam/ketcher/6fb746d04f86ec368ebcfe020d51367ce354502e/packages/ketcher-core/src/domain/entities/vec2.ts",
+      "path": "upstream/ketcher/packages__ketcher-core__src__domain__entities__vec2.ts",
+      "bytes": 8579,
+      "sha256": "1146c1ed30d2939ee236c82149991a2fb50270811262aeba555eaad7f1612320"
+    },
+    {
+      "tool": "ketcher",
+      "revision": "6fb746d04f86ec368ebcfe020d51367ce354502e",
+      "source": "https://raw.githubusercontent.com/epam/ketcher/6fb746d04f86ec368ebcfe020d51367ce354502e/packages/ketcher-core/src/utilities/ifDef.ts",
+      "path": "upstream/ketcher/packages__ketcher-core__src__utilities__ifDef.ts",
+      "bytes": 1067,
+      "sha256": "6f58caa3dea673df6eb2145949a48ec1f2b60f3781c8f2ce61604999e6cbdc2b"
+    }
+  ],
+  "package_metadata": {
+    "ketcher-core": {
+      "name": "ketcher-core",
+      "version": "3.18.0",
+      "license": "Apache-2.0",
+      "dist": {
+        "shasum": "1234cffcc5d87bb7ef2584c7b67ba148dbcc74ef",
+        "tarball": "https://registry.npmjs.org/ketcher-core/-/ketcher-core-3.18.0.tgz",
+        "fileCount": 2462,
+        "integrity": "sha512-8MWLJDpFnR0+f1MgIjmYfPCZLKymwwK7aGoWNL8JRG5CkI/NvmhL+DBE2T8W0Ttve8pIebV2d7daXFDFU8Ydng==",
+        "signatures": [
+          {
+            "sig": "MEQCIEOAPP1p4jv08ivovVLrbrwgfWyNe2tJ6fVVznVrHRFcAiAcZ4Wb03wu/plLfCvasICXVC07pbO2n68XX2eXWqXrKQ==",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          }
+        ],
+        "unpackedSize": 24803587
+      },
+      "dependencies": {
+        "d3": "^7.8.5",
+        "ajv": "^8.10.0",
+        "dpdm": "^4.2.0",
+        "paper": "^0.12.18",
+        "assert": "^2.0.0",
+        "lodash": "^4.18.1",
+        "raphael": "^2.3.0",
+        "svgpath": "^2.3.1",
+        "file-saver": "^2.0.5",
+        "jsonschema": "^1.5.0",
+        "@babel/runtime": "^7.26.10",
+        "react-device-detect": "^2.2.2"
+      },
+      "peerDependencies": null
+    },
+    "ketcher-react": {
+      "name": "ketcher-react",
+      "version": "3.18.0",
+      "license": "Apache-2.0",
+      "dist": {
+        "shasum": "b51c652e88647e98d431f07a8cc35d5dfeb3b760",
+        "tarball": "https://registry.npmjs.org/ketcher-react/-/ketcher-react-3.18.0.tgz",
+        "fileCount": 1124,
+        "integrity": "sha512-r6SXzUFXVbu2Llh7NWe4Xzcsm1n34CqTIz4Z3Ar5yk2VMWkpgYMev9YZ1+TOgm7EcebJtBgEmHJBlmulLZcugA==",
+        "signatures": [
+          {
+            "sig": "MEQCIAXb672Uh9oH/UJevvF77K+22jvEGvaykHE2d0VwU+l3AiBjKsS2x6TAa44te2fSVClL6I8oXc81h6crcM4o5lopEQ==",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          }
+        ],
+        "unpackedSize": 29815930
+      },
+      "dependencies": {
+        "cfb": "^1.2.2",
+        "clsx": "^1.1.1",
+        "dpdm": "^4.2.0",
+        "paper": "^0.12.18",
+        "redux": "^5.0.1",
+        "lodash": "^4.18.1",
+        "lexical": "^0.40.0",
+        "reselect": "^4.0.0",
+        "file-saver": "^2.0.2",
+        "jsonschema": "^1.5.0",
+        "miew-react": "0.11.0",
+        "remark-gfm": "^1.0.0",
+        "react-redux": "^9.2.0",
+        "redux-thunk": "^3.1.0",
+        "ketcher-core": "*",
+        "redux-logger": "^3.0.6",
+        "remark-parse": "^9.0.0",
+        "subscription": "^3.0.0",
+        "whatwg-fetch": "^3.4.1",
+        "@mui/material": "^5.18.0",
+        "@babel/runtime": "^7.26.10",
+        "@emotion/react": "^11.7.1",
+        "@lexical/react": "^0.40.0",
+        "react-colorful": "^5.4.0",
+        "react-dropzone": "^11.7.1",
+        "@emotion/styled": "^11.14.1",
+        "react-contexify": "^6.0.0",
+        "react-virtualized": "^9.22.6",
+        "@lexical/rich-text": "^0.40.0",
+        "@lexical/selection": "^0.40.0",
+        "font-face-observer": "^1.0.0",
+        "react-device-detect": "^2.2.2",
+        "regenerator-runtime": "^0.13.7",
+        "use-resize-observer": "^7.0.0",
+        "intersection-observer": "^0.12.2",
+        "hoist-non-react-statics": "^3.3.2",
+        "element-closest-polyfill": "^1.0.2",
+        "url-search-params-polyfill": "^8.1.1",
+        "react-intersection-observer": "^9.16.0"
+      },
+      "peerDependencies": {
+        "react": "^18.2.0 || ^19.0.0",
+        "react-dom": "^18.2.0 || ^19.0.0"
+      }
+    },
+    "ketcher-standalone": {
+      "name": "ketcher-standalone",
+      "version": "3.18.0",
+      "license": "Apache-2.0",
+      "dist": {
+        "shasum": "1bbc81aab4f805b26a2e8e5e2926bb24620432db",
+        "tarball": "https://registry.npmjs.org/ketcher-standalone/-/ketcher-standalone-3.18.0.tgz",
+        "fileCount": 98,
+        "integrity": "sha512-oYocvwcjnBtn5RfFqrDK/eOnvCwO1PVJAflP0pCN3CGwjYY66FunxTpIACqvngJ87G4xargMZTyfoQBVUJAkIw==",
+        "signatures": [
+          {
+            "sig": "MEQCIHm9AJe8T1eTeeNcb2Dwnzxru4yGDIQjlZxwoXD2/Tk3AiAYHnX4tgnqer+cHpqr52hUtQ4E45x/Wa3Y+d9GFrN/FA==",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          }
+        ],
+        "unpackedSize": 109835505
+      },
+      "dependencies": {
+        "lodash": "^4.18.1",
+        "ketcher-core": "*",
+        "@babel/runtime": "^7.26.10",
+        "indigo-ketcher": "1.46.0"
+      },
+      "peerDependencies": null
+    }
+  }
+}

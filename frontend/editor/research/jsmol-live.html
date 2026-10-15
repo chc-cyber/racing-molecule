@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JSmol ModelKit · 本地技术验证</title>
+<style>
+body{font-family:system-ui;margin:0;background:#f2f5f0;color:#233327}main{display:grid;grid-template-columns:minmax(640px,1fr) 340px;gap:18px;padding:20px}h1{font-size:22px;margin:0 0 8px}p{font-size:13px;line-height:1.6}#viewer{width:100%;height:640px;border:1px solid #b7c8b5;background:white}button{padding:8px 10px;margin:3px;border:1px solid #a0b299;border-radius:5px;background:white;cursor:pointer}button:hover{background:#e7efdf}label{display:block;margin:8px 0}input,select{padding:6px;width:95%;box-sizing:border-box}pre{background:#e4eadf;padding:10px;white-space:pre-wrap;max-height:300px;overflow:auto;font-size:11px}small{color:#53614e}.notice{background:#fff0c7;padding:10px}#status{min-height:45px}
+</style><script src="../vendor/jsmol/JSmol.min.js"></script></head><body>
+<main><section><h1>JSmol ModelKit · 本地技术验证</h1><p>独立测试页。所有资源来自本项目，不连接赛道、不调用 /api/load。实际拓扑及坐标由 JSmol 修改。</p><div id="viewer"></div></section>
+<aside><p class="notice">这是未加意图过滤的原生研究页，操作仅修改此页面的分子。主工坊已接入 JSmol，并独立管理同步与历史。</p>
+<button id="load-tpb">四苯基苯</button><button id="load-c60">C60</button><button id="load-chiral">手性分子</button>
+<label>ModelKit 操作<select id="mode"><option value="dragAtom">移动原子</option><option value="dragMolecule">移动分子</option><option value="rotateBond">绕键旋转</option><option value="assignAtom_C">改为碳</option><option value="assignAtom_O">改为氧</option><option value="deleteAtom">删除原子</option><option value="assignBond_1">单键</option><option value="assignBond_2">双键</option><option value="deleteBond">删除键</option></select></label>
+<button id="apply-mode">启用此操作</button><button id="camera">相机模式</button><button id="reset-view">视角复位</button>
+<label>目标原子索引（从 0 开始）<input id="atom-index" type="number" min="0" value="0"></label>
+<button id="move-atom">该原子 Z + 0.5 Å</button><button id="add-atom">添加独立碳原子</button>
+<label>旋转轴（两个相连原子的索引）<input id="bond-indices" value="0,1"></label>
+<button id="rotate-branch">轴后片段旋转 35°</button>
+<button id="inspect">读取当前结构</button><button id="export">导出 JSmol MOL</button>
+<p><small>本页明确关闭 ModelKit 自动补氢、近距离成键与载入自动成键。修改元素/键等操作仍可能有其他语义，详见验收记录。</small></p>
+<p><small>此页不提供项目同步或可靠的原生历史。<a href="jsmol-live.md">验证记录与接入边界</a></small></p>
+<p id="status" role="status">本地 JSmol 初始化中…</p><pre id="details"></pre></aside></main>
+<script>
+'use strict';
+window.probeReady=false;
+const statusEl=document.getElementById('status');
+const info={width:'100%',height:640,color:'white',use:'HTML5',j2sPath:'/editor/vendor/jsmol/j2s',serverURL:'',disableJ2SLoadMonitor:true,disableInitialConsole:true,allowJavaScript:false,
+  readyFunction:function(){window.probeReady=true;statusEl.textContent='JSmol 已从本地加载。请选择一个示例。';},
+  script:'set antialiasDisplay true; set autobond false; background white;'};
+Jmol.setDocument(0);
+window.probeApplet=Jmol.getApplet('probeApplet',info);
+document.getElementById('viewer').innerHTML=Jmol.getAppletHtml(probeApplet);
+const run=script=>{const text=Jmol.scriptWait(probeApplet,script);if(/script ERROR|scriptError|ScriptException|unrecognized command|invalid argument/i.test(text))throw Error(text);return text;};
+const value=expression=>Jmol.evaluateVar(probeApplet,expression);
+const safeOptions=()=>run('set autobond false; set modelKitMode true; modelkit addHydrogens false; modelkit autobond false; set picking dragAtom;');
+const inspect=()=>({version:value('_version'),atoms:Jmol.getPropertyAsArray(probeApplet,'atomInfo'),bonds:Jmol.getPropertyAsArray(probeApplet,'bondInfo'),ids:value('{*}.property_editorid.all'),modelkit:value('getProperty("modelkitInfo")')});
+const load=content=>{run('set autobond false; load DATA "model"\n'+content+'\nEND "model";');safeOptions();run('spacefill 22%; wireframe 0.12; zoom 85;');return inspect();};
+window.jsmolProbe={run,value,inspect,load,safeOptions,async example(name){const r=await fetch('/editor/examples/'+name);if(!r.ok)throw Error('示例文件未找到：'+name);return load(await r.text());}};
+const show=()=>{const state=inspect();document.getElementById('details').textContent=JSON.stringify({version:state.version,atoms:state.atoms.length,bonds:state.bonds.length,firstAtom:state.atoms[0],firstBond:state.bonds[0]},null,2);return state;};
+function on(id,fn){document.getElementById(id).onclick=async()=>{try{await fn();show();statusEl.textContent='操作完成；当前结构已读取。';}catch(error){statusEl.textContent=error.message;}};}
+on('load-tpb',()=>jsmolProbe.example('tetraphenylbenzene.mol'));on('load-chiral',()=>jsmolProbe.example('chiral.mol'));
+on('load-c60',async()=>{const list=(await(await fetch('/editor/fragments.json')).json()).fragments;const fragment=list.find(x=>x.atoms.length===60);if(!fragment)throw Error('C60 片段未找到');const atoms=fragment.atoms,bonds=fragment.bonds,idx=new Map(atoms.map((a,i)=>[a.id,i+1]));let mol='C60\n  MolecularCar      3D\n\n'+String(atoms.length).padStart(3)+String(bonds.length).padStart(3)+'  0  0  0  0            999 V2000\n';for(const a of atoms)mol+=a.pos3.map(x=>x.toFixed(4).padStart(10)).join('')+' '+a.element.padEnd(3)+' 0  0  0  0  0  0  0  0  0  0  0  0\n';for(const b of bonds)mol+=String(idx.get(b.a)).padStart(3)+String(idx.get(b.b)).padStart(3)+String(b.order).padStart(3)+'  0  0  0  0\n';load(mol+'M  END\n');});
+on('apply-mode',()=>run('set modelKitMode true; modelkit addHydrogens false; modelkit autobond false; set picking '+document.getElementById('mode').value+';'));
+on('camera',()=>run('set modelKitMode false; set picking identify;'));on('reset-view',()=>run('reset; zoom 85;'));
+on('move-atom',()=>{const i=Number(document.getElementById('atom-index').value);if(!Number.isInteger(i)||i<0)throw Error('索引需为非负整数');run('select {atomindex='+i+'}; translateSelected {0 0 0.5};');});
+on('rotate-branch',()=>{const ids=document.getElementById('bond-indices').value.split(',').map(x=>Number(x.trim()));if(ids.length!==2||ids.some(x=>!Number.isInteger(x)||x<0)||ids[0]===ids[1])throw Error('请输入两个不同的非负原子索引，例如 0,1');const state=inspect(),bond=state.bonds.find(b=>b.atom1.atomIndex===ids[0]&&b.atom2.atomIndex===ids[1]||b.atom1.atomIndex===ids[1]&&b.atom2.atomIndex===ids[0]);if(!bond)throw Error('两个原子之间没有化学键');run('modelkit rotate branch {atomindex='+ids[0]+'} {atomindex='+ids[1]+'} 35;');});
+on('add-atom',()=>run('modelkit add "C" {12 12 5};'));on('inspect',show);
+on('export',()=>{const content=value('write("MOL")'),url=URL.createObjectURL(new Blob([content],{type:'chemical/x-mdl-molfile'})),a=document.createElement('a');a.href=url;a.download='jsmol-edited.mol';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+</script></body></html>

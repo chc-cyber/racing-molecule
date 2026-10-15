@@ -1,0 +1,97 @@
+{
+  "verifiedDate": "2026-10-11",
+  "nodeVersion": "v24.19.0",
+  "scope": "Ketcher isolated upstream function execution + JSmol pinned-source inspection; not a full browser integration test",
+  "decision": "Use a project-owned shared graph with Three.js + RDKit for this prototype; defer mature-editor adapter integration until ID/stereo/history contracts have dedicated tests.",
+  "observations": [
+    {
+      "name": "Pinned source integrity",
+      "passed": true,
+      "details": {
+        "files": 19,
+        "allSHA256Matched": true
+      }
+    },
+    {
+      "name": "Ketcher actual Pool preserves IDs during local delete/add",
+      "passed": true,
+      "details": {
+        "livePoolIDs": [
+          0,
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "name": "Ketcher actual KET serializer omits internal Pool IDs",
+      "passed": true,
+      "details": {
+        "beforePoolIDs": [
+          0,
+          2,
+          3
+        ],
+        "newPoolIDs": [
+          0,
+          1,
+          2
+        ],
+        "atomRecord": {
+          "label": "C",
+          "mapping": 103,
+          "location": [
+            3,
+            -2,
+            7
+          ],
+          "charge": 1,
+          "selected": false,
+          "stereoLabel": "abs",
+          "stereoParity": 1
+        }
+      }
+    },
+    {
+      "name": "Ketcher mapping, formal charge, parity and z survive its atom serializer",
+      "passed": true,
+      "details": {
+        "mappingPossible": true,
+        "qualification": "mapping is the chemical atom-atom mapping field; it is not a permanent editor ID contract"
+      }
+    },
+    {
+      "name": "Ketcher import explicitly reconstructs atoms and retains mapping",
+      "passed": true,
+      "details": "Source inspection: importer constructs a new Atom; adapter-owned mapping must be explicit."
+    },
+    {
+      "name": "JSmol ModelKit has real coordinate and topology editing implementations",
+      "passed": true,
+      "details": "Source inspection confirms atom/bond mutation and actual coordinate rotation/movement; not merely camera orbit."
+    },
+    {
+      "name": "JSmol normal ModelKit editing has automatic hydrogen/geometry side effects",
+      "passed": true,
+      "details": "Must explicitly configure/adapter-wrap these operations before claiming topology/coordinate preservation."
+    },
+    {
+      "name": "JSmol plain MOL export renumbers records and does not emit external atom IDs",
+      "passed": true,
+      "details": "MOL atom numbering is export-local; V3000 atom mapping column is written as zero. Jmol SDF has extra atom-name data, but this is not the MOL synchronization path."
+    },
+    {
+      "name": "JSmol stereo export is derived/conditional rather than verbatim metadata",
+      "passed": true,
+      "details": "V2000 parity comes from 3D coordinates and sorted atom indices; near/far wedge emission is inside is2d. This can be chemically useful but is not a verbatim stereo roundtrip contract."
+    },
+    {
+      "name": "Source license notices are retained",
+      "passed": true,
+      "details": {
+        "ketcher": "Apache-2.0",
+        "jsmol": "LGPL-2.1-or-later"
+      }
+    }
+  ]
+}

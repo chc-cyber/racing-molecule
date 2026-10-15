@@ -1,0 +1,4 @@
+# Tested runtime: CPython 3.11, Windows x86-64.
+numpy==1.26.4
+rdkit==2025.9.3
+numba==0.61.2

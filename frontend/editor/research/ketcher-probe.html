@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<title>Ketcher standalone 隔离探针</title>
+<style>html,body{margin:0;height:100%}iframe{width:100%;height:100%;border:0}</style>
+<iframe title="Ketcher 3.18.0 本地编辑器" src="../vendor/ketcher/index.html"></iframe>
+<script>
+const frame=document.querySelector('iframe');
+window.probe={events:[],selectionEvents:[],errors:[]};
+const started=Date.now();
+const timer=setInterval(()=>{
+  try{
+    const k=frame.contentWindow.ketcher;
+    if(!k?.editor?.struct)return;
+    window.probe.ketcher=k;
+    if(typeof k.editor.subscribe==='function'){
+      window.probe.changeToken=k.editor.subscribe('change',payload=>window.probe.events.push({time:Date.now(),atoms:k.editor.struct().atoms.size,payload}));
+      window.probe.selectionToken=k.editor.subscribe('selectionChange',payload=>window.probe.selectionEvents.push({payload,selection:k.editor.selection()}));
+    }
+    else if(typeof k.changeEvent?.subscribe==='function')k.changeEvent.subscribe(()=>window.probe.events.push({time:Date.now(),atoms:k.editor.struct().atoms.size}));
+    window.probe.ready=true;clearInterval(timer);
+  }catch(e){if(Date.now()-started>60000){window.probe.errors.push(e.message);clearInterval(timer);}}
+},50);
+</script>
+</html>

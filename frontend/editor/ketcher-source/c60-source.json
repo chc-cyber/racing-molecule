@@ -1,0 +1,1717 @@
+{
+  "source": "molecular_car/editor/fragments.py: procedural truncated icosahedron; copied at build time",
+  "atoms": [
+    {
+      "id": "c60-a1",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        1.7737229602784115,
+        0.6111153559796352
+      ],
+      "pos3": [
+        -0.71,
+        -2.5688041320124255,
+        -2.2976082640248507
+      ]
+    },
+    {
+      "id": "c60-a2",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        1.2770948605441583,
+        2.026516546651151
+      ],
+      "pos3": [
+        -1.1488041320124254,
+        -1.42,
+        -3.0076082640248503
+      ]
+    },
+    {
+      "id": "c60-a3",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -0.6526695611027028,
+        0.5545838879900226
+      ],
+      "pos3": [
+        1.1488041320124254,
+        -1.42,
+        -3.0076082640248503
+      ]
+    },
+    {
+      "id": "c60-a4",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -0.2224981877179263,
+        1.9915781779996435
+      ],
+      "pos3": [
+        0,
+        -0.71,
+        -3.446412396037276
+      ]
+    },
+    {
+      "id": "c60-a5",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        0.5810629574203676,
+        -0.2985890562239396
+      ],
+      "pos3": [
+        0.71,
+        -2.5688041320124255,
+        -2.2976082640248507
+      ]
+    },
+    {
+      "id": "c60-a6",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        3.247810397813814,
+        0.3335073112469332
+      ],
+      "pos3": [
+        -1.42,
+        -3.0076082640248503,
+        -1.1488041320124254
+      ]
+    },
+    {
+      "id": "c60-a7",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        4.225269735614961,
+        1.4713004571857473
+      ],
+      "pos3": [
+        -2.5688041320124255,
+        -2.2976082640248507,
+        -0.71
+      ]
+    },
+    {
+      "id": "c60-a8",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        5.487423683697751,
+        -0.6017513718880676
+      ],
+      "pos3": [
+        -1.42,
+        -3.0076082640248503,
+        1.1488041320124254
+      ]
+    },
+    {
+      "id": "c60-a9",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        4.027864436763849,
+        -0.9477091795608219
+      ],
+      "pos3": [
+        -0.71,
+        -3.446412396037276,
+        0
+      ]
+    },
+    {
+      "id": "c60-a10",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        5.60942686794707,
+        0.8932788027348486
+      ],
+      "pos3": [
+        -2.5688041320124255,
+        -2.2976082640248507,
+        0.71
+      ]
+    },
+    {
+      "id": "c60-a11",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        2.2545541983453043,
+        3.1643096925899643
+      ],
+      "pos3": [
+        -2.2976082640248507,
+        -0.71,
+        -2.5688041320124255
+      ]
+    },
+    {
+      "id": "c60-a12",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        3.728641635880706,
+        2.8867016478572625
+      ],
+      "pos3": [
+        -3.0076082640248503,
+        -1.1488041320124254,
+        -1.42
+      ]
+    },
+    {
+      "id": "c60-a13",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        3.418792771643629,
+        5.2938929896533935
+      ],
+      "pos3": [
+        -3.0076082640248503,
+        1.1488041320124254,
+        -1.42
+      ]
+    },
+    {
+      "id": "c60-a14",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        2.063057068871239,
+        4.652035759244438
+      ],
+      "pos3": [
+        -2.2976082640248507,
+        0.71,
+        -2.5688041320124255
+      ]
+    },
+    {
+      "id": "c60-a15",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        4.448180645192757,
+        4.202856507316525
+      ],
+      "pos3": [
+        -3.446412396037276,
+        0,
+        -0.71
+      ]
+    },
+    {
+      "id": "c60-a16",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        6.721156202220823,
+        -1.454924316102029
+      ],
+      "pos3": [
+        -0.71,
+        -2.5688041320124255,
+        2.2976082640248507
+      ]
+    },
+    {
+      "id": "c60-a17",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        6.912653331694888,
+        -2.9426503827565034
+      ],
+      "pos3": [
+        0.71,
+        -2.5688041320124255,
+        2.2976082640248507
+      ]
+    },
+    {
+      "id": "c60-a18",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        8.076891904993213,
+        -0.813067085693074
+      ],
+      "pos3": [
+        -1.1488041320124254,
+        -1.42,
+        3.0076082640248503
+      ]
+    },
+    {
+      "id": "c60-a19",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        9.10627977854234,
+        -1.9041035680299425
+      ],
+      "pos3": [
+        0,
+        -0.71,
+        3.446412396037276
+      ]
+    },
+    {
+      "id": "c60-a20",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        8.38674076923029,
+        -3.2202584274892057
+      ],
+      "pos3": [
+        1.1488041320124254,
+        -1.42,
+        3.0076082640248503
+      ]
+    },
+    {
+      "id": "c60-a21",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -10.750624825197809,
+        2.6934208226573424
+      ],
+      "pos3": [
+        -2.5688041320124255,
+        2.2976082640248507,
+        -0.71
+      ]
+    },
+    {
+      "id": "c60-a22",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -9.366467692865704,
+        2.1153991682064417
+      ],
+      "pos3": [
+        -1.42,
+        3.0076082640248503,
+        -1.1488041320124254
+      ]
+    },
+    {
+      "id": "c60-a23",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -11.72808416299896,
+        1.55562767671853
+      ],
+      "pos3": [
+        -2.5688041320124255,
+        2.2976082640248507,
+        0.71
+      ]
+    },
+    {
+      "id": "c60-a24",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -10.948030124048929,
+        0.27441118591077407
+      ],
+      "pos3": [
+        -1.42,
+        3.0076082640248503,
+        1.1488041320124254
+      ]
+    },
+    {
+      "id": "c60-a25",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -9.488470877115022,
+        0.6203689935835257
+      ],
+      "pos3": [
+        -0.71,
+        3.446412396037276,
+        0
+      ]
+    },
+    {
+      "id": "c60-a26",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -2.008405263875094,
+        -0.08727334241893081
+      ],
+      "pos3": [
+        2.2976082640248507,
+        -0.71,
+        -2.5688041320124255
+      ]
+    },
+    {
+      "id": "c60-a27",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -3.3925623962072016,
+        0.4907483120319688
+      ],
+      "pos3": [
+        2.2976082640248507,
+        0.71,
+        -2.5688041320124255
+      ]
+    },
+    {
+      "id": "c60-a28",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -2.1304084481244137,
+        -1.5823035170418467
+      ],
+      "pos3": [
+        3.0076082640248503,
+        -1.1488041320124254,
+        -1.42
+      ]
+    },
+    {
+      "id": "c60-a29",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -4.3700217340083505,
+        -0.6470448339068435
+      ],
+      "pos3": [
+        3.0076082640248503,
+        1.1488041320124254,
+        -1.42
+      ]
+    },
+    {
+      "id": "c60-a30",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -3.589967695058317,
+        -1.9282613247145992
+      ],
+      "pos3": [
+        3.446412396037276,
+        0,
+        -0.71
+      ]
+    },
+    {
+      "id": "c60-a31",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -6.080967568446452,
+        4.229189057276525
+      ],
+      "pos3": [
+        0,
+        0.71,
+        -3.446412396037276
+      ]
+    },
+    {
+      "id": "c60-a32",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -7.580560616708536,
+        4.194250688625018
+      ],
+      "pos3": [
+        -1.1488041320124254,
+        1.42,
+        -3.0076082640248503
+      ]
+    },
+    {
+      "id": "c60-a33",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -8.010731990093312,
+        2.7572563986153966
+      ],
+      "pos3": [
+        -0.71,
+        2.5688041320124255,
+        -2.2976082640248507
+      ]
+    },
+    {
+      "id": "c60-a34",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -5.584339468712198,
+        2.8137878666050087
+      ],
+      "pos3": [
+        1.1488041320124254,
+        1.42,
+        -3.0076082640248503
+      ]
+    },
+    {
+      "id": "c60-a35",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -6.776999471570242,
+        1.9040834544014353
+      ],
+      "pos3": [
+        0.71,
+        2.5688041320124255,
+        -2.2976082640248507
+      ]
+    },
+    {
+      "id": "c60-a36",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        0.45905977317104757,
+        -1.7936192308468555
+      ],
+      "pos3": [
+        1.42,
+        -3.0076082640248503,
+        -1.1488041320124254
+      ]
+    },
+    {
+      "id": "c60-a37",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        1.4884476467201744,
+        -2.884655713183723
+      ],
+      "pos3": [
+        0.71,
+        -3.446412396037276,
+        0
+      ]
+    },
+    {
+      "id": "c60-a38",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        0.7689086374081233,
+        -4.200810572642987
+      ],
+      "pos3": [
+        1.42,
+        -3.0076082640248503,
+        1.1488041320124254
+      ]
+    },
+    {
+      "id": "c60-a39",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -0.8966759296013427,
+        -2.435476461255809
+      ],
+      "pos3": [
+        2.5688041320124255,
+        -2.2976082640248507,
+        -0.71
+      ]
+    },
+    {
+      "id": "c60-a40",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -0.7051788001272777,
+        -3.923202527910284
+      ],
+      "pos3": [
+        2.5688041320124255,
+        -2.2976082640248507,
+        0.71
+      ]
+    },
+    {
+      "id": "c60-a41",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        6.965162570719459,
+        1.535136033143803
+      ],
+      "pos3": [
+        -3.0076082640248503,
+        -1.1488041320124254,
+        1.42
+      ]
+    },
+    {
+      "id": "c60-a42",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        7.395333944104234,
+        2.972130323153425
+      ],
+      "pos3": [
+        -3.446412396037276,
+        0,
+        0.71
+      ]
+    },
+    {
+      "id": "c60-a43",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        8.19889508924253,
+        0.6819630889298423
+      ],
+      "pos3": [
+        -2.2976082640248507,
+        -0.71,
+        2.5688041320124255
+      ]
+    },
+    {
+      "id": "c60-a44",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        8.894926992366319,
+        3.0070686918049345
+      ],
+      "pos3": [
+        -3.0076082640248503,
+        1.1488041320124254,
+        1.42
+      ]
+    },
+    {
+      "id": "c60-a45",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        9.391555092100573,
+        1.5916675011334172
+      ],
+      "pos3": [
+        -2.2976082640248507,
+        0.71,
+        2.5688041320124255
+      ]
+    },
+    {
+      "id": "c60-a46",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        9.281830468400308,
+        -1.1467715132630456
+      ],
+      "pos3": [
+        0,
+        0.71,
+        3.446412396037276
+      ]
+    },
+    {
+      "id": "c60-a47",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        7.230212820752273,
+        0.14993257886685551
+      ],
+      "pos3": [
+        -0.71,
+        2.5688041320124255,
+        2.2976082640248507
+      ]
+    },
+    {
+      "id": "c60-a48",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        8.727076979161765,
+        0.2468742689132073
+      ],
+      "pos3": [
+        -1.1488041320124254,
+        1.42,
+        3.0076082640248503
+      ]
+    },
+    {
+      "id": "c60-a49",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        6.8598533835522435,
+        -1.3036264626849148
+      ],
+      "pos3": [
+        0.71,
+        2.5688041320124255,
+        2.2976082640248507
+      ]
+    },
+    {
+      "id": "c60-a50",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        8.127822821717833,
+        -2.1050336649722636
+      ],
+      "pos3": [
+        1.1488041320124254,
+        1.42,
+        3.0076082640248503
+      ]
+    },
+    {
+      "id": "c60-a51",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -8.254738358591952,
+        -0.2328039506304349
+      ],
+      "pos3": [
+        0.71,
+        3.446412396037276,
+        0
+      ]
+    },
+    {
+      "id": "c60-a52",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -5.869614782270435,
+        -0.6819832025583483
+      ],
+      "pos3": [
+        2.5688041320124255,
+        2.2976082640248507,
+        -0.71
+      ]
+    },
+    {
+      "id": "c60-a53",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -6.8990026558195625,
+        0.40905327977851935
+      ],
+      "pos3": [
+        1.42,
+        3.0076082640248503,
+        -1.1488041320124254
+      ]
+    },
+    {
+      "id": "c60-a54",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -8.063241229117887,
+        -1.7205300172849083
+      ],
+      "pos3": [
+        1.42,
+        3.0076082640248503,
+        1.1488041320124254
+      ]
+    },
+    {
+      "id": "c60-a55",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -6.589153791582487,
+        -1.998138062017611
+      ],
+      "pos3": [
+        2.5688041320124255,
+        2.2976082640248507,
+        0.71
+      ]
+    },
+    {
+      "id": "c60-a56",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -5.005538607494163,
+        -5.569521787048952
+      ],
+      "pos3": [
+        2.2976082640248507,
+        -0.71,
+        2.5688041320124255
+      ]
+    },
+    {
+      "id": "c60-a57",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -4.309506704370369,
+        -3.2444161841738617
+      ],
+      "pos3": [
+        3.446412396037276,
+        0,
+        0.71
+      ]
+    },
+    {
+      "id": "c60-a58",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -3.812878604636117,
+        -4.659817374845377
+      ],
+      "pos3": [
+        3.0076082640248503,
+        -1.1488041320124254,
+        1.42
+      ]
+    },
+    {
+      "id": "c60-a59",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -6.239271126017232,
+        -4.7163488428349885
+      ],
+      "pos3": [
+        2.2976082640248507,
+        0.71,
+        2.5688041320124255
+      ]
+    },
+    {
+      "id": "c60-a60",
+      "element": "C",
+      "charge": 0,
+      "chiralTag": "CHI_UNSPECIFIED",
+      "pos2": [
+        -5.809099752632454,
+        -3.2793545528253674
+      ],
+      "pos3": [
+        3.0076082640248503,
+        1.1488041320124254,
+        1.42
+      ]
+    }
+  ],
+  "bonds": [
+    {
+      "id": "c60-b1",
+      "a": "c60-a1",
+      "b": "c60-a6",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b2",
+      "a": "c60-a1",
+      "b": "c60-a2",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b3",
+      "a": "c60-a1",
+      "b": "c60-a5",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b4",
+      "a": "c60-a2",
+      "b": "c60-a11",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b5",
+      "a": "c60-a2",
+      "b": "c60-a4",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b6",
+      "a": "c60-a3",
+      "b": "c60-a26",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b7",
+      "a": "c60-a3",
+      "b": "c60-a4",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b8",
+      "a": "c60-a3",
+      "b": "c60-a5",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b9",
+      "a": "c60-a4",
+      "b": "c60-a31",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b10",
+      "a": "c60-a5",
+      "b": "c60-a36",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b11",
+      "a": "c60-a6",
+      "b": "c60-a7",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b12",
+      "a": "c60-a6",
+      "b": "c60-a9",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b13",
+      "a": "c60-a7",
+      "b": "c60-a12",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b14",
+      "a": "c60-a7",
+      "b": "c60-a10",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b15",
+      "a": "c60-a8",
+      "b": "c60-a16",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b16",
+      "a": "c60-a8",
+      "b": "c60-a9",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b17",
+      "a": "c60-a8",
+      "b": "c60-a10",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b18",
+      "a": "c60-a9",
+      "b": "c60-a37",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b19",
+      "a": "c60-a10",
+      "b": "c60-a41",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b20",
+      "a": "c60-a11",
+      "b": "c60-a12",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b21",
+      "a": "c60-a11",
+      "b": "c60-a14",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b22",
+      "a": "c60-a12",
+      "b": "c60-a15",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b23",
+      "a": "c60-a13",
+      "b": "c60-a21",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b24",
+      "a": "c60-a13",
+      "b": "c60-a14",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b25",
+      "a": "c60-a13",
+      "b": "c60-a15",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b26",
+      "a": "c60-a14",
+      "b": "c60-a32",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b27",
+      "a": "c60-a15",
+      "b": "c60-a42",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b28",
+      "a": "c60-a16",
+      "b": "c60-a17",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b29",
+      "a": "c60-a16",
+      "b": "c60-a18",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b30",
+      "a": "c60-a17",
+      "b": "c60-a38",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b31",
+      "a": "c60-a17",
+      "b": "c60-a20",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b32",
+      "a": "c60-a18",
+      "b": "c60-a43",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b33",
+      "a": "c60-a18",
+      "b": "c60-a19",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b34",
+      "a": "c60-a19",
+      "b": "c60-a46",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b35",
+      "a": "c60-a19",
+      "b": "c60-a20",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b36",
+      "a": "c60-a20",
+      "b": "c60-a56",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b37",
+      "a": "c60-a21",
+      "b": "c60-a22",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b38",
+      "a": "c60-a21",
+      "b": "c60-a23",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b39",
+      "a": "c60-a22",
+      "b": "c60-a33",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b40",
+      "a": "c60-a22",
+      "b": "c60-a25",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b41",
+      "a": "c60-a23",
+      "b": "c60-a44",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b42",
+      "a": "c60-a23",
+      "b": "c60-a24",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b43",
+      "a": "c60-a24",
+      "b": "c60-a47",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b44",
+      "a": "c60-a24",
+      "b": "c60-a25",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b45",
+      "a": "c60-a25",
+      "b": "c60-a51",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b46",
+      "a": "c60-a26",
+      "b": "c60-a27",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b47",
+      "a": "c60-a26",
+      "b": "c60-a28",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b48",
+      "a": "c60-a27",
+      "b": "c60-a34",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b49",
+      "a": "c60-a27",
+      "b": "c60-a29",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b50",
+      "a": "c60-a28",
+      "b": "c60-a39",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b51",
+      "a": "c60-a28",
+      "b": "c60-a30",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b52",
+      "a": "c60-a29",
+      "b": "c60-a52",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b53",
+      "a": "c60-a29",
+      "b": "c60-a30",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b54",
+      "a": "c60-a30",
+      "b": "c60-a57",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b55",
+      "a": "c60-a31",
+      "b": "c60-a32",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b56",
+      "a": "c60-a31",
+      "b": "c60-a34",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b57",
+      "a": "c60-a32",
+      "b": "c60-a33",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b58",
+      "a": "c60-a33",
+      "b": "c60-a35",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b59",
+      "a": "c60-a34",
+      "b": "c60-a35",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b60",
+      "a": "c60-a35",
+      "b": "c60-a53",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b61",
+      "a": "c60-a36",
+      "b": "c60-a37",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b62",
+      "a": "c60-a36",
+      "b": "c60-a39",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b63",
+      "a": "c60-a37",
+      "b": "c60-a38",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b64",
+      "a": "c60-a38",
+      "b": "c60-a40",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b65",
+      "a": "c60-a39",
+      "b": "c60-a40",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b66",
+      "a": "c60-a40",
+      "b": "c60-a58",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b67",
+      "a": "c60-a41",
+      "b": "c60-a42",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b68",
+      "a": "c60-a41",
+      "b": "c60-a43",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b69",
+      "a": "c60-a42",
+      "b": "c60-a44",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b70",
+      "a": "c60-a43",
+      "b": "c60-a45",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b71",
+      "a": "c60-a44",
+      "b": "c60-a45",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b72",
+      "a": "c60-a45",
+      "b": "c60-a48",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b73",
+      "a": "c60-a46",
+      "b": "c60-a48",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b74",
+      "a": "c60-a46",
+      "b": "c60-a50",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b75",
+      "a": "c60-a47",
+      "b": "c60-a48",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b76",
+      "a": "c60-a47",
+      "b": "c60-a49",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b77",
+      "a": "c60-a49",
+      "b": "c60-a54",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b78",
+      "a": "c60-a49",
+      "b": "c60-a50",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b79",
+      "a": "c60-a50",
+      "b": "c60-a59",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b80",
+      "a": "c60-a51",
+      "b": "c60-a53",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b81",
+      "a": "c60-a51",
+      "b": "c60-a54",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b82",
+      "a": "c60-a52",
+      "b": "c60-a53",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b83",
+      "a": "c60-a52",
+      "b": "c60-a55",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b84",
+      "a": "c60-a54",
+      "b": "c60-a55",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b85",
+      "a": "c60-a55",
+      "b": "c60-a60",
+      "order": 2,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b86",
+      "a": "c60-a56",
+      "b": "c60-a58",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b87",
+      "a": "c60-a56",
+      "b": "c60-a59",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b88",
+      "a": "c60-a57",
+      "b": "c60-a58",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b89",
+      "a": "c60-a57",
+      "b": "c60-a60",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    },
+    {
+      "id": "c60-b90",
+      "a": "c60-a59",
+      "b": "c60-a60",
+      "order": 1,
+      "stereo": "STEREONONE",
+      "direction": "NONE",
+      "stereoAtoms": []
+    }
+  ]
+}

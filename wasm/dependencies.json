@@ -1,0 +1,14 @@
+{
+  "schema": "molecular-car-wasm-dependencies-v1",
+  "emscripten": "6.0.12",
+  "emsdk_commit": "35ff8a6d150541276abbc6bae512ca90bcfbe220",
+  "lammps_tag": "stable_30Sep2026",
+  "lammps_git_object": "752e990c8d4c30bb134f6c1b630a2ab056cbc087",
+  "rdkit_tag": "Release_2025_09_3",
+  "rdkit_commit": "fd677c59b21ffbf50157752102216660324ac1f1",
+  "boost": "1.85.0",
+  "cmake": "3.31.10",
+  "ninja": "1.13.2",
+  "catch2": "v3.4.0",
+  "better_enums_commit": "c35576bed0295689540b39873126129adfa0b4c8"
+}

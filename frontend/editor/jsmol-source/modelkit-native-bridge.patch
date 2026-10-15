@@ -1,0 +1,137 @@
+--- a/j2s/J/modelkit/ModelKitPopup.js
++++ b/j2s/J/modelkit/ModelKitPopup.js
+@@ -26,6 +26,8 @@
+ }}, "~N,~N");
+ Clazz.overrideMethod(c$, "jpiUpdateComputedMenus", 
+ function(){
++// This source build contains molecular controls only, with no crystal menus.
++if (this.htMenus.get("xtalMenu") == null) return;
+ this.htMenus.get("xtalMenu").setEnabled(this.modelkit.setHasUnitCell());
+ if (this.modelkit.checkNewModel()) {
+ this.haveOperators = false;
+@@ -35,6 +37,13 @@
+ Clazz.overrideMethod(c$, "appUpdateForShow", 
+ function(){
+ this.jpiUpdateComputedMenus();
++var bridge = this.vwr._mcarModelKitBridge;
++var undo = this.htMenus.get("undo"), redo = this.htMenus.get("redo");
++var canUndo = bridge ? bridge.canUndo() : false;
++var canRedo = bridge ? bridge.canRedo() : false;
++if (undo.isEnabled() != canUndo || redo.isEnabled() != canRedo) this.isTainted = true;
++undo.setEnabled(canUndo);
++redo.setEnabled(canRedo);
+ });
+ Clazz.defineMethod(c$, "hidePopup", 
+ function(){
+@@ -125,8 +134,9 @@
+ this.vwr.refresh(1, "modelkit");
+ if (active === "bondMenu" && this.prevBondCheckBox == null) this.prevBondCheckBox = this.htMenus.get("assignBond_pP!RD");
+ } else if (name.indexOf("optionsMenu") >= 0) {
+-this.htMenus.get("undo").setEnabled(this.vwr.undoMoveAction(4165, 1275068425) > 0);
+-this.htMenus.get("redo").setEnabled(this.vwr.undoMoveAction(4140, 1275068425) > 0);
++var bridge = this.vwr._mcarModelKitBridge;
++this.htMenus.get("undo").setEnabled(bridge ? bridge.canUndo() : false);
++this.htMenus.get("redo").setEnabled(bridge ? bridge.canRedo() : false);
+ }return active;
+ }, "~S");
+ Clazz.overrideMethod(c$, "appUpdateSpecialCheckBoxValue", 
+@@ -216,6 +226,17 @@
+ this.updatingForShow = false;
+ }}
+ }, "~S");
++// Molecular Car source extension: keep native controls; route project actions
++// directly to the owner rather than evaluating native history/geometry scripts.
++Clazz.overrideMethod(c$, "appRunScript", function(script){
++var bridge = this.vwr._mcarModelKitBridge;
++if (script.indexOf("mcar:") === 0) {
++  if (bridge) bridge.action(script.substring(5));
++  return;
++}
++if (bridge && script.indexOf("set picking ") === 0) bridge.mode(script.substring(12));
++this.vwr.evalStringGUI(script);
++}, "~S");
+ c$.bundle =  new J.modelkit.ModelKitPopupResourceBundle(null, null);
+ });
+ ;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+--- a/j2s/J/modelkit/ModelKitPopupResourceBundle.js
++++ b/j2s/J/modelkit/ModelKitPopupResourceBundle.js
+@@ -16,6 +16,15 @@
+ var wasTranslating = J.i18n.GT.setDoTranslate(true);
+ var words =  Clazz.newArray(-1, ["atomMenu", "<atoms.png>", "moreAtomMenu", "<dotdotdot.png>", "bondMenu", "<bonds.png>", "optionsMenu", "<dotdotdot.png>", "operator", "(no operator selected)", "xtalMenu", "<xtal.png>", "xtalModePersistMenu", "mode", "xtalSelPersistMenu", "select atom or position", "xtalSelOpPersistMenu", "select operator", "xtalOp!PersistMenu", "from list...", "xtalEditOptPersistMenu", "edit options", "xtalOptionsPersistMenu", "more options...", "xtalPackingPersistMenu", "packing", "mkshowSymopInfoCB", "show symmetry operator info", "mkaddHydrogensCB", "add hydrogens on new atoms", "mkclicktosetelementCB", "allow clicking to set atom element", "mkselop_byop", "from list", "mkselop_addOffset", "add/remove lattice offset", "mkselop_atom2", "to second atom", "mksel_atom", "select atom", "mksel_position", "select position", "mkmode_molecular", J.i18n.GT.$("disabled"), "mkmode_view", J.i18n.GT.$("View"), "mkmode_edit", J.i18n.GT.$("Edit"), "mksymmetry_none", J.i18n.GT.$("do not apply"), "mksymmetry_retainLocal", J.i18n.GT.$("retain local"), "mksymmetry_applyLocal", J.i18n.GT.$("apply local"), "mksymmetry_applyFull", J.i18n.GT.$("apply full"), "mkunitcell_extend", J.i18n.GT.$("this operator"), "mkunitcell_packed", J.i18n.GT.$("add translation"), "mkasymmetricUnit", J.i18n.GT.$("asymmetric unit"), "mkallAtoms", J.i18n.GT.$("all atoms"), "new", J.i18n.GT.$("new"), "undo", J.i18n.GT.$("undo (CTRL-Z)"), "redo", J.i18n.GT.$("redo (CTRL-Y)"), "center", J.i18n.GT.$("center"), "ekey", J.i18n.GT.$("element key"), "addh", J.i18n.GT.$("add hydrogens"), "minimize", J.i18n.GT.$("minimize"), "hmin", J.i18n.GT.$("fix hydrogens and minimize"), "clearQPersist", J.i18n.GT.$("clear"), "SIGNEDsaveFile", J.i18n.GT.$("save file"), "SIGNEDsaveState", J.i18n.GT.$("save state"), "invertStereoP!RD", J.modelkit.ModelKit.getText("invStereo"), "assignAtom_XP!RD", J.modelkit.ModelKit.getText("delAtom"), "assignAtom_XxP!RD", J.modelkit.ModelKit.getText("dragBond"), "dragAtomP!RD", J.modelkit.ModelKit.getText("dragAtom"), "dragMinimizeP!RD", J.modelkit.ModelKit.getText("dragMinimize"), "dragMoleculeP!RD", J.modelkit.ModelKit.getText("dragMolecule"), "dragMinimizeMoleculeP!RD", J.modelkit.ModelKit.getText("dragMMol"), "assignAtom_CP!RD", "C", "assignAtom_HP!RD", "H", "assignAtom_NP!RD", "N", "assignAtom_OP!RD", "O", "assignAtom_FP!RD", "F", "assignAtom_ClP!RD", "Cl", "assignAtom_BrP!RD", "Br", "_??P!RD", "??", "assignAtom_plP!RD", J.modelkit.ModelKit.getText("incCharge"), "assignAtom_miP!RD", J.modelkit.ModelKit.getText("decCharge"), "assignBond_0P!RD", J.modelkit.ModelKit.getText("bondTo0"), "assignBond_1P!RD", J.modelkit.ModelKit.getText("bondTo1"), "assignBond_2P!RD", J.modelkit.ModelKit.getText("bondTo2"), "assignBond_3P!RD", J.modelkit.ModelKit.getText("bondTo3"), "assignBond_pP!RD", J.modelkit.ModelKit.getText("incBond"), "assignBond_mP!RD", J.modelkit.ModelKit.getText("decBond"), "rotateBondP!RD", J.modelkit.ModelKit.getText("rotBond"), "exit!Persist", J.i18n.GT.$("exit modelkit mode")]);
+ J.i18n.GT.setDoTranslate(wasTranslating);
++// Molecular Car extension: native items owned by the project transaction bridge.
++var extensionWords = Clazz.newArray(-1, ["selectAtoms", "选择原子", "measureAtoms", "测量", "periodicTable", "元素周期表…", "generate3d", "重新生成三维", "addh", "补氢", "minimize", "UFF 优化", "undo", "撤销 (Ctrl+Z)", "redo", "重做 (Ctrl+Y)", "SIGNEDsaveFile", "保存项目", "exportMol", "导出 MOL", "dragAtomP!RD", "移动原子 / C60 组", "dragMoleculeP!RD", "移动分子 (Alt 旋转)", "rotateBondP!RD", "旋转化学键", "assignAtom_XxP!RD", "拖动连接", "assignAtom_XP!RD", "删除原子", "assignAtom_plP!RD", "增加电荷", "assignAtom_miP!RD", "减少电荷"]);
++for (var wi = 0; wi < extensionWords.length; wi += 2) {
++  var found = false;
++  for (var wj = 0; wj < words.length; wj += 2) if (words[wj] == extensionWords[wi]) {
++    words[wj + 1] = extensionWords[wi + 1]; found = true; break;
++  }
++  if (!found) words.push(extensionWords[wi], extensionWords[wi + 1]);
++}
+ return words;
+ });
+ Clazz.overrideMethod(c$, "getMenuAsText", 
+@@ -24,5 +33,28 @@
+ }, "~S");
+ c$.menuContents =  Clazz.newArray(-1, [ Clazz.newArray(-1, ["modelkitMenu", "atomMenu bondMenu xtalMenu optionsMenu"]),  Clazz.newArray(-1, ["optionsMenu", "new ekey center addh minimize hmin  - undo redo - SIGNEDsaveFile SIGNEDsaveState exit!Persist"]),  Clazz.newArray(-1, ["atomMenu", "assignAtom_XxP!RD dragAtomP!RD dragMinimizeP!RD dragMoleculeP!RD dragMinimizeMoleculeP!RD invertStereoP!RD -  assignAtom_XP!RD assignAtom_CP!RD assignAtom_HP!RD assignAtom_NP!RD assignAtom_OP!RD assignAtom_FP!RD assignAtom_ClP!RD assignAtom_BrP!RD _??P!RD _??P!RD _??P!RD moreAtomMenu assignAtom_plP!RD assignAtom_miP!RD"]),  Clazz.newArray(-1, ["moreAtomMenu", "clearQPersist , _??P!RD _??P!RD _??P!RD _??P!RD _??P!RD _??P!RD "]),  Clazz.newArray(-1, ["bondMenu", "assignBond_0P!RD assignBond_1P!RD assignBond_2P!RD assignBond_3P!RD assignBond_pP!RD assignBond_mP!RD rotateBondP!RD"]),  Clazz.newArray(-1, ["xtalMenu", "xtalSelOpPersistMenu operator "]),  Clazz.newArray(-1, ["xtalModePersistMenu", "mkmode_molecular mkmode_view mkmode_edit"]),  Clazz.newArray(-1, ["xtalSelPersistMenu", "mksel_atom mksel_position"]),  Clazz.newArray(-1, ["xtalSelOpPersistMenu", "xtalOp!PersistMenu "]),  Clazz.newArray(-1, ["xtalEditOptPersistMenu", "mksymmetry_none mksymmetry_retainLocal mksymmetry_applyLocal mksymmetry_applyFull"]),  Clazz.newArray(-1, ["xtalPackingPersistMenu", "mkunitcell_packed mkunitcell_extend"]),  Clazz.newArray(-1, ["xtalOptionsPersistMenu", "mkshowSymopInfoCB mkclicktosetelementCB mkaddHydrogensCB"])]);
+ c$.structureContents =  Clazz.newArray(-1, [ Clazz.newArray(-1, ["new", "zap"]),  Clazz.newArray(-1, ["ekey", "set elementkey= @{!elementkey}"]),  Clazz.newArray(-1, ["center", "zoomto 0 {visible} 0/1.5"]),  Clazz.newArray(-1, ["addh", "calculate hydrogens {model=_lastframe}"]),  Clazz.newArray(-1, ["minimize", "minimize"]),  Clazz.newArray(-1, ["hmin", "delete hydrogens and model=_lastframe; minimize addhydrogens"]),  Clazz.newArray(-1, ["SIGNEDsaveFile", "select visible;write COORD '?jmol.mol'"]),  Clazz.newArray(-1, ["SIGNEDsaveState", "write '?jmol.jpg'"]),  Clazz.newArray(-1, ["clearQ", "clearQ"]),  Clazz.newArray(-1, ["undo", "!undoMove"]),  Clazz.newArray(-1, ["redo", "!redoMove"]),  Clazz.newArray(-1, ["operator", ""]),  Clazz.newArray(-1, ["exit!Persist", "set modelkitMode false"])]);
++// Use upstream popup controls and picking modes. Geometry, file and history
++// entries are project requests; auto-minimizing/crystal actions are omitted.
++c$.menuContents = Clazz.newArray(-1, [
++  Clazz.newArray(-1, ["modelkitMenu", "atomMenu bondMenu optionsMenu"]),
++  Clazz.newArray(-1, ["atomMenu", "selectAtoms measureAtoms - dragAtomP!RD dragMoleculeP!RD assignAtom_XxP!RD - assignAtom_XP!RD assignAtom_CP!RD assignAtom_HP!RD assignAtom_NP!RD assignAtom_OP!RD assignAtom_FP!RD assignAtom_ClP!RD assignAtom_BrP!RD periodicTable - assignAtom_plP!RD assignAtom_miP!RD"]),
++  Clazz.newArray(-1, ["bondMenu", "assignBond_0P!RD assignBond_1P!RD assignBond_2P!RD assignBond_3P!RD assignBond_pP!RD assignBond_mP!RD rotateBondP!RD"]),
++  Clazz.newArray(-1, ["optionsMenu", "center ekey - generate3d addh minimize - undo redo - SIGNEDsaveFile exportMol"])
++]);
++c$.structureContents = Clazz.newArray(-1, [
++  Clazz.newArray(-1, ["selectAtoms", "set picking atom"]),
++  Clazz.newArray(-1, ["measureAtoms", "set picking measure"]),
++  Clazz.newArray(-1, ["periodicTable", "mcar:periodic-table"]),
++  Clazz.newArray(-1, ["center", "zoomto 0 {visible} 0/1.5"]),
++  Clazz.newArray(-1, ["ekey", "set elementkey= @{!elementkey}"]),
++  Clazz.newArray(-1, ["generate3d", "mcar:rebuild"]),
++  Clazz.newArray(-1, ["addh", "mcar:hydrogenate"]),
++  Clazz.newArray(-1, ["minimize", "mcar:relax"]),
++  Clazz.newArray(-1, ["undo", "mcar:undo"]),
++  Clazz.newArray(-1, ["redo", "mcar:redo"]),
++  Clazz.newArray(-1, ["SIGNEDsaveFile", "mcar:save"]),
++  Clazz.newArray(-1, ["exportMol", "mcar:export"]),
++  Clazz.newArray(-1, ["clearQ", "clearQ"])
++]);
+ });
+ ;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+--- a/j2s/JS/JMenu.js
++++ b/j2s/JS/JMenu.js
+@@ -179,7 +179,8 @@
+ menu._visible = menu.isDragging = false;
+ };
+ var delayHide = function(menu, f) {
+-setTimeout(function(){Swing.hideMenus(menu.applet);f();},500);
++// Molecular Car bridged menus dispatch immediately; retain upstream timing elsewhere.
++setTimeout(function(){Swing.hideMenus(menu.applet);f();},menu.applet && menu.applet._mcarModelKitBridge ? 0 : 500);
+ }
+ Swing.bindMenuActionCommands = function(menu, isBind) {
+ // called internally
+--- a/j2s/core/coreswing.js
++++ b/j2s/core/coreswing.js
+@@ -930,7 +930,8 @@
+ menu._visible = menu.isDragging = false;
+ };
+ var delayHide = function(menu, f) {
+-setTimeout(function(){Swing.hideMenus(menu.applet);f();},500);
++// Molecular Car bridged menus dispatch immediately; retain upstream timing elsewhere.
++setTimeout(function(){Swing.hideMenus(menu.applet);f();},menu.applet && menu.applet._mcarModelKitBridge ? 0 : 500);
+ }
+ Swing.bindMenuActionCommands = function(menu, isBind) {
+ // called internally
+--- a/j2s/core/coreswing.z.js
++++ b/j2s/core/coreswing.z.js
+@@ -86,7 +86,7 @@
+ var b={item:this.active};this.active.has(".ui-menu").length||this.collapseAll(c,!0);this._trigger("select",c,b)}})}catch(ca){System.out.println("JSmolMenu failed to load jQuery.ui.menu -- jQuery version conflict?")}var p=Jmol.Swing;if(!p.menuInitialized){p.menuCounter=0;p.menuInitialized=1;p.__getMenuStyle=function(a){return".jmolPopupMenu{font-family:Arial,sans-serif;font-size:11px;position:absolute;z-index:"+Jmol._getZ(a,"menu")+'}.jmolPopupMenu,.jmolPopupMenu .ui-corner-all{border-radius:5px}.jmolPopupMenu,.jmolPopupMenu .ui-widget-content{border:1px solid #a6c9e2;background-color:#fcfdfd;color:#222}.jmolPopupMenu a{color:#222;font-size:10px;}.jmolPopupMenu input[type="checkbox"]{vertical-align:middle;}.jmolPopupMenu,.jmolPopupMenu .ui-menu{list-style:none;padding:2px;margin:0;display:block;outline:none;box-shadow:1px 1px 5px rgba(50,50,50,0.75)}.jmolPopupMenu .ui-menu{margin-top:-3px;position:absolute}.jmolPopupMenu .ui-menu-item{cursor:pointer;margin:0 2ex 0 0;padding:0;width:100%}.jmolPopupMenu .ui-menu-divider{margin:3px 1px;height:0;font-size:0;line-height:0;border-width:1px 0 0 0}.jmolPopupMenu .ui-menu-item a{text-decoration:none;display:block;padding:0.05em 0.4em;white-space:nowrap;border:1px solid transparent}.jmolPopupMenu .ui-menu-icons{position:relative}.jmolPopupMenu .ui-menu-icons .ui-menu-item a{position:relative;padding-left:2em}.jmolPopupMenu .ui-icon{display:block;text-indent:-99999px;overflow:hidden;background-repeat:no-repeat;position:absolute;top:.2em;left:.2em}.jmolPopupMenu .ui-menu-icon{position:static;float:right}.jmolPopupMenu .ui-icon-carat-1-e{min-width:2ex;text-align:right;background-image:none;background-position:0 0}.jmolPopupMenu .ui-icon-carat-1-e:after{content:"\\25B8"}.jmolPopupMenu .ui-state-default{border:1px solid #c5dbec;background:#dfeffc;color:#2e6e9e}.jmolPopupMenu .ui-state-default a{color:#2e6e9e;text-decoration:none}.jmolPopupMenu .ui-state-hover,.jmolPopupMenu .ui-state-focus{border:1px solid #79b7e7;background:#d0e5f5;color:#1d5987}.jmolPopupMenu .ui-state-hover a{color:#1d5987;text-decoration:none}.jmolPopupMenu .ui-state-active{border:1px solid #79b7e7;background:#f5f8f9;color:#e17009}.jmolPopupMenu .ui-state-active a{color:#e17009;text-decoration:none}.jmolPopupMenu .ui-state-highlight{border:1px solid #fad42e;background:#fbec88;color:#363636}.jmolPopupMenu .ui-state-highlight a{color:#363636}.jmolPopupMenu .ui-state-disabled *{background:grey!important,color:#d6d6d6!important;font-weight:normal;cursor:default}.jmolPopupMenu .ui-state-disabled a:hover{background-color:transparent!important;border-color:transparent!important}.jmolPopupMenu .ui-state-disabled .ui-icon{filter:Alpha(Opacity=35)}'};
+ p.setMenu=function(a){p.__getMenuStyle&&Jmol.$after("head","<style>"+p.__getMenuStyle(a.applet)+"</style>");p.__getStyle=null;a.tainted=!0;a.popupMenu=a;a.id="top";a.id=p.getMenuID(a);a.applet._menus||(a.applet._menus={});a.applet._menus[a.name]=a;Jmol.$after("body",'<ul id="'+a.id+'" class="jmolPopupMenu"></ul>');a.setContainer(Jmol.$("#"+a.id))};p.showMenu=function(a,b,d){Jmol._showMenuCallback&&Jmol._showMenuCallback(a,b,d);a.tainted&&(a.container.html(a.toHTML()),a.tainted=!1,p.bindMenuActionCommands(a,
+ !0));a.setPosition();a.container.hide().menu().menu("refresh").show();a._visible=!0;a.timestamp=System.currentTimeMillis();a.dragBind(!0);a.container.unbind("clickoutjsmol");Jmol._persistentMenu||a.container.bind("clickoutjsmol mousemoveoutjsmol",function(){1E3<System.currentTimeMillis()-a.timestamp&&p.hideMenu(a)});a.container.bind("contextmenu",function(){return!1})};p.disposeMenu=function(a){Jmol._persistentMenu||(p.hideMenu(a),p.bindMenuActionCommands(a,!1),delete a.applet._menus[a.name])};p.initMenuItem=
+-function(a){a.applet=a.popupMenu.applet;a.id=p.getMenuID(a);a.icon&&(a.icon='<img src="'+a.applet._j2sPath+"/"+a.icon+'" style="max-height: 20px;" />')};p.getMenuID=function(a){var b=a.popupMenu;return b.applet._id+"_"+b.name+"_"+a.id+"_"+ ++p.menuCounter};p.hideMenu=function(a){a._visible&&(a.dragBind(!1),a.container.hide(),a._visible=a.isDragging=!1)};var Z=function(a,b){setTimeout(function(){p.hideMenus(a.applet);b()},500)};p.bindMenuActionCommands=function(a,b){for(var d=a.getComponentCount(),
++function(a){a.applet=a.popupMenu.applet;a.id=p.getMenuID(a);a.icon&&(a.icon='<img src="'+a.applet._j2sPath+"/"+a.icon+'" style="max-height: 20px;" />')};p.getMenuID=function(a){var b=a.popupMenu;return b.applet._id+"_"+b.name+"_"+a.id+"_"+ ++p.menuCounter};p.hideMenu=function(a){a._visible&&(a.dragBind(!1),a.container.hide(),a._visible=a.isDragging=!1)};var Z=function(a,b){setTimeout(function(){p.hideMenus(a.applet);b()},a.applet&&a.applet._mcarModelKitBridge?0:500)};p.bindMenuActionCommands=function(a,b){for(var d=a.getComponentCount(),
+ e=0;e<d;e++)p.bindMenuActionCommands(a.getComponent(e),b);Jmol.$documentOff("click mouseup mouseover mousedown touchstart touchend mouseenter mouseleave",a.id);b&&(Jmol.$documentOn("click",a.id,function(){var b=""+a.name,b=0>b.indexOf("Persist")||0<=b.indexOf("!Persist");a.itemListener?(a.selected=2==a.btnType?Jmol.$prop(a.id+"-cb","checked"):!0,b&&Z(a,function(){a.itemListener.itemStateChanged({getSource:function(){return a}})})):a.actionListener&&b&&Z(a,function(){a.actionListener.actionPerformed({getSource:function(){return a},
+ getActionCommand:function(){return a.actionCommand}})})}),Jmol.$documentOn("mouseup mouseover mousedown touchstart touchend mouseenter mouseleave",a.id,function(b){a.mouseListener&&a.mouseListener.handleEvent&&a.mouseListener.handleEvent({jqevent:b,getID:function(){return b.type},getSource:function(){return a}})}))}}});g("JS");k(["JS.AbstractButton"],"JS.JMenuItem",null,function(){var b=m(function(){this.btnType=0;n(this,arguments)},JS,"JMenuItem",JS.AbstractButton);l(b,function(a){q(this,JS.JMenuItem,
+ ["btn"]);this.setText(a);this.btnType=null==a?0:1},"~S");l(b,function(a,b){q(this,JS.JMenuItem,[a]);this.btnType=b},"~S,~N");h(b,"toHTML",function(){return this.htmlMenuOpener("li")+(null==this.text?"":"<a>"+this.htmlLabel()+"</a>")+"</li>"});h(b,"getHtmlDisabled",function(){return' class="ui-state-disabled"'});d(b,"htmlLabel",function(){return 1==this.btnType?this.text:'<label><input id="'+this.id+"-"+(3==this.btnType?"r":"c")+'b" type="'+(3==this.btnType?'radio" name="'+this.htmlName:"checkbox")+

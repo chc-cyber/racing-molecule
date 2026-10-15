@@ -1,0 +1,15 @@
+{
+  "schema": "hetero-au-uff-vdw-game-v1",
+  "status": "provisional game model; not fitted Au adsorption parameters",
+  "gold_reference_type": "UFF Au4+3 vdW entries only; not a charged surface atom",
+  "gold_rmin_angstrom": 3.293,
+  "gold_well_depth_kcal_mol": 0.039,
+  "atomic_parameters": "RDKit GetUFFVdWParams(mol, i, i), after UFF coverage validation",
+  "mixing": "rmin_XAu=sqrt(rmin_XX*rmin_AuAu); epsilon_XAu=sqrt(epsilon_XX*epsilon_AuAu)",
+  "pair_potential": "Tap(r) * epsilon_XAu * ((rmin_XAu/r)^12 - 2*(rmin_XAu/r)^6)",
+  "cutoff_angstrom": 16.0,
+  "supported_elements": ["B", "N", "O", "F", "Si", "P", "S", "Cl", "Br", "I"],
+  "source": "https://github.com/rdkit/rdkit/blob/Release_2025_09_3/Code/ForceField/UFF/Params.cpp",
+  "reference": "https://doi.org/10.1021/ja00051a040",
+  "limitations": ["No element-specific Au chemisorption or coordination.", "No dynamic charge transfer or image potential.", "Not a SAIP parameter extension."]
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "frozen-au111-reference-v1",
+  "lattice_constant_angstrom": 4.08,
+  "layer_heights_angstrom": [
+    -11.689081987700003,
+    -9.3334928894,
+    -6.978904182999998,
+    -4.625157328100001,
+    -2.2545640300000005,
+    0.0
+  ],
+  "origin": "Six layer-mean heights of the frozen Au(111) slab relaxed with LAMMPS Au_u3.eam. Molecular-car Au-surface validation; 480 atoms per layer, 2880 atoms total.",
+  "source_xyz_sha256": "27c9827290f08db0eb87f8745d9c3651b744f04fa4aae0584674afbed8d04c49",
+  "model_note": "Only layer mean heights are retained; the periodic surface uses ideal in-plane ABC lattice sites, not a moving or fully atomwise relaxed slab."
+}

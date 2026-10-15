@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2f1eb">
+  <title>Racing Molecule · 分子跑道</title>
+  <link rel="icon" type="image/svg+xml" href="/vendor/racing-molecule.svg">
+  <link rel="stylesheet" href="/design-system.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/competition.css">
+  <link rel="stylesheet" href="/start-pose.css">
+  <link rel="stylesheet" href="/editor/race-handoff.css">
+  <link rel="stylesheet" href="/race-theme.css">
+  <link rel="stylesheet" href="/race-result.css">
+  <script type="importmap">{"imports":{"three":"/vendor/three.module.js"}}</script>
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" target="_top" href="/" aria-label="Racing Molecule 首页">
+      <svg class="brand-mark racing-mark" viewBox="-21 -6 130 84" aria-hidden="true"><path fill="#c9c9c6" fill-rule="evenodd" d="M12 37.32H32L42 54.64 32 71.96H12L2 54.64ZM11.3 54.64a10.7 10.7 0 1 0 21.4 0a10.7 10.7 0 1 0-21.4 0Z"/><path fill="#c9c9c6" fill-rule="evenodd" d="M72 37.32H92L102 54.64 92 71.96H72L62 54.64ZM71.3 54.64a10.7 10.7 0 1 0 21.4 0a10.7 10.7 0 1 0-21.4 0Z"/><path d="M32 37.32 42 20H62L72 37.32M42 54.64H62"/><path d="M12 37.32 2 20M2 20-15.32 10 2 0Z"/><circle cx="22" cy="54.64" r="10.7"/><circle cx="82" cy="54.64" r="10.7"/></svg>
+      <span>RACING <b>MOLECULE</b><small>分子赛车</small></span>
+    </a>
+    <div class="header-right"><a class="text-button" target="_top" href="/editor/index.html">返回工坊</a><span class="engine-badge" id="engine-badge"><i></i><span>连接中…</span></span></div>
+  </header>
+
+  <main class="workspace">
+    <section class="scene-panel" aria-label="三维分子跑道">
+      <div id="scene" class="scene"></div>
+      <div class="scene-heading"><h1>分子赛道</h1><p id="scene-description" hidden></p></div>
+      <div class="drive-scene-badge" id="drive-scene-badge">广域场 →</div>
+
+      <aside class="telemetry" aria-label="模拟数据">
+        <div class="telemetry-label"><span class="live-dot" id="live-dot"></span><span id="status-label">连接中…</span></div>
+        <div class="main-metric"><span class="metric-label">已行进</span><div><strong id="distance-value">—</strong><span>nm</span></div></div>
+        <svg class="distance-chart" viewBox="0 0 180 28" preserveAspectRatio="none" aria-hidden="true"><path class="chart-baseline" d="M0 26H180"/><path id="distance-chart-line" d=""/></svg>
+        <div class="metric-row"><span>当前速度</span><b><span id="speed-value">—</span><small> nm/ps</small></b></div>
+        <div class="metric-row"><span>仿真时间</span><b><span id="time-value">—</span><small id="time-unit"> fs</small></b></div>
+        <div class="telemetry-footer"><span>模拟步数</span><span id="step-value">— 步</span></div>
+      </aside>
+
+      <div class="scene-center-message" id="scene-message" role="status"><span class="preparing-spinner"></span><b>准备分子…</b><small hidden></small></div>
+      <div class="scene-toolbar"><button class="icon-button" id="home-camera" title="跟随分子" aria-label="跟随分子"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10H3Z"/><path d="M9 20v-7h6v7"/></svg></button><button class="view-button" id="overview-camera">全跑道</button><span id="camera-hint">拖动旋转 · 滚轮缩放</span></div>
+      <div class="scene-caption"><span class="caption-dot"></span><span id="track-size-label">20 nm × 20 nm</span></div>
+      <div class="finish-note" id="finish-note">终点 <span>20 nm</span></div>
+    </section>
+
+    <aside class="control-panel" aria-label="比赛操作">
+      <details class="race-setup-section" id="race-setup-panel" open>
+        <summary>赛事设置</summary><div id="race-setup"></div>
+        <p class="race-config-note" id="race-draft-note" hidden></p>
+      <details class="structure-section" open>
+        <summary><span>切换或导入分子</span><span class="chevron">⌄</span></summary>
+        <div class="structure-content"><label class="field-label" for="example-select">示例结构</label><div class="example-row"><select id="example-select"><option value="tetraphenylbenzene.mol">四苯基苯</option><option value="benzene.mol">苯</option></select><button class="load-example-button" id="load-example-button">选择</button></div><label class="upload-button" for="molecule-file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M4 14v7h16v-7"/></svg><span>导入 .mol / .sdf</span></label><input id="molecule-file" class="visually-hidden" type="file" accept=".mol,.sdf"></div>
+      </details>
+        <button type="button" class="primary-button" id="prepare-race">准备赛车</button>
+      </details>
+      <details class="race-rules" hidden><summary>本场规则</summary><p id="race-rules">尚未准备</p></details>
+      <section class="molecule-card">
+        <span class="section-label">当前分子</span><h2 id="molecule-name">请选择分子</h2><p id="molecule-info"></p>
+        <div class="molecule-chips"><span id="atom-chip">— 原子</span><span id="bond-chip">— 键</span></div>
+        <div class="representation-control"><span class="section-label">显示模型</span><div class="representation-options" role="group" aria-label="分子显示模型"><button type="button" id="ball-stick-model" aria-pressed="true">球棍模型</button><button type="button" id="space-filling-model" aria-pressed="false">空间填充</button></div><p id="representation-note" hidden></p></div>
+        <div class="representation-control playback-control"><span class="section-label">播放速度</span><div class="representation-options" role="group" aria-label="动画播放速度"><button type="button" id="playback-1x" aria-pressed="true">1×</button><button type="button" id="playback-2x" aria-pressed="false">2×</button></div><p id="playback-note">100 ps / 50 秒</p></div>
+      </section>
+
+      <section class="run-section">
+        <div class="run-buttons"><button class="primary-button" id="start-button" disabled><span id="start-icon">▶</span><span id="start-label">开始试跑</span></button><button class="secondary-button reset-button" id="reset-button" title="重置并清空当前轨迹" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 .5 6"/><path d="M4 4v6h6"/></svg><span>重置</span></button></div>
+        <p class="run-reset-note">重置会清空当前轨迹并重新准备赛车。</p><div class="progress-label"><span id="progress-label">等待开始</span><span id="progress-value">0%</span></div><div class="progress-track"><div id="progress-fill"></div></div>
+      </section>
+
+      <details class="start-pose-section" id="start-pose-panel">
+        <summary><span>起跑摆放</span><span class="chevron">⌄</span></summary>
+        <div class="start-pose-content">
+          <label class="field-label" for="start-pose-mode">摆放方式</label>
+          <select id="start-pose-mode" class="surface-select"><option value="auto">自动摆放</option><option value="manual">手动旋转</option><option value="preserve">采用文件朝向</option></select>
+          <div id="start-pose-auto">
+            <label class="field-label" for="start-pose-heading">车头参考</label><select id="start-pose-heading" class="surface-select"><option value="geometry">自动判断</option><option value="atoms">指定车尾 → 车头</option></select>
+            <div id="start-pose-atoms" hidden><div class="pose-atom-row"><label>车尾<select id="start-pose-rear"></select></label><button type="button" id="pick-pose-rear">在画面点选</button></div><div class="pose-atom-row"><label>车头<select id="start-pose-front"></select></label><button type="button" id="pick-pose-front">在画面点选</button></div></div>
+          </div>
+          <div id="start-pose-manual" hidden><div class="pose-angle-grid"><label>平面旋转<input id="start-pose-yaw" type="number" min="-180" max="180" step="5" value="0"><small>文件 z 轴 · °</small></label><label>俯仰<input id="start-pose-pitch" type="number" min="-180" max="180" step="5" value="0"><small>文件 y 轴 · °</small></label><label>侧倾<input id="start-pose-roll" type="number" min="-180" max="180" step="5" value="0"><small>文件 x 轴 · °</small></label></div></div>
+          <p id="start-pose-description">应用后会清空轨迹并重新准备赛车。</p>
+          <button type="button" id="apply-start-pose" class="load-example-button">应用并重新准备</button>
+          <p id="start-pose-result" aria-live="polite"></p>
+        </div>
+      </details>
+
+
+      <div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div>
+      <div class="control-footer"><details id="replay-menu"><summary class="text-button">保存轨迹</summary><div><button id="download-button" class="text-button" disabled>当前比赛</button><button id="download-previous" class="text-button" hidden>上一场比赛</button></div></details><span id="engine-version">LAMMPS</span></div>
+    </aside>
+  </main>
+  <footer class="app-footer"><span>Racing Molecule</span><span class="footer-mark">分子赛车</span></footer>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

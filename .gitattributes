@@ -1,0 +1,2 @@
+# Preserve exact bytes: runtime provenance and vendor manifests use SHA-256.
+* -text

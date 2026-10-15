@@ -1,0 +1,7 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>JSmol Host acceptance</title><style>body{margin:0;font:14px system-ui}#host{position:relative;width:900px;height:620px}#status{white-space:pre-wrap}</style></head><body><div id="host"></div><pre id="status">Loading local JSmol…</pre><script type="module">
+import {WorkshopModel} from '../model.js';import {JSmolHost} from '../jsmol-host.js';
+window.errors=[];window.model=new WorkshopModel();
+window.host=new JSmolHost(document.getElementById('host'),{model,onSelection(ids){model.selection=new Set(ids);host.setSelection(ids);},onError(error){errors.push(error.message);document.getElementById('status').textContent=error.stack;},onReady(){document.getElementById('status').textContent='Ready';}});
+model.addEventListener('change',()=>{if(!host.isApplying)host.push(model.project).catch(e=>errors.push(e.message));});
+host.initialized.catch(e=>{errors.push(e.stack);document.getElementById('status').textContent=e.stack;});
+</script></body></html>

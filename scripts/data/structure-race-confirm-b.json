@@ -1,0 +1,290 @@
+[
+  {
+    "phase": "confirm",
+    "molecule": "benzene-12",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 2718281,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "coronene-36",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 2718281,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "ethynyl-rigid",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 2718281,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "folded-eicosane",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 2718281,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "test-car-52",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 2718281,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "fullerene-c60",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 2718281,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "benzene-12",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 1234567,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "coronene-36",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 1234567,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "ethynyl-rigid",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 1234567,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "folded-eicosane",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 1234567,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "test-car-52",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 1234567,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "fullerene-c60",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 1234567,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "benzene-12",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 31415927,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "coronene-36",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 31415927,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "ethynyl-rigid",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 31415927,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "folded-eicosane",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 31415927,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "test-car-52",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 31415927,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "fullerene-c60",
+    "temperature_K": 600.0,
+    "strength": 0.6,
+    "seed": 31415927,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "benzene-12",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 2718281,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "coronene-36",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 2718281,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "ethynyl-rigid",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 2718281,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "folded-eicosane",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 2718281,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "test-car-52",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 2718281,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "fullerene-c60",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 2718281,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "benzene-12",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 1234567,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "coronene-36",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 1234567,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "ethynyl-rigid",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 1234567,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "folded-eicosane",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 1234567,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "test-car-52",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 1234567,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "fullerene-c60",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 1234567,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "benzene-12",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 31415927,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "coronene-36",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 31415927,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "ethynyl-rigid",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 31415927,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "folded-eicosane",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 31415927,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "test-car-52",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 31415927,
+    "limit_ps": 400.0
+  },
+  {
+    "phase": "confirm",
+    "molecule": "fullerene-c60",
+    "temperature_K": 600.0,
+    "strength": 0.45,
+    "seed": 31415927,
+    "limit_ps": 400.0
+  }
+]

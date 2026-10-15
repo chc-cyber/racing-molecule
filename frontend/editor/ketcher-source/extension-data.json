@@ -1,0 +1,27 @@
+{
+  "version": "3.18.0+molecular-car.c60.3",
+  "upstreamCommit": "f4f013e1855b71b0cbd37fc79d55b0cbe51c2371",
+  "nativeButton": "template-8",
+  "title": "C60 Fullerene",
+  "atoms": 60,
+  "bonds": 90,
+  "doubleBonds": 30,
+  "sourceGraphSha256": "2692ad49e9c8021b64314eec7c6c2ebf7a91f8f767d52e288d8c9d50ff9891e1",
+  "molSha256": "284f5b685118f59cd646fa1c450416ecb6a2eeee605862c97952ed362db4dac1",
+  "outerFace": [
+    0,
+    1,
+    3,
+    2,
+    4
+  ],
+  "drawing": "Native collapsed SUP C60; Schlegel drawing on expand; explicit ordered spherical 3D seed",
+  "templateProvenance": "SUP data.molecularCarTemplate.id=c60,version=2; ordered native insertion Pool map",
+  "modifiedUpstreamSources": [
+    "packages/ketcher-react/src/script/ui/data/templates.js",
+    "packages/ketcher-react/src/components/Icon/utils/iconNameToIcon.ts",
+    "packages/ketcher-react/src/script/ui/action/action.types.ts",
+    "packages/ketcher-react/src/assets/icons/files/template-8.svg",
+    "packages/ketcher-react/src/script/editor/tool/template.ts"
+  ]
+}

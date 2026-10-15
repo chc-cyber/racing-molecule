@@ -1,0 +1,220 @@
+{
+  "component": "Ketcher",
+  "version": "3.18.0",
+  "distribution": "official prebuilt standalone",
+  "vendoredAt": "2026-10-12T04:42:50.219Z",
+  "license": "Apache-2.0; upstream dependency notices retained",
+  "source": {
+    "repository": "https://github.com/epam/ketcher",
+    "release": "https://github.com/epam/ketcher/releases/tag/v3.18.0",
+    "tag": "v3.18.0",
+    "tagObject": "5f0a0cdd3a1564f3a43f387d3a76e571ae7d05f1",
+    "commit": "f4f013e1855b71b0cbd37fc79d55b0cbe51c2371",
+    "publishedAt": "2026-09-02T13:38:21Z",
+    "prerelease": false
+  },
+  "archive": {
+    "url": "https://github.com/epam/ketcher/releases/download/v3.18.0/ketcher-standalone-3.18.0.zip",
+    "bytes": 35057618,
+    "sha256": "484e7f10a0e74808ae5f43f0e6448db6f4d884bdd2189aa271108474167a3e7e",
+    "officialGitHubDigest": "sha256:484e7f10a0e74808ae5f43f0e6448db6f4d884bdd2189aa271108474167a3e7e"
+  },
+  "entry": "/editor/vendor/ketcher/index.html",
+  "deployment": {
+    "npmInstallRequired": false,
+    "externalCDNRequired": false,
+    "originalReleaseFilesModified": false,
+    "originalReleaseFileCount": 30,
+    "unpackedOriginalBytes": 120764113,
+    "notes": "Full prebuilt ZIP extracted unchanged. LICENSE and NOTICE added unchanged from the matching upstream tag because release ZIP omitted root copies. Bundled static/js/*.LICENSE.txt preserved unchanged. Indigo in-browser code is included in the official standalone JavaScript chunks."
+  },
+  "licenses": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/epam/ketcher/v3.18.0/LICENSE"
+    },
+    {
+      "path": "NOTICE",
+      "url": "https://raw.githubusercontent.com/epam/ketcher/v3.18.0/NOTICE"
+    }
+  ],
+  "verifiedRuntime": {
+    "report": "outputs/ketcher-deploy/browser-probe.json",
+    "probe": "frontend/editor/research/probe-ketcher-browser.cjs",
+    "sameOriginIframe": true,
+    "externalRequests": 0,
+    "pageErrors": 0,
+    "changeSubscription": "ketcher.editor.subscribe('change', callback)",
+    "unsubscribe": "ketcher.editor.unsubscribe(eventName, tokenReturnedBySubscribe)",
+    "selectionSubscription": "editor.subscribe('selectionChange', () => editor.selection())",
+    "structure": "ketcher.editor.struct(); atoms/bonds are Pool instances extending Map",
+    "coordinateConvention": "live pp.x = KET location[0]; live pp.y = -KET location[1]",
+    "importOptions": {
+      "preserveCanvasPosition": true,
+      "needZoom": false
+    },
+    "identityLimit": "Pool IDs are session IDs, may be nonzero and are not preserved across rebuilding. Single mol0 KET import ordinal and explicit bond endpoint references verified for benzene and C60; workshop adapter must bind ordinals to stable IDs explicitly."
+  },
+  "files": [
+    {
+      "path": "apple-touch-icon.png",
+      "bytes": 11817,
+      "sha256": "f414dcb2c13ea591559b6373070b7a5d4f59b59ef5910c5fa013a80c74a162a2"
+    },
+    {
+      "path": "asset-manifest.json",
+      "bytes": 916,
+      "sha256": "499dc7fdb220527d4e01810315763c920d276811460d9bda2e32092c0eecf1f0"
+    },
+    {
+      "path": "closable.html",
+      "bytes": 887,
+      "sha256": "3143f5ef0c093e9be19838264e893b12714af7cc21d6a306b122b6873d62b3f6"
+    },
+    {
+      "path": "duo.html",
+      "bytes": 872,
+      "sha256": "6d12dd2544b4cb2b2f6944f710a0bb803e88e5411bb85a664587871574a26dd0"
+    },
+    {
+      "path": "favicon-16x16.png",
+      "bytes": 600,
+      "sha256": "b17e9b5e3467455a41e611edc0f49b05cf2f02d7569524a958cfdb5d22c989d9"
+    },
+    {
+      "path": "favicon-32x32.png",
+      "bytes": 1229,
+      "sha256": "5cc22edce0ac5dd4b4a20b9a4b828d08ae312941b03f60aa3fe467a6bf9db561"
+    },
+    {
+      "path": "favicon.ico",
+      "bytes": 15086,
+      "sha256": "87a3fe8c44e333cfeaaa3e69151bfb36d0302b5e97bb392219cf1489be274760"
+    },
+    {
+      "path": "iframe.html",
+      "bytes": 3562,
+      "sha256": "82c466662b9e48c37e6c9336340bb82659e721cdf48a48a64f696100775c9064"
+    },
+    {
+      "path": "index.html",
+      "bytes": 870,
+      "sha256": "7541f4a58a3d8616ecd3d4c3bc80c3ec365b10748136686b54a104c041358174"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 11342,
+      "sha256": "3d54b234fa88c11d1d96380ff5fe29f3c5d8e1078ef914dfe8185ce4b1fbeac7"
+    },
+    {
+      "path": "logo.svg",
+      "bytes": 5219,
+      "sha256": "0cc1fa734753e99ae6bc8edaaae519b67c8fde53142761a730b0c0a510496812"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 288,
+      "sha256": "59292c1075edbc4bf0b8dddcaa50220bb8eae8c3f01ada8d0428f4762d30ac57"
+    },
+    {
+      "path": "NOTICE",
+      "bytes": 1047,
+      "sha256": "ab82986438fc66fa2b40836415b734ff018b1e42ee3a18434b27bdf1c42eb368"
+    },
+    {
+      "path": "popup.html",
+      "bytes": 878,
+      "sha256": "ecb235ffe963dd7d4a4d414132df708735f44ba264e646b7f11f29527b2a4989"
+    },
+    {
+      "path": "robots.txt",
+      "bytes": 67,
+      "sha256": "90d24bc3bf698ac1e173739502298ccca72adf1f564fab05f484b8c48d1cadd2"
+    },
+    {
+      "path": "serve.json",
+      "bytes": 322,
+      "sha256": "2e92566bf89257dea9041b5fc2b7d73e467fd55dbc801a87f3ce17d54799d133"
+    },
+    {
+      "path": "static/css/closable.96b87be0.css",
+      "bytes": 187766,
+      "sha256": "ec2018005014cba5df4a14abf86a3fc43be54711a711fab2cd989439214e35b1"
+    },
+    {
+      "path": "static/css/duo.5970bf8e.css",
+      "bytes": 187766,
+      "sha256": "f0d438e7f509a7deaabb92e53ba0a1849666cefb4d8db4001a8149c561279f0d"
+    },
+    {
+      "path": "static/css/main.96b87be0.css",
+      "bytes": 187766,
+      "sha256": "ec2018005014cba5df4a14abf86a3fc43be54711a711fab2cd989439214e35b1"
+    },
+    {
+      "path": "static/css/popup.96b87be0.css",
+      "bytes": 187766,
+      "sha256": "ec2018005014cba5df4a14abf86a3fc43be54711a711fab2cd989439214e35b1"
+    },
+    {
+      "path": "static/js/114.cd66d630.chunk.js",
+      "bytes": 54367,
+      "sha256": "fa3aa63280958a4b8c07203e69fede3b7c6367af47773d062083cb09abbb1cca"
+    },
+    {
+      "path": "static/js/127.aa15387f.chunk.js",
+      "bytes": 1262833,
+      "sha256": "6d10519a52025d6f181bfb4aed8bf937171ee1efc2d3429273b638f7c94337d4"
+    },
+    {
+      "path": "static/js/127.aa15387f.chunk.js.LICENSE.txt",
+      "bytes": 178,
+      "sha256": "d6f631a317b53b4cab89179e3cfb894fde163e08fd65815b1a955d3f4a1a9b5b"
+    },
+    {
+      "path": "static/js/609.d5254829.chunk.js",
+      "bytes": 400008,
+      "sha256": "0c8f0f966b89cee9cdcd9de859fed430eafd46de89134319f8be5f135fe87ee7"
+    },
+    {
+      "path": "static/js/closable.4741fe94.js",
+      "bytes": 29547018,
+      "sha256": "42a3c1716ab183ec26c626341634c2fe1f0638ff5b6b7e7f5e89eaa444dabeaf"
+    },
+    {
+      "path": "static/js/closable.4741fe94.js.LICENSE.txt",
+      "bytes": 2946,
+      "sha256": "d8a8836ee5eca7097c14f7beddf6e18209a6132bcc8b8939580af8fd85b6a2c2"
+    },
+    {
+      "path": "static/js/duo.299d8306.js",
+      "bytes": 29546279,
+      "sha256": "b0e1992752e7b1f9019483ff68ea689027a4999a0c7ab6b2f7bbd73806940901"
+    },
+    {
+      "path": "static/js/duo.299d8306.js.LICENSE.txt",
+      "bytes": 2946,
+      "sha256": "d8a8836ee5eca7097c14f7beddf6e18209a6132bcc8b8939580af8fd85b6a2c2"
+    },
+    {
+      "path": "static/js/main.e47c48ad.js",
+      "bytes": 29597293,
+      "sha256": "b8716a39486e7259e7c2cfcd29278044768d22cb60018589b1d5c1175c27f583"
+    },
+    {
+      "path": "static/js/main.e47c48ad.js.LICENSE.txt",
+      "bytes": 2946,
+      "sha256": "d8a8836ee5eca7097c14f7beddf6e18209a6132bcc8b8939580af8fd85b6a2c2"
+    },
+    {
+      "path": "static/js/popup.39267369.js",
+      "bytes": 29550676,
+      "sha256": "594626f45ffc2cbb507bb826a569145da350c1b4ce43ca8f5e41f1b849d21f38"
+    },
+    {
+      "path": "static/js/popup.39267369.js.LICENSE.txt",
+      "bytes": 2946,
+      "sha256": "d8a8836ee5eca7097c14f7beddf6e18209a6132bcc8b8939580af8fd85b6a2c2"
+    }
+  ]
+}
