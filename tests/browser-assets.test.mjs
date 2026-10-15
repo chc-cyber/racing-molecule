@@ -26,3 +26,11 @@ test('active slow streaming is not treated as a fixed total timeout',async()=>{
  const progress=[];const result=await loadTable(descriptor,{base:'https://game.invalid/',cacheStorage:null,stallMs:100,onProgress:n=>progress.push(n),fetcher:async()=>new Response(new ReadableStream({async start(c){for(let i=0;i<packed.length;i+=4){await new Promise(r=>setTimeout(r,20));c.enqueue(packed.subarray(i,i+4));}c.close();}}))});
  assert.deepEqual(result,raw);assert.equal(progress.at(-1),packed.length);assert(progress.length>2);
 });
+
+test('overlapping preload and race share one verified download under the cross-worker lock',async()=>{
+ const cacheStorage=makeCache();let tail=Promise.resolve(),calls=0;
+ const locks={request(_key,fn){const next=tail.then(fn);tail=next.catch(()=>{});return next;}};
+ const options={base:'https://game.invalid/browser/worker.mjs',cacheStorage,locks,fetcher:async()=>{calls++;await new Promise(r=>setTimeout(r,20));return new Response(packed);}};
+ const results=await Promise.all([loadTable(descriptor,{...options,priority:'low'}),loadTable(descriptor,options)]);
+ assert.equal(calls,1);assert.deepEqual(results,[raw,raw]);
+});

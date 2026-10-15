@@ -1,5 +1,11 @@
 // Cache only checksum-verified tables; a cancelled worker cannot publish partial data.
-export async function loadTable(descriptor, {base=import.meta.url,onProgress=()=>{},fetcher=fetch,cacheStorage=globalThis.caches,stallMs=45000}={}) {
+export async function loadTable(descriptor, options={}) {
+  const locks=options.locks??globalThis.navigator?.locks;
+  const key=new URL("./"+descriptor.path,options.base??import.meta.url).href+descriptor.sha256;
+  return locks ? locks.request("race-table:"+key,()=>readTable(descriptor,options)) : readTable(descriptor,options);
+}
+
+async function readTable(descriptor, {base=import.meta.url,onProgress=()=>{},fetcher=fetch,cacheStorage=globalThis.caches,stallMs=45000,priority="auto",requireCache=false}={}) {
   const url=new URL('./'+descriptor.path,base),key=new URL(url);key.searchParams.set('sha256',descriptor.sha256);
   let cache;
   try{cache=await cacheStorage?.open('racing-molecule-tables-v1');}catch{}
@@ -15,12 +21,12 @@ export async function loadTable(descriptor, {base=import.meta.url,onProgress=()=
     const controller=new AbortController();let timer;
     const arm=()=>{clearTimeout(timer);timer=setTimeout(()=>controller.abort(),stallMs);};
     try{
-      onProgress(0,false);arm();const response=await fetcher(url,{signal:controller.signal});
+      onProgress(0,false);arm();const response=await fetcher(url,{signal:controller.signal,priority});
       if(!response.ok)throw Error('赛道资源下载失败（'+response.status+'），请重试。');
       const reader=response.body.getReader(),chunks=[];let loaded=0;
       for(;;){const {done,value}=await reader.read();if(done)break;chunks.push(value);loaded+=value.byteLength;onProgress(loaded,false);arm();}
       clearTimeout(timer);const bytes=await new Blob(chunks).arrayBuffer(),data=await decode(bytes);
-      try{await cache?.put(key.href,new Response(bytes));}catch{}
+      try{await cache?.put(key.href,new Response(bytes));}catch(error){if(requireCache)throw error;}
       return data;
     }catch(error){if(attempt===1)throw Error(controller.signal.aborted?'赛道资源下载中断，请检查网络后重试。':error.message||'赛道资源下载失败，请重试。');}
     finally{clearTimeout(timer);}
