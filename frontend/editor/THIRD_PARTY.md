@@ -6,7 +6,7 @@
 
 | 组件 | 固定版本 | 用途 | 许可证与本地声明 |
 |---|---|---|---|
-| Ketcher（原生 C₆₀ 扩展） | 3.18.0+molecular-car.c60.3，固定官方 3.18.0 源码 | 主工坊二维绘图、原生环模板及折叠 SUP；内置本地 Indigo WASM | Apache-2.0；`vendor/ketcher-c60/LICENSE`、`NOTICE`、`licenses/` 与 `BUILD-DEPENDENCIES.json`；[官方来源](https://github.com/epam/ketcher/releases/tag/v3.18.0) |
+| Ketcher（原生 C₆₀ 扩展） | 3.18.0+molecular-car.c60.4，固定官方 3.18.0 源码 | 主工坊二维绘图、原生环模板及折叠 SUP；内置本地 Indigo WASM | Apache-2.0；`vendor/ketcher-c60/LICENSE`、`NOTICE`、`licenses/` 与 `BUILD-DEPENDENCIES.json`；[官方来源](https://github.com/epam/ketcher/releases/tag/v3.18.0) |
 | Ketcher 图标快照 | 3.18.0，固定同一官方提交 | 工坊顶部及三维通用操作的原始 SVG，统一二维/三维外观 | Apache-2.0；原样 SVG、`vendor/ketcher-icons/LICENSE`、`NOTICE`、`manifest.json` 记录来源和 SHA-256；运行内联使用 `currentColor` |
 | Three.js（历史编辑器） | 0.180.0 / r180 | 保留旧视图源码与历史测试，主工坊不再加载；赛道仍有自己的 Three.js | MIT；`../vendor/THREE-LICENSE.txt`；[官方源码](https://github.com/mrdoob/three.js/tree/r180) |
 | Three.js TransformControls（历史） | r180，配套 Three.js 0.180.0 | 旧视图与历史测试保留，主工坊不再加载 | MIT；`vendor/THREE-LICENSE.txt`；[该版本官方源文件](https://github.com/mrdoob/three.js/blob/r180/examples/jsm/controls/TransformControls.js) |

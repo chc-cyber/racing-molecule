@@ -20,18 +20,21 @@ class ConstructionError(ValueError):
 
 def embed_initial(molecule, random_seed):
     """ETKDG initial coordinates, with no UFF requirement or minimization."""
-    params = AllChem.ETKDGv3()
-    params.randomSeed, params.numThreads = random_seed, 1
-    params.maxIterations, params.timeout = 200, 10
-    with rdBase.BlockLogs():
-        status = AllChem.EmbedMolecule(molecule, params)
-    if status != 0:
-        params.useRandomCoords = True
+    for attempt in range(3):
+        params = AllChem.ETKDGv3()
+        params.randomSeed, params.numThreads = random_seed, 1
+        params.maxIterations, params.timeout = (40, 10) if attempt == 2 else (8, 3)
+        params.useRandomCoords = attempt > 0
+        # Curved fused aromatics can fail the planar-sp2 prior. Keep distance,
+        # torsion and chirality checks while relaxing only that prior on retry.
+        params.useBasicKnowledge = attempt < 2
         with rdBase.BlockLogs():
             status = AllChem.EmbedMolecule(molecule, params)
-    if status != 0:
-        raise ConstructionError("无法生成符合连接及立体标记的初始三维构象；请检查新增结构。")
-    return molecule
+        if status == 0:
+            molecule.SetBoolProp("_workshopCurvedFallback", attempt == 2)
+            return molecule
+    raise ConstructionError("无法生成三维构象，请检查连接或导入三维文件。")
+
 
 
 def _unit(vector, fallback=(1.0, 0.0, 0.0)):
@@ -239,7 +242,8 @@ def construct_new_regions(molecule, new_indices, seed_groups, cages, fixed_indic
             points = {index: embedded[local[index]] + translation for index in component}
         for index, point in points.items():
             conformer.SetAtomPosition(index, Point3D(*point))
-        built.append({"atomCount": len(component), "method": "local-ETKDG"})
+        built.append({"atomCount": len(component), "method": "local-ETKDG",
+                      "curvedFallback": fragment.GetBoolProp("_workshopCurvedFallback")})
     if not np.isfinite(conformer.GetPositions()).all():
         raise ConstructionError("局部初始构象含无效坐标；")
     return built

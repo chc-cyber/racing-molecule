@@ -610,6 +610,9 @@ def _prepare_geometry(data, project, *, rebuild=False):
                     work = Chem.AddHs(molecule, addCoords=True)
         except ConstructionError as exc:
             raise EditorError(str(exc)) from exc
+        if ((work.HasProp("_workshopCurvedFallback") and work.GetBoolProp("_workshopCurvedFallback"))
+                or any(region.get("curvedFallback") for region in regions)):
+            warnings.append("已生成弯曲构象，可用 UFF 优化改善局部几何。")
         points = work.GetConformer().GetPositions()
         if not np.isfinite(points).all():
             raise EditorError("初始构象含无效坐标。")

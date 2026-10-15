@@ -33,7 +33,7 @@ inline std::unique_ptr<RDKit::RWMol> fromProject(val p,int dim,bool sanitize){
   for(unsigned i=0;i<m->getNumAtoms();++i){auto v=p["atoms"][i][dim==3?"pos3":"pos2"];double x=v[0].as<double>(),y=v[1].as<double>(),z=dim==3?v[2].as<double>():0;if(!std::isfinite(x)||!std::isfinite(y)||!std::isfinite(z))throw std::runtime_error("原子坐标无效。");conf->setAtomPos(i,{x,y,z});}m->addConformer(conf,true);
   auto name=str(p,"name","Molecule").substr(0,120);std::replace(name.begin(),name.end(),'\n',' ');std::replace(name.begin(),name.end(),'\r',' ');m->setProp("_Name",name);
   if(has(p,"metadata")&&has(p["metadata"],"ketcherGroups"))for(unsigned n=0;n<size(p["metadata"]["ketcherGroups"]);++n){auto r=p["metadata"]["ketcherGroups"][n];if(str(r,"type")!="SUP")throw std::runtime_error("只支持普通 SUP 缩写基团。");RDKit::SubstanceGroup g(m.get(),"SUP");g.setProp("LABEL",str(r,"name","Group"));if(has(r,"expanded")&&r["expanded"].as<bool>())g.setProp("ESTATE",std::string("E"));std::set<unsigned> members;for(unsigned j=0;j<size(r["atomIds"]);++j){auto index=ids.at(r["atomIds"][j].as<std::string>());g.addAtomWithIdx(index);members.insert(index);}for(auto b:m->bonds())if(members.count(b->getBeginAtomIdx())!=members.count(b->getEndAtomIdx()))g.addBondWithIdx(b->getIdx());if(has(r,"attachmentPoints"))for(unsigned j=0;j<size(r["attachmentPoints"]);++j){auto a=r["attachmentPoints"][j];g.addAttachPoint(ids.at(str(a,"atomId")),has(a,"leavingAtomId")?static_cast<int>(ids.at(str(a,"leavingAtomId"))):-1,str(a,"attachmentId","1"));}RDKit::addSubstanceGroup(*m,g);}
-  if(sanitize){RDKit::MolOps::sanitizeMol(*m);RDKit::MolOps::assignChiralTypesFromBondDirs(*m,-1,false);RDKit::MolOps::assignStereochemistry(*m,false,true);}
+  if(sanitize){try{RDKit::MolOps::sanitizeMol(*m);}catch(const RDKit::AtomValenceException& e){throw std::runtime_error("第 "+std::to_string(e.getAtomIdx()+1)+" 个原子（"+m->getAtomWithIdx(e.getAtomIdx())->getSymbol()+"）价态不合理，请检查化学键、氢数和电荷。");}RDKit::MolOps::assignChiralTypesFromBondDirs(*m,-1,false);RDKit::MolOps::assignStereochemistry(*m,false,true);}
   return m;
 }
 inline val atomRecord(const RDKit::Atom& a,std::string id,RDGeom::Point3D p2,RDGeom::Point3D p3){val r=val::object();r.set("id",id);r.set("element",a.getSymbol());r.set("charge",a.getFormalCharge());r.set("isotope",a.getIsotope());r.set("explicitHs",a.getNumExplicitHs());r.set("noImplicit",a.getNoImplicit());r.set("radicalElectrons",a.getNumRadicalElectrons());if(a.getChiralTag()>2)throw std::runtime_error("当前工坊不支持该立体原子类型。");r.set("chiralTag",chiral.at(a.getChiralTag()));r.set("pos2",point(p2,2));r.set("pos3",point(p3,3));return r;}
@@ -64,6 +64,7 @@ inline void appendHydrogens(val p,RDKit::RWMol& work,RDKit::RWMol& drawing,unsig
   for(unsigned i=oldBonds;i<work.getNumBonds();++i)bonds.call<void>("push",bondRecord(*work.getBondWithIdx(i),atoms));
   for(unsigned i=0;i<size(p["fragments"]);++i){auto members=p["fragments"][i]["atomIds"];std::set<std::string> old;for(unsigned j=0;j<size(members);++j)old.insert(members[j].as<std::string>());for(auto& [h,parent]:parents)if(old.count(parent))members.call<void>("push",h);}
 }
+#include "editor_construction.hpp"
 inline val geometry(val d){
   val p=copy(d["project"]),warnings=val::array();auto op=str(d,"operation");bool has3=p["has3d"].as<bool>();auto m=fromProject(p,has3?3:2,op!="layout2d");unsigned count=m->getNumAtoms();
   if(count>600&&op!="layout2d")throw std::runtime_error("几何操作最多支持 600 个原子。");
@@ -72,12 +73,21 @@ inline val geometry(val d){
     if(op!="prepare"&&op!="rebuild"&&op!="generate"&&op!="hydrogenate"&&op!="relax")throw std::runtime_error("未知几何操作。");
     if(op=="relax"&&!has3)throw std::runtime_error("请先生成三维构象。");
     auto ids=indices(p);std::set<unsigned> fixed;if(has(d,"fixedIds"))for(unsigned i=0;i<size(d["fixedIds"]);++i)fixed.insert(ids.at(d["fixedIds"][i].as<std::string>()));if(!has3&&!fixed.empty())throw std::runtime_error("固定原子需要已有三维坐标。");
-    bool embed=op=="rebuild"||op=="generate"||(op=="prepare"&&!has3);bool pending=false;std::set<unsigned> added;
-    if(op=="prepare"&&has3&&has(p,"metadata")&&has(p["metadata"],"geometryPending")){auto pendingData=p["metadata"]["geometryPending"];if(has(pendingData,"atomIds"))for(unsigned i=0;i<size(pendingData["atomIds"]);++i)added.insert(ids.at(pendingData["atomIds"][i].as<std::string>()));pending=!added.empty();}
-    if(pending){embed=true;for(unsigned i=0;i<count;++i)if(!added.count(i))fixed.insert(i);}
-    RDKit::RWMol drawing(*fromProject(p,2,true));RDKit::MolOps::addHs(drawing,false,true);RDKit::MolOps::addHs(*m,false,!embed);
+    bool first=op=="rebuild"||op=="generate"||!has3;
+    if(first&&!fixed.empty())throw std::runtime_error("重建三维构象前请取消固定原子。");
+    IndexSet movable;
+    if(first)for(unsigned i=0;i<count;++i)movable.insert(i);
+    else if(has(p,"metadata")&&has(p["metadata"],"geometryPending")){auto pending=p["metadata"]["geometryPending"];if(has(pending,"atomIds"))for(unsigned i=0;i<size(pending["atomIds"]);++i)movable.insert(ids.at(pending["atomIds"][i].as<std::string>()));}
+    for(auto i:fixed)movable.erase(i);
+    RDKit::RWMol drawing(*fromProject(p,2,true));RDKit::MolOps::addHs(drawing,false,true);
+    if(op=="prepare"||op=="rebuild"||op=="generate"){
+      // Template pos3 already carries its stable ordered sphere coordinates.
+      for(unsigned i=0;i<count;++i){auto q=p["atoms"][i]["pos3"];m->getConformer().setAtomPos(i,{q[0].as<double>(),q[1].as<double>(),q[2].as<double>()});}
+      m->getConformer().set3D(true);
+      bool curved=construct(*m,p,movable,first);
+      if(curved)warnings.call<void>("push",std::string("已生成弯曲构象，可用 UFF 优化改善局部几何。"));
+    }else RDKit::MolOps::addHs(*m,false,true);
     if(m->getNumAtoms()>2000)throw std::runtime_error("补氢后超过 2000 个原子。请减少结构大小。");
-    if(embed){auto params=RDKit::DGeomHelpers::ETKDGv3;params.randomSeed=20261011;params.numThreads=1;params.timeout=20;params.maxIterations=200;std::map<int,RDGeom::Point3D> coords;for(auto i:fixed)coords[i]=m->getConformer().getAtomPos(i);if(!coords.empty()){params.coordMap=&coords;params.useRandomCoords=true;}int code=RDKit::DGeomHelpers::EmbedMolecule(*m,params);if(code!=0&&coords.empty()){params.useRandomCoords=true;code=RDKit::DGeomHelpers::EmbedMolecule(*m,params);}if(code!=0)throw std::runtime_error("无法生成三维构象，请检查结构或导入三维文件。");for(auto& [i,pos]:coords)m->getConformer().setAtomPos(i,pos);}
     if(op=="relax"||op=="generate"){if(!RDKit::UFF::getAtomTypes(*m).second)throw std::runtime_error("此结构缺少 UFF 参数。");std::unique_ptr<ForceFields::ForceField> ff(RDKit::UFF::constructForceField(*m,10.0,-1,true));for(auto i:fixed)ff->fixedPoints().push_back(i);ff->initialize();if(ff->minimize(1000,.001,1e-7))warnings.call<void>("push",std::string("UFF 尚未收敛，可继续优化。"));}
     if(op!="hydrogenate")for(unsigned i=0;i<count;++i){auto pos=m->getConformer().getAtomPos(i);if(!std::isfinite(pos.x)||!std::isfinite(pos.y)||!std::isfinite(pos.z))throw std::runtime_error("计算产生无效坐标。");p["atoms"][i].set("pos3",point(pos,3));}
     if(op!="relax"&&op!="rebuild")appendHydrogens(p,*m,drawing,count);

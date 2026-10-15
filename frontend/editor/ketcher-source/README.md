@@ -6,8 +6,9 @@
 
 ## 原生扩展
 
-当前扩展版本 `3.18.0+molecular-car.c60.3`。本次仅精简模板放置提示；模板数据及来源映射仍使用版本 2。`prepare-native-c60.cjs` 修改五处上游源码：
+当前扩展版本 `3.18.0+molecular-car.c60.4`。本次修复中性氮误用五价规则而显示额外隐式氢的问题；模板数据及来源映射仍使用版本 2。`prepare-native-c60.cjs` 修改六处上游源码：
 
+- `packages/ketcher-core/src/domain/entities/atom.ts`：中性氮使用三价规则，过价时显示原生错误标记且不增加隐式氢；磷规则不变。
 - `packages/ketcher-react/src/script/ui/data/templates.js`：在原有八个环模板后追加完整 C60 MOL，使用原生 SUP 缩写基团，默认收缩显示 `C₆₀`；仅该模板附加明确来源标记。
 - `packages/ketcher-react/src/components/Icon/utils/iconNameToIcon.ts`：注册 `template-8`。
 - `packages/ketcher-react/src/script/ui/action/action.types.ts`：追加原生工具名类型。

@@ -1,5 +1,5 @@
 {
-  "version": "3.18.0+molecular-car.c60.3",
+  "version": "3.18.0+molecular-car.c60.4",
   "upstreamCommit": "f4f013e1855b71b0cbd37fc79d55b0cbe51c2371",
   "nativeButton": "template-8",
   "title": "C60 Fullerene",
@@ -18,6 +18,7 @@
   "drawing": "Native collapsed SUP C60; Schlegel drawing on expand; explicit ordered spherical 3D seed",
   "templateProvenance": "SUP data.molecularCarTemplate.id=c60,version=2; ordered native insertion Pool map",
   "modifiedUpstreamSources": [
+    "packages/ketcher-core/src/domain/entities/atom.ts",
     "packages/ketcher-react/src/script/ui/data/templates.js",
     "packages/ketcher-react/src/components/Icon/utils/iconNameToIcon.ts",
     "packages/ketcher-react/src/script/ui/action/action.types.ts",

@@ -1,3 +1,28 @@
+diff --git a/packages/ketcher-core/src/domain/entities/atom.ts b/packages/ketcher-core/src/domain/entities/atom.ts
+index d2e86c8..fcb178a 100644
+--- a/packages/ketcher-core/src/domain/entities/atom.ts
++++ b/packages/ketcher-core/src/domain/entities/atom.ts
+@@ -464,6 +464,10 @@ export class Atom extends BaseMicromoleculeEntity {
+       return true;
+     }
+ 
++    if (label === 'N' && charge === 0 &&
++        connectionCount + radicalCount + (this.implicitHCount ?? 0) > 3) {
++      return this.applyValenceResult(3, -1, connectionCount);
++    }
+     const hydrogenCount = this.overrideHydrogenCountIfNeeded(
+       valenceResult.hydrogenCount,
+     );
+@@ -656,6 +660,9 @@ export class Atom extends BaseMicromoleculeEntity {
+     radicalCount,
+     absCharge,
+   }: ValenceContext): ValenceComputationResult {
++    if (label === 'N' && charge === 0) {
++      return { valence: 3, hydrogenCount: 3 - radicalCount - connectionCount };
++    }
+     if (label === 'N' || label === 'P') {
+       if (charge === 1) {
+         return {
 diff --git a/packages/ketcher-react/src/components/Icon/utils/iconNameToIcon.ts b/packages/ketcher-react/src/components/Icon/utils/iconNameToIcon.ts
 index c85182a..eb0f91f 100644
 --- a/packages/ketcher-react/src/components/Icon/utils/iconNameToIcon.ts

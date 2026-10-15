@@ -1,6 +1,6 @@
 {
   "component": "Ketcher with Molecular Car native C60 template",
-  "version": "3.18.0+molecular-car.c60.3",
+  "version": "3.18.0+molecular-car.c60.4",
   "upstreamVersion": "3.18.0",
   "source": {
     "repository": "https://github.com/epam/ketcher",
@@ -19,7 +19,7 @@
     "minifiedBundlePatched": false
   },
   "extension": {
-    "version": "3.18.0+molecular-car.c60.3",
+    "version": "3.18.0+molecular-car.c60.4",
     "upstreamCommit": "f4f013e1855b71b0cbd37fc79d55b0cbe51c2371",
     "nativeButton": "template-8",
     "title": "C60 Fullerene",
@@ -38,6 +38,7 @@
     "drawing": "Native collapsed SUP C60; Schlegel drawing on expand; explicit ordered spherical 3D seed",
     "templateProvenance": "SUP data.molecularCarTemplate.id=c60,version=2; ordered native insertion Pool map",
     "modifiedUpstreamSources": [
+      "packages/ketcher-core/src/domain/entities/atom.ts",
       "packages/ketcher-react/src/script/ui/data/templates.js",
       "packages/ketcher-react/src/components/Icon/utils/iconNameToIcon.ts",
       "packages/ketcher-react/src/script/ui/action/action.types.ts",
@@ -79,9 +80,9 @@
       "sha256": "101087c385ddfea7c37eb72790fd5aa7a3d647e85dc24171c830034ed27d3c90"
     },
     {
-      "path": "assets/index-B23Y7XC4.js",
+      "path": "assets/index-BnQdYZPk.js",
       "bytes": 217524,
-      "sha256": "d886e9054f6cfaee9447c2c52a6712aa26a507526cf8c6c7f96ed3bbeca70c26"
+      "sha256": "2fea7136f1d0a4703b8ffd2c8fa838766650d8bbfec4eb5e753cdbe6b59d6540"
     },
     {
       "path": "assets/index-OGbBB0fz.css",
@@ -109,29 +110,29 @@
       "sha256": "e6c92aaeea8ed701d73c0771f7ecc3a123e356fa78b68763527f8d927d1159b5"
     },
     {
-      "path": "assets/src-BAof8t5l.js",
-      "bytes": 320062,
-      "sha256": "5d8424f9e0fb73d6eb162999984fc82c9fc70c0a05e059d890f3a6858cff65f7"
-    },
-    {
       "path": "assets/src-BWa5CXlH.css",
       "bytes": 8698,
       "sha256": "67c1db5caf505e3b72b6c3558ef831735bdc4b6691295a0196e5b2e075f9e0c6"
     },
     {
-      "path": "assets/src-DeWkP4uB.js",
-      "bytes": 10812,
-      "sha256": "6293affa95b896b522eecd7c79a8838d85f32683ac5dc9e29505c26b1de084da"
+      "path": "assets/src-BzxRGs3g.js",
+      "bytes": 320062,
+      "sha256": "733126c218ab37d3f4b80e4b1cad275061090c0de723d8fb65988e43d87fa4cb"
     },
     {
-      "path": "assets/src-DtfTw-7-.js",
-      "bytes": 5197311,
-      "sha256": "5cfbcf791e9c07039254d561d24ef320eb7d470021989efc7fdb26224db85a97"
-    },
-    {
-      "path": "assets/src-Dx6xeTSW.js",
+      "path": "assets/src-Da1lyvkG.js",
       "bytes": 2137127,
-      "sha256": "e92f38b95248f5401d502f14c7c41653ac750742aa8aa248a6f50aa87d6905e1"
+      "sha256": "cf65a9fc2035c4d0541981791a0ba2023e4e9fc9ca790280204062ac40fd138f"
+    },
+    {
+      "path": "assets/src-DoRb_mC_.js",
+      "bytes": 10812,
+      "sha256": "46da5dcdcec601086290b6c8a5d58e8b5959e206d82f7459f610f9f52b970f57"
+    },
+    {
+      "path": "assets/src-vag22C18.js",
+      "bytes": 5197447,
+      "sha256": "f2182600760a3376f5172ab804bd9b5ec25187553234697c33ce52f947f3b46b"
     },
     {
       "path": "assets/src-zIo67U67.css",
@@ -181,7 +182,7 @@
     {
       "path": "index.html",
       "bytes": 1461,
-      "sha256": "cab8411bc5d4adfc9d05bbe363aa1dec7ad95834954d6778609e1e6fc02e98f0"
+      "sha256": "dd73fb0e944a48c5dece3852e65df74e969e5a51655dabf246245e319a835da6"
     },
     {
       "path": "LICENSE",
@@ -910,8 +911,8 @@
     },
     {
       "path": "SOURCE-EXTENSION.md",
-      "bytes": 8111,
-      "sha256": "592a74fc597c61b501ba8018dfd1591f0c6cd0f306a20f8dec6e271970510eb6"
+      "bytes": 8313,
+      "sha256": "c0ecf1c9ce730d29d46a66dd0ff075927cfd1c17e01d6966690dde3c2d62adbf"
     }
   ]
 }

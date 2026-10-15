@@ -26,7 +26,7 @@ const inventory = directory => fs.readdirSync(directory,{withFileTypes:true}).fl
 });
 const data = JSON.parse(fs.readFileSync(path.join(base, 'extension-data.json'), 'utf8'));
 const dependencies = JSON.parse(fs.readFileSync(path.join(dist, 'BUILD-DEPENDENCIES.json'), 'utf8'));
-const patch = execFileSync('git',['diff','--','packages/ketcher-react/src/script/ui/data/templates.js','packages/ketcher-react/src/components/Icon/utils/iconNameToIcon.ts','packages/ketcher-react/src/script/ui/action/action.types.ts','packages/ketcher-react/src/script/editor/tool/template.ts'],{cwd:source,encoding:'utf8'});
+const patch = execFileSync('git',['diff','--','packages/ketcher-core/src/domain/entities/atom.ts','packages/ketcher-react/src/script/ui/data/templates.js','packages/ketcher-react/src/components/Icon/utils/iconNameToIcon.ts','packages/ketcher-react/src/script/ui/action/action.types.ts','packages/ketcher-react/src/script/editor/tool/template.ts'],{cwd:source,encoding:'utf8'});
 fs.writeFileSync(path.join(base,'SOURCE-MODIFICATIONS.patch'),patch);
 const manifest={
   component:'Ketcher with Molecular Car native C60 template',version:data.version,upstreamVersion:'3.18.0',

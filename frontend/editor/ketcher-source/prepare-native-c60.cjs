@@ -88,6 +88,21 @@ function patch(relative, oldValue, newValue) {
   if (source.split(oldValue).length !== 2) throw new Error(`Pinned source precondition failed: ${relative}`);
   const modified=source.replace(oldValue,newValue);patchedSources.set(relative,modified);fs.writeFileSync(target,modified);
 }
+// Nitrogen cannot use phosphorus' neutral pentavalent fallback. Returning a
+// negative H count activates Ketcher's native red valence-error decoration.
+patch('packages/ketcher-core/src/domain/entities/atom.ts',
+  "    if (label === 'N' || label === 'P') {",
+  `    if (label === 'N' && charge === 0) {
+      return { valence: 3, hydrogenCount: 3 - radicalCount - connectionCount };
+    }
+    if (label === 'N' || label === 'P') {`);
+patch('packages/ketcher-core/src/domain/entities/atom.ts',
+  '    const hydrogenCount = this.overrideHydrogenCountIfNeeded(',
+  `    if (label === 'N' && charge === 0 &&
+        connectionCount + radicalCount + (this.implicitHCount ?? 0) > 3) {
+      return this.applyValenceResult(3, -1, connectionCount);
+    }
+    const hydrogenCount = this.overrideHydrogenCountIfNeeded(`);
 const react = 'packages/ketcher-react/src';
 patch(`${react}/script/ui/data/templates.js`, '\n].map((structStr)', `\n  // Molecular Car extension: real C60 graph; see ketcher-source/README.md.\n  ${JSON.stringify(mol)},\n].map((structStr)`);
 patch(`${react}/script/ui/data/templates.js`, '].map((structStr) => molSerializer.deserialize(structStr));', `].map((structStr) => {
@@ -120,12 +135,12 @@ fs.writeFileSync(path.join(base, 'template-8.svg'), icon);
 
 const sha256 = value => crypto.createHash('sha256').update(value).digest('hex');
 fs.writeFileSync(path.join(base, 'extension-data.json'), JSON.stringify({
-  version: '3.18.0+molecular-car.c60.3', upstreamCommit: 'f4f013e1855b71b0cbd37fc79d55b0cbe51c2371',
+  version: '3.18.0+molecular-car.c60.4', upstreamCommit: 'f4f013e1855b71b0cbd37fc79d55b0cbe51c2371',
   nativeButton: 'template-8', title: 'C60 Fullerene', atoms: 60, bonds: 90, doubleBonds: 30,
   sourceGraphSha256: sha256(fs.readFileSync(inputPath)), molSha256: sha256(mol+'\n'),
   outerFace, drawing: 'Native collapsed SUP C60; Schlegel drawing on expand; explicit ordered spherical 3D seed',
   templateProvenance:'SUP data.molecularCarTemplate.id=c60,version=2; ordered native insertion Pool map',
-  modifiedUpstreamSources: [`${react}/script/ui/data/templates.js`, `${react}/components/Icon/utils/iconNameToIcon.ts`, `${react}/script/ui/action/action.types.ts`, `${react}/assets/icons/files/template-8.svg`, `${react}/script/editor/tool/template.ts`],
+  modifiedUpstreamSources: ['packages/ketcher-core/src/domain/entities/atom.ts', `${react}/script/ui/data/templates.js`, `${react}/components/Icon/utils/iconNameToIcon.ts`, `${react}/script/ui/action/action.types.ts`, `${react}/assets/icons/files/template-8.svg`, `${react}/script/editor/tool/template.ts`],
 }, null, 2)+'\n');
 
 // The official Vite source resolver supports building all four packages directly.
