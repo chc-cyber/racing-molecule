@@ -1,6 +1,6 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{spawn}=require('node:child_process');
 const {chromium,firefox}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const root=path.resolve(__dirname,'..'),browserName=process.argv[2]||'chrome',out=path.join(root,'outputs/web-release-acceptance',browserName);
+const root=path.resolve(__dirname,'..'),browserName=process.argv[2]||'chrome',out=path.join(root,'outputs/web-release-acceptance',process.env.WEB_TEST_LABEL||browserName);
 fs.mkdirSync(out,{recursive:true});
 const serverCode=`from http.server import ThreadingHTTPServer
 from functools import partial
@@ -23,17 +23,18 @@ s.serve_forever()`;
  const shot=name=>page.screenshot({path:path.join(out,name+'.png'),fullPage:true});
  try{
   base=await new Promise((resolve,reject)=>{const t=setTimeout(()=>reject(Error('server startup timeout')),10000);server.stdout.on('data',d=>{const m=String(d).match(/http:\/\/127\.0\.0\.1:\d+\/molecular-car\//);if(m){clearTimeout(t);resolve(m[0]);}});server.once('error',reject);});
+  if(process.env.WEB_TEST_URL){base=new URL(process.env.WEB_TEST_URL).href;if(!base.endsWith('/'))base+='/';report.url=base;}
   browser=browserName==='firefox'?await firefox.launch({headless:true}):await chromium.launch({executablePath:browserName==='edge'?(process.env.EDGE_PATH||'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'):(process.env.CHROME_PATH||'C:/Program Files/Google/Chrome/Application/chrome.exe'),headless:true,args:['--enable-unsafe-swiftshader']});
   report.browserVersion=browser.version();const context=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true});
-  page=await context.newPage();page.setDefaultTimeout(30000);
+  page=await context.newPage();page.setDefaultTimeout(120000);
   page.on('pageerror',e=>{report.errors.push(e.message);persist();});
-  page.on('request',r=>{if(new URL(r.url()).pathname.startsWith('/molecular-car/api/'))report.apiRequests.push(r.url());if(!r.url().startsWith(base)&&!r.url().startsWith('blob:')&&!r.url().startsWith('data:'))report.external.push(r.url());});
+  page.on('request',r=>{if(r.url().startsWith(base+'api/'))report.apiRequests.push(r.url());if(!r.url().startsWith(base)&&!r.url().startsWith('blob:')&&!r.url().startsWith('data:'))report.external.push(r.url());});
   page.on('response',async r=>{if(r.status()>=400)report.httpErrors.push({url:r.url(),status:r.status()});if(/wasm$|bin.gz$/.test(r.url()))report.assets.push({url:r.url().replace(base,''),bytes:Number(r.headers()['content-length']||0)});});
   page.on('download',d=>report.downloads.push(d.suggestedFilename()));
   await page.goto(base);await page.getByRole('link',{name:'加入赛事'}).waitFor();await shot('01-home');pass('首页与子目录静态入口');
   const opened=performance.now();await page.getByRole('link',{name:'加入赛事'}).click();
   await page.locator('#garage-frame').waitFor();garage=await page.locator('#garage-frame').elementHandle().then(e=>e.contentFrame());
-  const settled=async()=>{await garage.waitForFunction(()=>window.workshop?.mature?.ready&&workshop.views?.ready&&!workshop.mature.suspended&&!workshop.views.suspended&&!workshop.mature.gesture&&!workshop.views.gesture,null,{timeout:90000});await garage.evaluate(async()=>{await workshop.mature.settled();await workshop.views.settled();});};
+  const settled=async()=>{await garage.waitForFunction(()=>window.workshop?.mature?.ready&&workshop.views?.ready&&!workshop.mature.suspended&&!workshop.views.suspended&&!workshop.mature.gesture&&!workshop.views.gesture,null,{timeout:120000,polling:100});await garage.evaluate(async()=>{await workshop.mature.settled();await workshop.views.settled();});};
   await settled();pass('工坊二维与三维编辑器就绪',{seconds:(performance.now()-opened)/1000});
   const ketcher=garage.frameLocator('#ketcher-frame');
   await ketcher.locator('[data-testid="template-0"]').filter({visible:true}).click();
@@ -50,7 +51,7 @@ s.serve_forever()`;
   let dl=page.waitForEvent('download');await garage.locator('#save-project').click();let file=await dl;await file.saveAs(path.join(out,'drawn-car.mcar'));assert.equal(JSON.parse(fs.readFileSync(path.join(out,'drawn-car.mcar'),'utf8')).atoms.length,12);pass('工程文件下载');
   const prepareStart=performance.now();await garage.locator('#send-track').click();await page.waitForURL('**/#track',{timeout:170000});
   race=await page.locator('#track-frame').elementHandle().then(e=>e.contentFrame());
-  await race.waitForFunction(()=>window.__molecularCarDebug?.getSnapshot().status==='paused'&&window.__molecularCarDebug.getSnapshot().renderedStep===0,null,{timeout:90000});
+  await race.waitForFunction(()=>window.__molecularCarDebug?.getSnapshot().status==='paused'&&window.__molecularCarDebug.getSnapshot().renderedStep===0,null,{timeout:120000,polling:100});
   let snap=await race.evaluate(()=>__molecularCarDebug.getSnapshot());assert.equal(snap.atomCount,12);assert.equal(snap.competition.mode,'standard');assert.equal(snap.playbackRate,1);
   await shot('04-race-ready');pass('工坊准备完成并交接同一分子到比赛',{seconds:(performance.now()-prepareStart)/1000,generation:snap.generation,atoms:snap.atomCount,competition:snap.competition});
   const started=performance.now();await race.locator('#start-button').click();await race.waitForFunction(()=>__molecularCarDebug.getSnapshot().playbackTimeFs>2000);
@@ -85,21 +86,27 @@ s.serve_forever()`;
   });
   await garage.locator('#fit-view').click();await page.waitForTimeout(300);await shot('09-workshop-mobile-fit');
   await page.setViewportSize({width:1440,height:1000});await garage.locator('a[data-app-route="track"]').click();await page.waitForURL('**/#track');
-  await race.locator('#show-race-result').click();await race.locator('#result-again').click();await race.waitForFunction(()=>__molecularCarDebug.getSnapshot().status==='paused'&&__molecularCarDebug.getSnapshot().renderedStep===0,null,{timeout:90000});pass('成绩页再跑一次正确归零');
+  await race.locator('#show-race-result').click();await race.locator('#result-again').click();await race.waitForFunction(()=>__molecularCarDebug.getSnapshot().status==='paused'&&__molecularCarDebug.getSnapshot().renderedStep===0,null,{timeout:120000,polling:100});pass('成绩页再跑一次正确归零');
   await race.locator('a[data-app-route="garage"]').click();await page.waitForURL('**/#garage');
   await garage.locator('#send-track').click();await garage.locator('#race-dialog').waitFor({state:'visible'});await garage.locator('#race-cancel').click();await page.waitForTimeout(1500);assert(page.url().endsWith('#garage'));assert.equal(await garage.locator('#race-dialog').isVisible(),false);assert.equal(await garage.locator('#send-track').isEnabled(),true);pass('取消准备后留在可编辑工坊');
-  await garage.locator('#send-track').click();await page.waitForURL('**/#track',{timeout:170000});await race.waitForFunction(()=>__molecularCarDebug.getSnapshot().status==='paused',null,{timeout:90000});pass('取消后可以重新准备并进入赛道');
+  await garage.locator('#send-track').click();await page.waitForURL('**/#track',{timeout:170000});await race.waitForFunction(()=>__molecularCarDebug.getSnapshot().status==='paused',null,{timeout:120000,polling:100});pass('取消后可以重新准备并进入赛道');
   await race.locator('#race-setup-panel > summary').click();
   await race.locator('#race-setup [data-mode="custom"]').click();await race.locator('#race-setup [data-key="temperature"]').fill('200');
   await race.locator('a[data-app-route="garage"]').click();await page.waitForURL('**/#garage');
   await garage.locator('#send-track').click();await page.waitForURL('**/#track',{timeout:170000});
-  await race.waitForFunction(()=>__molecularCarDebug.getSnapshot().status==='paused',null,{timeout:90000});
+  await race.waitForFunction(()=>__molecularCarDebug.getSnapshot().status==='paused',null,{timeout:120000,polling:100});
   await check('自定义赛事参数沿工坊交接保留',async()=>{const c=await race.evaluate(()=>__molecularCarDebug.getSnapshot().competition);assert.equal(c.mode,'custom');assert.equal(c.temperature,200);return{competition:c};});
   await race.locator('a[data-app-route="garage"]').click();await page.waitForURL('**/#garage');
   const prior=await garage.evaluate(()=>JSON.stringify(workshop.model.project));await page.reload();
   garage=await page.locator('#garage-frame').elementHandle().then(e=>e.contentFrame());await settled();
   assert.equal(await garage.evaluate(()=>JSON.stringify(workshop.model.project)),prior);pass('刷新后恢复工坊草稿');
   await check('无页面异常、资源丢失或远端计算接口请求',async()=>{assert.deepEqual(report.errors,[]);assert.deepEqual(report.httpErrors,[]);assert.deepEqual(report.external,[]);assert.deepEqual(report.apiRequests,[]);return{asset_requests:report.assets};});
+  if(process.env.WEB_TEST_URL){
+    const resources=[];for(const f of page.frames())resources.push(...await f.evaluate(()=>performance.getEntriesByType('resource').map(r=>({name:r.name,transfer:r.transferSize,encoded:r.encodedBodySize}))).catch(()=>[]));
+    const cached=resources.filter(r=>r.name.startsWith(base)&&r.transfer===0&&r.encoded>0);
+    assert(cached.length>0,'Expected cached static assets after reload');assert(await page.evaluate(()=>isSecureContext));
+    pass('真实 HTTPS 与重复加载缓存',{cached_resources:cached.length,examples:cached.slice(0,10)});
+  }
   report.completed=true;
  }catch(error){report.fatal=error.stack;console.log('FATAL',error.stack);if(page){await shot('failure').catch(()=>{});report.diagnostics={url:page.url(),shell:await page.locator('body').innerText().catch(()=>''),garage:await garage?.locator('body').innerText().catch(()=>''),race:await race?.locator('body').innerText().catch(()=>''),frames:page.frames().map(f=>f.url())};}process.exitCode=1;}
  finally{report.passed=Boolean(report.completed)&&report.checks.every(c=>c.passed)&&!report.errors.length;if(!report.passed)process.exitCode=1;report.finished=new Date().toISOString();persist();if(browser)await browser.close();server.kill();console.log(JSON.stringify({completed:report.completed,checks:report.checks.length,failed:report.checks.filter(c=>!c.passed),fatal:report.fatal,errors:report.errors,httpErrors:report.httpErrors}));}

@@ -51,3 +51,5 @@ node scripts/verify_web_journey.cjs chrome
 node scripts/verify_web_journey.cjs firefox
 node scripts/verify_web_recovery.cjs
 ```
+
+公开部署验收可使用同一脚本：设置 `WEB_TEST_URL=https://chc-cyber.github.io/racing-molecule/` 和 `WEB_TEST_LABEL=public-https`，再运行 `node scripts/verify_web_journey.cjs chrome`。它使用独立的新浏览器环境，不读取玩家账号或浏览器配置；完成真实比赛后重新加载，检查 HTTPS 与资源缓存。
