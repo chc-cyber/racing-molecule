@@ -38,9 +38,9 @@ Standard races use fixed rules. Custom races allow the exposed parameters to be 
 
 Race timing starts from the prepared initial state. Completion requires a **net displacement** of 20 nm along the track relative to the initial center of mass; lateral detours do not count toward that distance. Results use simulation time, independently of browser frame rate or playback speed. The velocity conversion is:
 
-$$
+```math
 \bar v\,[\mathrm{m/s}]=1000\,\frac{\Delta x\,[\mathrm{nm}]}{\Delta t\,[\mathrm{ps}]}.
-$$
+```
 
 At 1× playback, 100 ps of trajectory takes about 50 seconds to display; at 2×, about 25 seconds. Computation and playback run separately. Playback waits for buffered frames when necessary; changing playback speed does not change the timestep or race result.
 
@@ -64,10 +64,10 @@ The browser version compiles LAMMPS, RDKit, and the project's force routines int
 
 The conservative potential energy is:
 
-$$
+```math
 U=U_{\mathrm{UFF}}+U_{\mathrm{surface}}+U_{\mathrm{drive}}+U_{\mathrm{walls}},
 \qquad \mathbf F_i^{\mathrm{cons}}=-\nabla_i U.
-$$
+```
 
 LAMMPS uses `real` units: Å for length, fs for time, and kcal/mol for energy. Surface routines that work internally in eV convert their results when passing them to the engine.
 
@@ -85,11 +85,11 @@ Gasteiger partial charges are assigned during preparation and used for the exter
 
 The racer follows driven Langevin molecular dynamics, summarized by:
 
-$$
+```math
 m_i\ddot{\mathbf r}_i=-\nabla_i U-\frac{m_i}{\tau}\dot{\mathbf r}_i+\mathbf R_i(t).
-$$
+```
 
-Here, $\tau$ is the damping time, and $\mathbf R_i$ is a random force consistent with the temperature and damping. Damping dissipates kinetic energy, while random forces introduce thermal fluctuations, allowing translation, rotation, and deformation alongside the directed motion. The Langevin bath approximates environmental dissipation and fluctuations; gold-substrate phonons are not simulated explicitly.
+Here, $`\tau`$ is the damping time, and $`\mathbf R_i`$ is a random force consistent with the temperature and damping. Damping dissipates kinetic energy, while random forces introduce thermal fluctuations, allowing translation, rotation, and deformation alongside the directed motion. The Langevin bath approximates environmental dissipation and fluctuations; gold-substrate phonons are not simulated explicitly.
 
 The implementation combines `fix nve` with `fix langevin`: the former provides velocity-Verlet integration, while the latter applies damping and random forces. **An integration command named `nve` does not mean the actual race is in the NVE ensemble.** With fixed particle number and box dimensions, no driving field, and sufficient equilibration, the Langevin bath targets the canonical NVT distribution. An actual race is externally driven and observed over a finite time, so it is a nonequilibrium process. See the LAMMPS documentation for [integration](https://docs.lammps.org/fix_nve.html) and [Langevin dynamics](https://docs.lammps.org/fix_langevin.html).
 
@@ -115,20 +115,20 @@ For B, N, O, F, Si, P, S, Cl, Br, and I, the project does not claim equally appl
 
 ### How the racer is driven
 
-Races use a nonuniform field fixed in space. Let $x$ be the forward track direction and $z$ the height above the surface. The potential and field are:
+Races use a nonuniform field fixed in space. Let $`x`$ be the forward track direction and $`z`$ the height above the surface. The potential and field are:
 
-$$
+```math
 \phi(x,z)=-(E_0+gx)z,\qquad
 \mathbf E=-\nabla\phi=(gz,\,0,\,E_0+gx).
-$$
+```
 
 The external-field energy is:
 
-$$
+```math
 U_{\mathrm{drive}}=\sum_i\left[q_i\phi(\mathbf r_i)-\frac12G\alpha_i|\mathbf E(\mathbf r_i)|^2\right].
-$$
+```
 
-Here, $q_i$ is the fixed partial charge, $\alpha_i$ is an effective polarization-response coefficient assigned by element, and $G=500$ is a game response gain. For driving strength $s$ and field-growth parameter $R$, the implementation uses $E_0=0.5s/\sqrt R$ and $g=0.0015s\sqrt R$, with defaults $s=0.6$ and $R=1$. These quantities use internal units consistent with the energy expression. The displayed value of 0.6 must not be interpreted directly as 0.6 V/nm.
+Here, $`q_i`$ is the fixed partial charge, $`\alpha_i`$ is an effective polarization-response coefficient assigned by element, and $`G=500`$ is a game response gain. For driving strength $`s`$ and field-growth parameter $`R`$, the implementation uses $`E_0=0.5s/\sqrt R`$ and $`g=0.0015s\sqrt R`$, with defaults $`s=0.6`$ and $`R=1`$. These quantities use internal units consistent with the energy expression. The displayed value of 0.6 must not be interpreted directly as 0.6 V/nm.
 
 The field is constant in time and does not depend on a moving tip. Partial-charge responses and field-dependent polarization energy jointly affect motion; molecular shape, surface contact, and thermal fluctuations further determine the trajectory. There is no direct transverse electric-field component, but surface forces and random forces remain. See the [field implementation](molecular_car/fields.py) for equations and unit conventions.
 
@@ -146,25 +146,25 @@ The implementation separates cacheable scalar baseline terms from orientation-de
 
 The orientation-dependent energy uses the in-plane periodicity of Au(111) in a finite expansion:
 
-$$
+```math
 U_{\mathrm{dir}}(x,y,z,\mathbf n)\approx
-\sum_{\mathbf k\in K}\mu_{\mathbf k}\,\operatorname{Re}
+\sum_{\mathbf k\in K}\mu_{\mathbf k}\,\mathrm{Re}
 \left[C_{\mathbf k}(z,\mathbf n)e^{i\mathbf k\cdot(x,y)}\right].
-$$
+```
 
-Here, $\mathbf n$ is the local normal and $\mathbf k$ is a surface reciprocal-lattice vector. The current table retains **12 independent complex-coefficient modes, including the zero-frequency term**; multiplicities $\mu_{\mathbf k}$ account for conjugate modes. This expansion represents the spatial periodicity of a classical potential energy, not an electronic Bloch wavefunction.
+Here, $`\mathbf n`$ is the local normal and $`\mathbf k`$ is a surface reciprocal-lattice vector. The current table retains **12 independent complex-coefficient modes, including the zero-frequency term**; multiplicities $`\mu_{\mathbf k}`$ account for conjugate modes. This expansion represents the spatial periodicity of a classical potential energy, not an electronic Bloch wavefunction.
 
 The mode coefficients still depend on atomic height and normal direction. Height uses cubic interpolation; directional coordinates use bicubic Hermite interpolation, storing coefficient values and the required derivatives. The current height grid has 0.1 Å spacing and 95 layers, including interpolation padding. Each directional table uses 13 × 13 nodes.
 
 ### 3. Cover molecular rotation with three directional charts
 
-Describing a normal only by $(n_x/n_z,n_y/n_z)$ becomes problematic when a fragment turns nearly vertical and the denominator approaches zero. Version 2 uses three overlapping directional charts:
+Describing a normal only by $`(n_x/n_z,n_y/n_z)`$ becomes problematic when a fragment turns nearly vertical and the denominator approaches zero. Version 2 uses three overlapping directional charts:
 
-$$
+```math
 (n_x/n_z,n_y/n_z),\quad
 (n_y/n_x,n_z/n_x),\quad
 (n_z/n_y,n_x/n_y).
-$$
+```
 
 Each chart interpolates within its valid region. In overlapping regions, normalized smooth weights combine the energies. Together, the charts cover the orientations of nondegenerate unit normals, reducing frequent, expensive reference evaluations for curved molecules such as C60 whose normals may lie nearly parallel to the surface.
 
@@ -174,36 +174,36 @@ Both coordinates of each chart range from −1.2 to 1.2, with node spacing of 0.
 
 The directional proxy supports heights of 2.4–11.2 Å, with a 0.3 Å transition region at each boundary. Outside this range, or when normal geometry approaches degeneracy, the relevant directional terms return to frozen-lattice reference evaluation instead of extrapolating the table.
 
-The transition is defined at the scalar-energy level. If $w$ is a position- and geometry-dependent weight:
+The transition is defined at the scalar-energy level. If $`w`$ is a position- and geometry-dependent weight:
 
-$$
+```math
 U=wU_p+(1-w)U_r,
-$$
+```
 
 the force must include the derivative of that weight:
 
-$$
+```math
 \mathbf F=w\mathbf F_p+(1-w)\mathbf F_r-(U_p-U_r)\nabla w.
-$$
+```
 
 The implementation retains this term and the relevant height, chart, and local-normal derivatives. Simply blending two forces while omitting derivatives of the switching weights would make force and energy inconsistent. “Reference” here means the project's frozen SAIP model, not an exact description of a real gold surface.
 
 ### 5. Apply the 1.5× lattice corrugation factor
 
-The corrugation factor strengthens differences between lateral positions; it does not simply multiply the entire adsorption energy by 1.5. For an atom's surface energy $U_i$, the implementation first averages six translated positions at the same height and normal:
+The corrugation factor strengthens differences between lateral positions; it does not simply multiply the entire adsorption energy by 1.5. For an atom's surface energy $`U_i`$, the implementation first averages six translated positions at the same height and normal:
 
-$$
+```math
 \bar U_i=\frac16\sum_{a=0}^{1}\sum_{b=0}^{2}
 U_i(x_i+aL_x/2,\,y_i+bL_y/3,\,z_i,\,\mathbf n_i),
-$$
+```
 
 then uses:
 
-$$
+```math
 U_i^{(\lambda)}=U_i+(\lambda-1)h(z_i)(U_i-\bar U_i).
-$$
+```
 
-$L_x$ and $L_y$ are the surface periods, and the default is $\lambda=1.5$. The height-protection function $h$ is zero below 2.0 Å, one above 2.6 Å, and smoothly connected in between, avoiding direct amplification of the corrugation correction at very short distances. The six-point average is this implementation's filtering convention, not an exact continuous average over the entire unit cell.
+$`L_x`$ and $`L_y`$ are the surface periods, and the default is $`\lambda=1.5`$. The height-protection function $`h`$ is zero below 2.0 Å, one above 2.6 Å, and smoothly connected in between, avoiding direct amplification of the corrugation correction at very short distances. The six-point average is this implementation's filtering convention, not an exact continuous average over the entire unit cell.
 
 Translations change only phase in the Fourier representation. The accelerated C/H path can therefore combine the six translated contributions within mode evaluation, reducing repeated interpolation. Radial-cache paths for other elements retain the corresponding translated evaluations. The corrugation correction and its height derivative are both included in the forces.
 
@@ -254,12 +254,6 @@ The native Python version requires Windows, a compatible 64-bit CPython 3.11 ins
 Open the local address shown by the launcher. Browser players do not need to perform these installation steps.
 
 The repository retains build inputs and validation tools. Large trajectories, temporary scan outputs, local virtual environments, and toolchain caches are excluded from source control. Prebuilt website packages and corresponding third-party sources are available through [Releases](https://github.com/chc-cyber/racing-molecule/releases).
-
-### Where is LAMMPS?
-
-- **The `main` source branch** contains integration code, pinned versions, and build scripts, without copying in the complete upstream LAMMPS source tree or desktop installer. Browser builds download and verify the specified sources and compile them under the ignored `.local/wasm/` directory.
-- **GitHub Pages and the browser release package** include a WASM module linking LAMMPS, RDKit, and the project's force routines. Players can run it by loading the website, without installing LAMMPS separately.
-- **GitHub Releases** provide the corresponding LAMMPS source archive used for the build and related build materials. The native Python entry point uses a separately installed copy of LAMMPS.
 
 ## License
 
