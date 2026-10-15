@@ -15,8 +15,8 @@
     },
     {
       "path": "app.js",
-      "bytes": 48590,
-      "sha256": "bfdc60a3584f7ce1c29e225711a164daf18058a7fdff72555be3b95243a7fa7c"
+      "bytes": 48647,
+      "sha256": "9aa054a37abeeb13678b4f923b5c5fb9d1813884d3809c11afc3379ae59934ed"
     },
     {
       "path": "browser/assets/benzene.mol",
@@ -134,14 +134,19 @@
       "sha256": "832144e579b9f80ecf1148e7d694b7ca46cb45bbbabef9ead54535685971c165"
     },
     {
+      "path": "browser/assets.mjs",
+      "bytes": 2390,
+      "sha256": "8cb67ec3444c589864c2abb9b113a7cdfc7bbf71d78fb14786d8508ddd3c7f01"
+    },
+    {
       "path": "browser/editor-worker.mjs",
       "bytes": 616,
       "sha256": "35444c23719d0944ba2f16f914b71314519bde77ea3ca09ba678e3cf281e3ff2"
     },
     {
       "path": "browser/embedded.mjs",
-      "bytes": 2284,
-      "sha256": "0777e83230ee04aec38f0abf67183150230c00b08cb571af33d1eb24f44b0287"
+      "bytes": 2438,
+      "sha256": "27abd5284c807895ad6b36b7ab896b46e7b19f865b36b7867521e6193431f2c0"
     },
     {
       "path": "browser/runtime/build.json",
@@ -160,13 +165,13 @@
     },
     {
       "path": "browser/transport.mjs",
-      "bytes": 7844,
-      "sha256": "27e7a0d17224a6a95c4b39cafd2e93a1f630ec99c038bf49435503abcf1d93a0"
+      "bytes": 7977,
+      "sha256": "f13b5cc5897dfd9b45cc30331c387a4570692e629df19fc7f525be56adfa0f9a"
     },
     {
       "path": "browser/worker.mjs",
-      "bytes": 5638,
-      "sha256": "8393b57506c78c04573dec253cc0c06b93701fe72bb2ee7bd24dd0b4e26f4c88"
+      "bytes": 4768,
+      "sha256": "6146b4400a0c160930ae964f3bd8ae271e196cb74f7ed187b7aa2d8b057a141a"
     },
     {
       "path": "competition.css",
@@ -186,7 +191,7 @@
     {
       "path": "editor/browser-service.mjs",
       "bytes": 3034,
-      "sha256": "97bcd819b3ec6630ffcc567f028efba729a81d9dfcd9a05b3e4851b282b099c2"
+      "sha256": "ecf0673a4a0a7b6585e6c062454ead5c4a5ae76b32f3f8c0cdcdc91ff5dd474a"
     },
     {
       "path": "editor/BUGFIX-2026-10-15.md",
@@ -277,6 +282,11 @@
       "path": "editor/player-error.mjs",
       "bytes": 583,
       "sha256": "7715fe5ca354cae2a6da2b9bb1a116de025416b8eb6771825c916cb0b30f2029"
+    },
+    {
+      "path": "editor/PUBLIC-VALIDATION-2026-10-15.md",
+      "bytes": 1822,
+      "sha256": "1df685233e9cb3a6ad47b952def88df167233002db683d182ec5333c9b754e14"
     },
     {
       "path": "editor/race-completion.js",
@@ -10475,8 +10485,8 @@
     },
     {
       "path": "ui/app.js",
-      "bytes": 9537,
-      "sha256": "998530a38f75e5ba0aeb178fd94dbb82c99682213b1f878dd80f7c94c0753307"
+      "bytes": 9695,
+      "sha256": "e07d4331101f7f5f2f1e3fb981feb86c7c5ad3baa8695a880a89d5a35916d498"
     },
     {
       "path": "ui/assets/BARLOW-OFL.txt",

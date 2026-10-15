@@ -11,10 +11,11 @@ export function installRaceBridge({load,request,snapshot,preferences,pause}){
       if(type==='load-race'){
         const serial=++loadSerial;
         await load(data);
-        const started=performance.now();
-        while(performance.now()-started<170000){
+        const started=performance.now();let progress;
+        while(performance.now()-started<590000){
           if(serial!==loadSerial)return;
           const state=await request('/api/state');
+          if(state.preparation&&state.preparation!==progress){progress=state.preparation;send({type:'race-progress',id,message:progress});}
           if(state.status==='error')throw new Error(state.error||'赛车准备失败。');
           if(state.status==='paused'&&state.frame&&state.molecule){send({type:'race-loaded',id,generation:state.generation});return;}
           await new Promise(resolve=>setTimeout(resolve,150));

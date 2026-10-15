@@ -66,11 +66,12 @@ addEventListener('message',async event=>{
   if(type==='prepare'&&event.source===workshop?.contentWindow){
     if(locked()){post(workshop,{type:'prepare-result',id,error:'请先在赛道重置本场比赛。'});return;}
     if(preparing){post(workshop,{type:'prepare-result',id,error:'已有赛车正在准备。'});return;}
-    preparing={id,timer:setTimeout(()=>{post(frames.get('track'),{type:'cancel-load'});finishPreparation('准备超时，请返回编辑后重试。');},175000)};
+    preparing={id,timer:setTimeout(()=>{post(frames.get('track'),{type:'cancel-load'});finishPreparation('准备超时，请返回编辑后重试。');},600000)};
     try{const frame=await trackReady();if(preparing?.id!==id)return;post(workshop,{type:'prepare-progress',id,message:'准备赛车…'});post(frame,{type:'load-race',id,data});}
     catch(error){if(preparing?.id===id)finishPreparation(error.message);}return;
   }
   if(type==='cancel-prepare'&&event.source===workshop?.contentWindow){post(frames.get('track'),{type:'cancel-load'});finishPreparation('已返回编辑。');return;}
+  if(type==='race-progress'&&event.source===track?.contentWindow&&preparing?.id===id)post(workshop,{type:'prepare-progress',id,message:event.data.message});
   if(type==='race-loaded'&&event.source===track?.contentWindow&&preparing?.id===id)finishPreparation(event.data.error);
 });
 // A full navigation destroys the in-memory worker and trajectory. Internal
