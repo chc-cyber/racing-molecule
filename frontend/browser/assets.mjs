@@ -10,13 +10,21 @@ async function readTable(descriptor, {base=import.meta.url,onProgress=()=>{},fet
   let cache;
   try{cache=await cacheStorage?.open('racing-molecule-tables-v1');}catch{}
   const decode=async bytes=>{
-    const raw=await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+    const raw=descriptor.encoding==='raw'?bytes:await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
     if(raw.byteLength!==descriptor.bytes)throw Error('赛道资源大小不正确，请重试。');
     const hash=await crypto.subtle.digest('SHA-256',raw);
     if(Array.from(new Uint8Array(hash),n=>n.toString(16).padStart(2,'0')).join('')!==descriptor.sha256)throw Error('赛道资源校验失败，请重试。');
-    return new Float64Array(raw);
+    return descriptor.encoding==='raw'?new Uint8Array(raw):new Float64Array(raw);
   };
   try{const saved=await cache?.match(key.href);if(saved){const data=await decode(await saved.arrayBuffer());onProgress(descriptor.download_bytes,true);return data;}}catch{try{await cache?.delete(key.href);}catch{}}
+  if(descriptor.chunks?.length){
+    const chunks=[];let offset=0;
+    for(const part of descriptor.chunks){
+      const bytes=await readTable({...part,encoding:'raw'},{base,fetcher,cacheStorage,stallMs,priority,requireCache,onProgress:(n,cached)=>onProgress(offset+n,cached)});
+      chunks.push(bytes);offset+=bytes.byteLength;
+    }
+    return decode(await new Blob(chunks).arrayBuffer());
+  }
   for(let attempt=0;attempt<2;attempt++){
     const controller=new AbortController();let timer;
     const arm=()=>{clearTimeout(timer);timer=setTimeout(()=>controller.abort(),stallMs);};

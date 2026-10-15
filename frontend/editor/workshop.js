@@ -6,7 +6,7 @@ const NativeError=globalThis.Clazz?._Error??globalThis.Error;
 import {WorkshopModel,createProject,clone,parseProject,serializeProject,chemistryWarnings,distance,angle,dihedral,geometryPreview} from './model.js';
 import {mountPeriodicTable,findElement} from './periodic-table.js';
 import {KetcherHost} from './ketcher-host.js';
-import {JSmolHost} from './jsmol-host.js';
+
 import {renderKetcherIcons} from './ketcher-icons.js';
 import {activeChemistryWarnings,isC60AdditionNotice} from './editor-notices.js';
 import {RaceCompletion} from './race-completion.js';
@@ -82,7 +82,7 @@ function setElement(symbol,activate=true){if(!findElement(symbol))throw NativeEr
 function select(atomIds,bond=null,{from3D=false}={}){interactionEpoch++;let next=[...atomIds];if(from3D&&mode==='measure'&&next.length===1){const n=geometryKinds[geometryState?.type||'distance'].count,old=ids();next=old.includes(next[0])?old.filter(id=>id!==next[0]):[...(old.length>=n?[]:old),next[0]];}model.selection=new Set(next);selectedBond=bond;if(mode==='measure')configureGeometry();if(!mature?.isApplying)mature?.setSelection(model.selection);views?.setSelection(model.selection);render();}
 function cancelGeometry(close=false){if(geometryState?.preview)views?.clearPreview();if(geometryState)geometryState.preview=null;if(close)geometryState=null;}
 async function setMode(next,{nativePicking=null}={}){if(!modeInfo[next])return;flushDrawing();cancelGeometry(true);if(['rotate','measure','molecule','rotateBond'].includes(next)&&dimension===2){if(!await setDimension(3))return;}mode=next;nativeToolPicking=nativePicking;$('inspector').hidden=true;if(next==='measure'){geometryState={type:ids().length===4?'dihedral':ids().length===3?'angle':'distance',reverse:false};configureGeometry();}if(next==='rotate')$('inspector').hidden=false;configureMode();render();}
-function showDimension(d){dimension=d;document.body.dataset.dimension=d;$('canvas-3d').hidden=d!==3;$('jsmol-loading').hidden=d!==3||!!views?.ready;$('view-2d').setAttribute('aria-pressed',String(d===2));$('view-3d').setAttribute('aria-pressed',String(d===3));if(d===2&&['rotate','measure'].includes(mode)){mode='select';cancelGeometry(true);}render();requestAnimationFrame(()=>{const tool=d===2?mature:views;tool?.onVisible?.().catch(e=>tell(e.message,true));});}
+function showDimension(d){if(d===3)ensure3D().catch(e=>{$('jsmol-loading').textContent=e.message;tell(e.message,true);});dimension=d;document.body.dataset.dimension=d;$('canvas-3d').hidden=d!==3;$('jsmol-loading').hidden=d!==3||!!views?.ready;$('view-2d').setAttribute('aria-pressed',String(d===2));$('view-3d').setAttribute('aria-pressed',String(d===3));if(d===2&&['rotate','measure'].includes(mode)){mode='select';cancelGeometry(true);}render();requestAnimationFrame(()=>{const tool=d===2?mature:views;tool?.onVisible?.().catch(e=>tell(e.message,true));});}
 async function setDimension(d){if(d===dimension)return true;if(switching)return false;flushDrawing();cancelGeometry(true);if(d===3&&model.project.atoms.length){switching=true;$('view-3d').disabled=true;const had3D=model.project.has3d;try{if(!await geometry('prepare',{show:false}))return false;}catch(e){if(!had3D)throw e;showDimension(3);configureMode();tell(`三维准备未完成：${e.message}\n请调整新增结构后重试。`,true);return true;}finally{switching=false;$('view-3d').disabled=false;}}showDimension(d);configureMode();return true;}
 function require3D(){if(!model.project.has3d)throw NativeError('请先切换三维以生成构象并补氢，或导入三维文件。');}
 function beginGeometry(type,ordered=null){flushDrawing();require3D();cancelGeometry(true);showDimension(3);mode='measure';geometryState={type,reverse:false};if(ordered)model.selection=new Set(ordered);$('inspector').hidden=true;configureGeometry();configureMode();render();}
@@ -226,6 +226,17 @@ window.workshop={model,select,setDimension,setMode,setElement,periodic,geometry,
 try{const draft=localStorage.getItem('molecular-car-workshop-draft');if(draft){model.replace(parseProject(draft),'恢复暂存');tell('已恢复浏览器暂存。');}else tell('编辑器已就绪。');}catch(e){tell(`暂存读取：${e.message}`,true);}render();icons();
 mature=new KetcherHost($('ketcher-frame'),{model,onSelection:atomIds=>select(atomIds),onInteraction:()=>{interactionEpoch++;},onError:e=>tell(e.message,true),onNotice:message=>tell(message),onOpen:()=>$('open-file').click(),onSave:()=>$('save-project').click(),onClear:()=>{cancelGeometry(true);model.commit('清空分子',p=>{p.atoms=[];p.bonds=[];p.fragments=[];p.has3d=false;});select([]);},onReady:()=>{$('editor-loading').hidden=true;tell('二维编辑器已就绪。');}});
 mature.initialized.catch(e=>{$('editor-loading').classList.add('error');$('editor-loading').querySelector('span').textContent=e.message;$('retry-editor').hidden=false;tell(e.message,true);});
-views=new JSmolHost($('canvas-3d'),{model,unifiedBonds:true,nativeMenus:false,onSelection:(atomIds,bond)=>select(atomIds,bond,{from3D:true}),onInteraction:()=>{interactionEpoch++;},onHover:hit=>{hoverHit=hit;},onMode:nativeMode,onNotice:message=>tell(message),onAction:safely(nativeAction),onError:e=>tell(e.message,true),onReady:()=>{$('jsmol-loading').hidden=true;configureMode();}});
-views.initialized.catch(e=>{$('jsmol-loading').classList.add('error');$('jsmol-loading').textContent=e.message;tell(e.message,true);});
 try{const pending=!browserMode&&sessionStorage.getItem(handoffKey);if(pending){const job=JSON.parse(pending);if(typeof job.id==='string'&&typeof job.content==='string'&&typeof job.filename==='string')raceCompletion.restore(job);else sessionStorage.removeItem(handoffKey);}}catch(e){tell(`准备恢复失败：${e.message}`,true);}
+
+let threeLoading;
+async function ensure3D(){
+  if(!threeLoading)threeLoading=(async()=>{
+    const {JSmolHost}=await import('./jsmol-host.js');
+    views=new JSmolHost($('canvas-3d'),{model,unifiedBonds:true,nativeMenus:false,onSelection:(atomIds,bond)=>select(atomIds,bond,{from3D:true}),onInteraction:()=>{interactionEpoch++;},onHover:hit=>{hoverHit=hit;},onMode:nativeMode,onNotice:message=>tell(message),onAction:safely(nativeAction),onError:e=>tell(e.message,true),onReady:()=>{$('jsmol-loading').hidden=true;configureMode();}});
+
+    await views.initialized;views.setSelection(model.selection);views.setNumbers(numbers);
+    if(dimension===3)await views.onVisible();
+    return views;
+  })().catch(error=>{threeLoading=null;views=null;throw error;});
+  return threeLoading;
+}

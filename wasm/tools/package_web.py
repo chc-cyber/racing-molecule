@@ -93,6 +93,25 @@ def main():
     for license_file in zlib_source.rglob("LICENSE"):
         shutil.copyfile(license_file, notices / "ZLIB.txt")
     (target / "THIRD_PARTY.md").write_text((ROOT / "THIRD_PARTY.md").read_text(encoding="utf-8"), encoding="utf-8")
+    # Independently verified compressed chunks survive interrupted visits.
+    for metadata_name in ("model.json", "fourier-atlas.json"):
+        metadata_path = target / "browser" / "assets" / metadata_name
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        descriptors = (metadata["surface"]["arrays"].values() if metadata_name == "model.json" else metadata["arrays"])
+        for descriptor in descriptors:
+            packed = (target / "browser" / descriptor["path"]).read_bytes()
+            if len(packed) < 1024 * 1024:
+                continue
+            descriptor["chunks"] = []
+            for offset in range(0, len(packed), 1024 * 1024):
+                data = packed[offset:offset + 1024 * 1024]
+                digest = hashlib.sha256(data).hexdigest()
+                relative = "assets/chunks/" + digest + ".bin"
+                chunk = target / "browser" / relative
+                chunk.parent.mkdir(parents=True, exist_ok=True)
+                chunk.write_bytes(data)
+                descriptor["chunks"].append({"path": relative, "bytes": len(data), "download_bytes": len(data), "sha256": digest})
+        metadata_path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     manifest = {"schema": "molecular-car-static-site-v1", "execution": "browser-wasm",
         "backend_required": False, "files": []}
     for path in sorted(target.rglob("*")):

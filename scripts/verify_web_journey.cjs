@@ -34,7 +34,7 @@ s.serve_forever()`;
   await page.goto(base);await page.getByRole('link',{name:'加入赛事'}).waitFor();await shot('01-home');pass('首页与子目录静态入口');
   const opened=performance.now();await page.getByRole('link',{name:'加入赛事'}).click();
   await page.locator('#garage-frame').waitFor();garage=await page.locator('#garage-frame').elementHandle().then(e=>e.contentFrame());
-  const settled=async()=>{await garage.waitForFunction(()=>window.workshop?.mature?.ready&&workshop.views?.ready&&!workshop.mature.suspended&&!workshop.views.suspended&&!workshop.mature.gesture&&!workshop.views.gesture,null,{timeout:120000,polling:100});await garage.evaluate(async()=>{await workshop.mature.settled();await workshop.views.settled();});};
+  const settled=async()=>{await garage.waitForFunction(()=>window.workshop?.mature?.ready&&(workshop.dimension!==3||workshop.views?.ready)&&!workshop.mature.suspended&&!workshop.views?.suspended&&!workshop.mature.gesture&&!workshop.views?.gesture,null,{timeout:120000,polling:100});await garage.evaluate(async()=>{await workshop.mature.settled();await workshop.views?.settled();});};
   await settled();pass('工坊二维与三维编辑器就绪',{seconds:(performance.now()-opened)/1000});
   const ketcher=garage.frameLocator('#ketcher-frame');
   await ketcher.locator('[data-testid="template-0"]').filter({visible:true}).click();

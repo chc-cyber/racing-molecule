@@ -34,3 +34,13 @@ test('overlapping preload and race share one verified download under the cross-w
  const results=await Promise.all([loadTable(descriptor,{...options,priority:'low'}),loadTable(descriptor,options)]);
  assert.equal(calls,1);assert.deepEqual(results,[raw,raw]);
 });
+
+test('interrupted chunk download resumes completed chunks without changing float64 bytes',async()=>{
+ const cut=12,parts=[packed.subarray(0,cut),packed.subarray(cut)];
+ const chunks=parts.map((b,i)=>({path:`assets/chunks/${i}.bin`,bytes:b.length,download_bytes:b.length,sha256:createHash('sha256').update(b).digest('hex')}));
+ const cacheStorage=makeCache(),calls=[0,0];let fail=true;
+ const options={base:'https://game.invalid/browser/worker.mjs',cacheStorage,fetcher:async url=>{const i=Number(url.pathname.match(/(\d)\.bin/)[1]);calls[i]++;if(i===1&&fail)return new Response('failure',{status:503});return new Response(parts[i]);}};
+ await assert.rejects(loadTable({...descriptor,chunks},options),/503/);
+ fail=false;const result=await loadTable({...descriptor,chunks},options);
+ assert.deepEqual(result,raw);assert.deepEqual(calls,[1,3]);
+});

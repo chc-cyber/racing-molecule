@@ -21,6 +21,18 @@ def main():
             assert len(data) == item["bytes"] and hashlib.sha256(data).hexdigest() == item["sha256"], item["path"]
             assert bundle.read(item["path"]) == data, item["path"]
             assert not any(part in (".local", ".venv", "node_modules") for part in Path(item["path"]).parts)
+    for metadata_name in ("model.json", "fourier-atlas.json"):
+        meta = json.loads((site / "browser/assets" / metadata_name).read_text())
+        descriptors = meta["surface"]["arrays"].values() if metadata_name == "model.json" else meta["arrays"]
+        for descriptor in descriptors:
+            if not descriptor.get("chunks"):
+                continue
+            pieces = []
+            for part in descriptor["chunks"]:
+                data = (site / "browser" / part["path"]).read_bytes()
+                assert len(data) == part["bytes"] and hashlib.sha256(data).hexdigest() == part["sha256"]
+                pieces.append(data)
+            assert b"".join(pieces) == (site / "browser" / descriptor["path"]).read_bytes()
     build = json.loads((site / "browser" / "runtime" / "build.json").read_text(encoding="utf-8"))
     for source, digest in build["own_sources"].items():
         assert hashlib.sha256((ROOT / source).read_bytes()).hexdigest() == digest, f"WASM is stale: {source}"
