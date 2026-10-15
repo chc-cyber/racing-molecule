@@ -207,7 +207,33 @@
         "encoding": "gzip",
         "bytes": 12503040,
         "download_bytes": 3890685,
-        "sha256": "c4b3e7c48317d41f5f73d5194abe523d0803cef2edbc0e44da2bcbbd2ee97ea9"
+        "sha256": "c4b3e7c48317d41f5f73d5194abe523d0803cef2edbc0e44da2bcbbd2ee97ea9",
+        "chunks": [
+          {
+            "path": "assets/chunks/b13f57fd41fb5a85ec5fdc8a421acd2c6b556dd0f2325968ff3c189d3cf53836.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "b13f57fd41fb5a85ec5fdc8a421acd2c6b556dd0f2325968ff3c189d3cf53836"
+          },
+          {
+            "path": "assets/chunks/258ace2bc368b3b79cdb67f1682645d8e9c9321678b96f4705276f962d2b2328.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "258ace2bc368b3b79cdb67f1682645d8e9c9321678b96f4705276f962d2b2328"
+          },
+          {
+            "path": "assets/chunks/bca43ccd06581352a14e3cb02b70e0451c6a68235dd10ec4bed04f9a1c7f90b0.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "bca43ccd06581352a14e3cb02b70e0451c6a68235dd10ec4bed04f9a1c7f90b0"
+          },
+          {
+            "path": "assets/chunks/d577f2c0bdbe8a30fe4dbb0b98e9f30cb2e6cb7eb5b90998e3975ff3119a44b0.bin",
+            "bytes": 744957,
+            "download_bytes": 744957,
+            "sha256": "d577f2c0bdbe8a30fe4dbb0b98e9f30cb2e6cb7eb5b90998e3975ff3119a44b0"
+          }
+        ]
       },
       "hetero-grid": {
         "path": "assets/hetero-grid.bin.gz",
@@ -221,7 +247,33 @@
         "encoding": "gzip",
         "bytes": 12503040,
         "download_bytes": 3792284,
-        "sha256": "4a25d3510e46dacd328a232ee08668a20d42a5c2080937396c3c1d0dfb7a014d"
+        "sha256": "4a25d3510e46dacd328a232ee08668a20d42a5c2080937396c3c1d0dfb7a014d",
+        "chunks": [
+          {
+            "path": "assets/chunks/548ffd0f39afd660166293f05eae68b5f92c34c4e126109f779d8c7e2bb2dff7.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "548ffd0f39afd660166293f05eae68b5f92c34c4e126109f779d8c7e2bb2dff7"
+          },
+          {
+            "path": "assets/chunks/b04804c9837afc6cff592e6e74c994d6e2de7c3bc5dff239a937dcf82f0ebd27.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "b04804c9837afc6cff592e6e74c994d6e2de7c3bc5dff239a937dcf82f0ebd27"
+          },
+          {
+            "path": "assets/chunks/20ca36907ba0684d5bb0a83312109120cd6f7c273b4d642a70d6899934807043.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "20ca36907ba0684d5bb0a83312109120cd6f7c273b4d642a70d6899934807043"
+          },
+          {
+            "path": "assets/chunks/5cb7407aca5311a40086b678c8f397e76d584873793b2e9a166e7ad575186f40.bin",
+            "bytes": 646556,
+            "download_bytes": 646556,
+            "sha256": "5cb7407aca5311a40086b678c8f397e76d584873793b2e9a166e7ad575186f40"
+          }
+        ]
       }
     }
   },

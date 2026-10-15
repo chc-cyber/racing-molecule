@@ -39,6 +39,196 @@
       "sha256": "0629b0ea423b0b3b7b2ff9cf1e4398062d83a17e95306c9d30ed1c96a3c8713a"
     },
     {
+      "path": "browser/assets/chunks/064dde9d1678d390c16a613e5729aee86485e94a84709606a58a58a099713dc1.bin",
+      "bytes": 1048576,
+      "sha256": "064dde9d1678d390c16a613e5729aee86485e94a84709606a58a58a099713dc1"
+    },
+    {
+      "path": "browser/assets/chunks/0a190724328d77f77c18b146c85258a81ccfe4941021ef603b2a587af2df51af.bin",
+      "bytes": 1048576,
+      "sha256": "0a190724328d77f77c18b146c85258a81ccfe4941021ef603b2a587af2df51af"
+    },
+    {
+      "path": "browser/assets/chunks/102b767b88008b64c1d14155e780e11649701cf11d26e8a359c80ecb34e7c206.bin",
+      "bytes": 1048576,
+      "sha256": "102b767b88008b64c1d14155e780e11649701cf11d26e8a359c80ecb34e7c206"
+    },
+    {
+      "path": "browser/assets/chunks/11dcd6afe5d34d3dceabbc7f66e420502446c4eb436e17cd93d96ed72ccaf389.bin",
+      "bytes": 1048576,
+      "sha256": "11dcd6afe5d34d3dceabbc7f66e420502446c4eb436e17cd93d96ed72ccaf389"
+    },
+    {
+      "path": "browser/assets/chunks/20ca36907ba0684d5bb0a83312109120cd6f7c273b4d642a70d6899934807043.bin",
+      "bytes": 1048576,
+      "sha256": "20ca36907ba0684d5bb0a83312109120cd6f7c273b4d642a70d6899934807043"
+    },
+    {
+      "path": "browser/assets/chunks/2329ae898ee58dc6a7229a5c3b8942e8eb786ef77c73014d3a458de31711c294.bin",
+      "bytes": 1048576,
+      "sha256": "2329ae898ee58dc6a7229a5c3b8942e8eb786ef77c73014d3a458de31711c294"
+    },
+    {
+      "path": "browser/assets/chunks/235ccbd7c383fb8f61a893e28bc604c227b0a3db70bcc53c3b93ac3d797b4f5e.bin",
+      "bytes": 1048576,
+      "sha256": "235ccbd7c383fb8f61a893e28bc604c227b0a3db70bcc53c3b93ac3d797b4f5e"
+    },
+    {
+      "path": "browser/assets/chunks/258ace2bc368b3b79cdb67f1682645d8e9c9321678b96f4705276f962d2b2328.bin",
+      "bytes": 1048576,
+      "sha256": "258ace2bc368b3b79cdb67f1682645d8e9c9321678b96f4705276f962d2b2328"
+    },
+    {
+      "path": "browser/assets/chunks/2b231402b4fd8f93f390d2e3959d47db6411c7faac84d70a71fd27bb6864ec6a.bin",
+      "bytes": 1048576,
+      "sha256": "2b231402b4fd8f93f390d2e3959d47db6411c7faac84d70a71fd27bb6864ec6a"
+    },
+    {
+      "path": "browser/assets/chunks/2e62654e5ca9751bbd4f9703923095522a86e1da23067c2c266325ea07e3410f.bin",
+      "bytes": 1048576,
+      "sha256": "2e62654e5ca9751bbd4f9703923095522a86e1da23067c2c266325ea07e3410f"
+    },
+    {
+      "path": "browser/assets/chunks/447ebfd6a6e4918e08f8977f5d4b8e30461a06a87df495a880d8da189d44211d.bin",
+      "bytes": 1048576,
+      "sha256": "447ebfd6a6e4918e08f8977f5d4b8e30461a06a87df495a880d8da189d44211d"
+    },
+    {
+      "path": "browser/assets/chunks/48a83daecfd0751d7a6fe4cb7facfb48edecf61e10710f4324407607169057c3.bin",
+      "bytes": 1048576,
+      "sha256": "48a83daecfd0751d7a6fe4cb7facfb48edecf61e10710f4324407607169057c3"
+    },
+    {
+      "path": "browser/assets/chunks/548ffd0f39afd660166293f05eae68b5f92c34c4e126109f779d8c7e2bb2dff7.bin",
+      "bytes": 1048576,
+      "sha256": "548ffd0f39afd660166293f05eae68b5f92c34c4e126109f779d8c7e2bb2dff7"
+    },
+    {
+      "path": "browser/assets/chunks/5cb7407aca5311a40086b678c8f397e76d584873793b2e9a166e7ad575186f40.bin",
+      "bytes": 646556,
+      "sha256": "5cb7407aca5311a40086b678c8f397e76d584873793b2e9a166e7ad575186f40"
+    },
+    {
+      "path": "browser/assets/chunks/6d9bb76d4acdb3dccaad7c3d4fbcb3c706a86d3ee594e482c9fecf2083821596.bin",
+      "bytes": 1048576,
+      "sha256": "6d9bb76d4acdb3dccaad7c3d4fbcb3c706a86d3ee594e482c9fecf2083821596"
+    },
+    {
+      "path": "browser/assets/chunks/6e9cb9d85e212e48b56d89ac7e7100cf374868ef4130c510548108d59cc6671c.bin",
+      "bytes": 1048576,
+      "sha256": "6e9cb9d85e212e48b56d89ac7e7100cf374868ef4130c510548108d59cc6671c"
+    },
+    {
+      "path": "browser/assets/chunks/6ec19746e7db144c7776e1f71847bdd4df32b042ed429adcca93b0cf33fb3f9f.bin",
+      "bytes": 1048576,
+      "sha256": "6ec19746e7db144c7776e1f71847bdd4df32b042ed429adcca93b0cf33fb3f9f"
+    },
+    {
+      "path": "browser/assets/chunks/6f2bca841c24edc9cc876fbe888ddf18a38de0a343b4db80d73a1b86a0588e95.bin",
+      "bytes": 1048576,
+      "sha256": "6f2bca841c24edc9cc876fbe888ddf18a38de0a343b4db80d73a1b86a0588e95"
+    },
+    {
+      "path": "browser/assets/chunks/82a4eaadab69015fba33a352242861904b8769cbc405997698e32fdc7ccefba8.bin",
+      "bytes": 1048576,
+      "sha256": "82a4eaadab69015fba33a352242861904b8769cbc405997698e32fdc7ccefba8"
+    },
+    {
+      "path": "browser/assets/chunks/95e078efdce1d785b925262c43d2178699487fcd97ff5b64ae5c3ca1166dbb1e.bin",
+      "bytes": 175432,
+      "sha256": "95e078efdce1d785b925262c43d2178699487fcd97ff5b64ae5c3ca1166dbb1e"
+    },
+    {
+      "path": "browser/assets/chunks/9b2299cfcd31c0907e7c7b04f7c719acc1c9bb5a495a5efe634bfca3977ca936.bin",
+      "bytes": 1048576,
+      "sha256": "9b2299cfcd31c0907e7c7b04f7c719acc1c9bb5a495a5efe634bfca3977ca936"
+    },
+    {
+      "path": "browser/assets/chunks/9d9f2a83a42ff63402b76e927b24d5555be14b7ec5c6b87f80ee80f2fc6744ca.bin",
+      "bytes": 1048576,
+      "sha256": "9d9f2a83a42ff63402b76e927b24d5555be14b7ec5c6b87f80ee80f2fc6744ca"
+    },
+    {
+      "path": "browser/assets/chunks/a30a5800dfa3c6c0da9eaee0f5a6b996a81775cb5d9b4327d073cf11088f652c.bin",
+      "bytes": 1048576,
+      "sha256": "a30a5800dfa3c6c0da9eaee0f5a6b996a81775cb5d9b4327d073cf11088f652c"
+    },
+    {
+      "path": "browser/assets/chunks/adeac8393690b2cd9e7dee4a0d0d1b45d813992bd705e2f8692386a242f2fd84.bin",
+      "bytes": 1048576,
+      "sha256": "adeac8393690b2cd9e7dee4a0d0d1b45d813992bd705e2f8692386a242f2fd84"
+    },
+    {
+      "path": "browser/assets/chunks/b04804c9837afc6cff592e6e74c994d6e2de7c3bc5dff239a937dcf82f0ebd27.bin",
+      "bytes": 1048576,
+      "sha256": "b04804c9837afc6cff592e6e74c994d6e2de7c3bc5dff239a937dcf82f0ebd27"
+    },
+    {
+      "path": "browser/assets/chunks/b13f57fd41fb5a85ec5fdc8a421acd2c6b556dd0f2325968ff3c189d3cf53836.bin",
+      "bytes": 1048576,
+      "sha256": "b13f57fd41fb5a85ec5fdc8a421acd2c6b556dd0f2325968ff3c189d3cf53836"
+    },
+    {
+      "path": "browser/assets/chunks/b838c01f6ac3457c0ef5271623b0af13d6c37daa9e50a27f25f0b0ff9e317c60.bin",
+      "bytes": 1048576,
+      "sha256": "b838c01f6ac3457c0ef5271623b0af13d6c37daa9e50a27f25f0b0ff9e317c60"
+    },
+    {
+      "path": "browser/assets/chunks/b884cb1b0c0b9122e14e36626247e4b886e1c1049c3f17f2882ae569c7df8a0e.bin",
+      "bytes": 1048576,
+      "sha256": "b884cb1b0c0b9122e14e36626247e4b886e1c1049c3f17f2882ae569c7df8a0e"
+    },
+    {
+      "path": "browser/assets/chunks/bca43ccd06581352a14e3cb02b70e0451c6a68235dd10ec4bed04f9a1c7f90b0.bin",
+      "bytes": 1048576,
+      "sha256": "bca43ccd06581352a14e3cb02b70e0451c6a68235dd10ec4bed04f9a1c7f90b0"
+    },
+    {
+      "path": "browser/assets/chunks/caa1c60d9f037f339cd4793850b623d955ea6a48e6b72f4996274e33c18c8ced.bin",
+      "bytes": 1048576,
+      "sha256": "caa1c60d9f037f339cd4793850b623d955ea6a48e6b72f4996274e33c18c8ced"
+    },
+    {
+      "path": "browser/assets/chunks/d577f2c0bdbe8a30fe4dbb0b98e9f30cb2e6cb7eb5b90998e3975ff3119a44b0.bin",
+      "bytes": 744957,
+      "sha256": "d577f2c0bdbe8a30fe4dbb0b98e9f30cb2e6cb7eb5b90998e3975ff3119a44b0"
+    },
+    {
+      "path": "browser/assets/chunks/df006a4c479cd8ee0f6713ceff6d7e66c8e2bfe1a17f4a27ed5e590d232bfebb.bin",
+      "bytes": 1048576,
+      "sha256": "df006a4c479cd8ee0f6713ceff6d7e66c8e2bfe1a17f4a27ed5e590d232bfebb"
+    },
+    {
+      "path": "browser/assets/chunks/e6c714b22ea70668dba9b326c596af102115076cae8e367d12d750676144e28f.bin",
+      "bytes": 1048576,
+      "sha256": "e6c714b22ea70668dba9b326c596af102115076cae8e367d12d750676144e28f"
+    },
+    {
+      "path": "browser/assets/chunks/e71af194a4dd9bddf28ad55337b43d9d6b6a260fbbec00f2411461ac3b6d0ec8.bin",
+      "bytes": 1048576,
+      "sha256": "e71af194a4dd9bddf28ad55337b43d9d6b6a260fbbec00f2411461ac3b6d0ec8"
+    },
+    {
+      "path": "browser/assets/chunks/e873e09e8da6959cedd0ab3e4653fe6fab28685f4da4719e78b0c5e64687e260.bin",
+      "bytes": 1048576,
+      "sha256": "e873e09e8da6959cedd0ab3e4653fe6fab28685f4da4719e78b0c5e64687e260"
+    },
+    {
+      "path": "browser/assets/chunks/e9344039c509fa6ae6ba8b9526de353aaf15ae6e7baeb98cc6bde37b69f62444.bin",
+      "bytes": 1048576,
+      "sha256": "e9344039c509fa6ae6ba8b9526de353aaf15ae6e7baeb98cc6bde37b69f62444"
+    },
+    {
+      "path": "browser/assets/chunks/ea363275b969c969d1e3e8bff1823e5ca95b214c17698d8b85420b71e153e838.bin",
+      "bytes": 1048576,
+      "sha256": "ea363275b969c969d1e3e8bff1823e5ca95b214c17698d8b85420b71e153e838"
+    },
+    {
+      "path": "browser/assets/chunks/ebec4c461bb22de41961c1d6ccf0738a675d8ed218c76203dc886e069595dcd5.bin",
+      "bytes": 1048576,
+      "sha256": "ebec4c461bb22de41961c1d6ccf0738a675d8ed218c76203dc886e069595dcd5"
+    },
+    {
       "path": "browser/assets/dimethyl-sulfide.mol",
       "bytes": 318,
       "sha256": "6b79192a4c623b7c15d5ee0a663c0d7a5533d19d43ad3f91995bdae0841be609"
@@ -70,13 +260,13 @@
     },
     {
       "path": "browser/assets/fourier-atlas.json",
-      "bytes": 1340,
-      "sha256": "0b262a5a7c910facef2c4d6e76fd497b68dc00d8e95c85063267cc820b2302a0"
+      "bytes": 9856,
+      "sha256": "40ad5b53093f503155a5b50a43fd227514a0bb7ab8d937e878429b10ce73b263"
     },
     {
       "path": "browser/assets/fourier.json",
       "bytes": 1308,
-      "sha256": "bcec4b98673d41d7c5d414c41965182ae71d898d84b1365ce2d18eefaaf59739"
+      "sha256": "4e079efe3a2ad20de50f67bf772f647febb1d8286c15ce4f75b80ae25ccc8442"
     },
     {
       "path": "browser/assets/hetero-grid.bin.gz",
@@ -100,8 +290,8 @@
     },
     {
       "path": "browser/assets/model.json",
-      "bytes": 6590,
-      "sha256": "e48bdffdcda6c53d4a7267eeaf1bbcca9a983ff42b4709b6cf9335a09120a490"
+      "bytes": 9010,
+      "sha256": "663ce7363aea7772e7a3d62a5383917a3bd0d1b44bf004f677bea1c9ce8d2350"
     },
     {
       "path": "browser/assets/phosphine-oxide.mol",
@@ -135,8 +325,8 @@
     },
     {
       "path": "browser/assets.mjs",
-      "bytes": 2833,
-      "sha256": "0774b92123c3797a1454d730973724efd975af5d516d5963e9084ca09cef5f78"
+      "bytes": 3320,
+      "sha256": "5499ad62bbd703c66c206f565370bfec2b5025f8e2042c4953e115a492f7eacb"
     },
     {
       "path": "browser/editor-worker.mjs",
@@ -235,8 +425,8 @@
     },
     {
       "path": "editor/index.html",
-      "bytes": 19844,
-      "sha256": "a03400756fcaa12018fb5156a3260b6c04293fa2224abb9bd51b0e44b9241eff"
+      "bytes": 19789,
+      "sha256": "cff171ea0ab939f9229a557fcd7dcc52a5cb47929f205394634c19b00b992a63"
     },
     {
       "path": "editor/jsmol-adapter.js",
@@ -10380,8 +10570,8 @@
     },
     {
       "path": "editor/workshop.js",
-      "bytes": 40441,
-      "sha256": "1db83937b83408d6e91ca3d50975b9b0b822285763e1e31653687de138e215cf"
+      "bytes": 40765,
+      "sha256": "e155790d90a0a264e27e23d71a5f9cc9f78e17be8ff31dcd2e49de8e5cb5806f"
     },
     {
       "path": "gold-surface.js",
@@ -10490,8 +10680,8 @@
     },
     {
       "path": "ui/app.js",
-      "bytes": 10602,
-      "sha256": "d8f4b83bb31b3b5b497d3e69aab5a212154a4c837c267c9cf3db417b1cd9d72b"
+      "bytes": 10579,
+      "sha256": "58cf35691d6612fbc5c6671415ce987e6ed39dee486398c1d6fb187d3ea484b6"
     },
     {
       "path": "ui/assets/BARLOW-OFL.txt",

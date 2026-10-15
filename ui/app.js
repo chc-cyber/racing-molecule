@@ -12,7 +12,7 @@ function schedulePreload(){
     if(preloadWorker||!navigator.locks||!globalThis.caches)return;
     if(route==='garage'){
       const editor=frames.get('garage')?.contentWindow?.workshop;
-      if(!editor?.mature?.ready||!editor?.views?.ready){schedulePreload();return;}
+      if(!editor?.mature?.ready){schedulePreload();return;}
     }
     const start=()=>{
       if(preloadWorker)return;
