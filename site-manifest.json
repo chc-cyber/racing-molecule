@@ -230,8 +230,8 @@
     },
     {
       "path": "editor/jsmol-host.js",
-      "bytes": 34759,
-      "sha256": "b53de63f6ddd0d0acfad6e56f520631a2e369af144fa089c8722377bb53b65ff"
+      "bytes": 34957,
+      "sha256": "9374e8e1d7236f6baf81521b86084805d7491e619e7a549d50c226e74501ca2a"
     },
     {
       "path": "editor/ketcher-adapter.js",
