@@ -111,6 +111,8 @@ def main():
                 chunk.parent.mkdir(parents=True, exist_ok=True)
                 chunk.write_bytes(data)
                 descriptor["chunks"].append({"path": relative, "bytes": len(data), "download_bytes": len(data), "sha256": digest})
+        if metadata_name == "fourier-atlas.json":
+            metadata["base_model_sha256"] = hashlib.sha256((target / "browser/assets/model.json").read_bytes()).hexdigest()
         metadata_path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     manifest = {"schema": "molecular-car-static-site-v1", "execution": "browser-wasm",
         "backend_required": False, "files": []}
