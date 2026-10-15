@@ -44,3 +44,10 @@ test('interrupted chunk download resumes completed chunks without changing float
  fail=false;const result=await loadTable({...descriptor,chunks},options);
  assert.deepEqual(result,raw);assert.deepEqual(calls,[1,3]);
 });
+
+test('chunk manifests retain previously cached full tables',async()=>{
+ const cacheStorage=makeCache(),options={base:'https://game.invalid/browser/worker.mjs',cacheStorage,fetcher:async()=>new Response(packed)};
+ await loadTable(descriptor,options);
+ const value=await loadTable({...descriptor,chunks:[{path:'must-not-fetch.bin'}]},{...options,fetcher:async()=>{throw Error('unexpected download');}});
+ assert.deepEqual(value,raw);
+});

@@ -114,6 +114,11 @@ def main():
         if metadata_name == "fourier-atlas.json":
             metadata["base_model_sha256"] = hashlib.sha256((target / "browser/assets/model.json").read_bytes()).hexdigest()
         metadata_path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+    legacy_proxy = target / "browser/assets/fourier.json"
+    if legacy_proxy.exists():
+        metadata = json.loads(legacy_proxy.read_text())
+        metadata["base_model_sha256"] = hashlib.sha256((target / "browser/assets/model.json").read_bytes()).hexdigest()
+        legacy_proxy.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     manifest = {"schema": "molecular-car-static-site-v1", "execution": "browser-wasm",
         "backend_required": False, "files": []}
     for path in sorted(target.rglob("*")):
