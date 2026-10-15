@@ -1,0 +1,289 @@
+._tabPanelDiv_zbeno_1 {
+  background-color: var(--color-tab-active);
+  flex-grow: 1;
+  overflow-y: auto;
+  height: 100%;
+}
+._tabPanelBox_zbeno_7 {
+  height: 100%;
+  width: 100%;
+  align-items: start;
+}
+/****************************************************************************
+ * Copyright 2021 EPAM Systems
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ***************************************************************************/
+._groupBlockWrapper_azkq7_16 {
+  position: relative;
+}
+._phosphatePositionIconWrapper_azkq7_19 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  border: 1px solid #b4b9d6;
+}
+._phosphatePositionIconWrapper_azkq7_19._active_azkq7_28 {
+  border-color: #585858;
+}
+._phosphatePositionIconWrapper_azkq7_19:not(._phosphatePositionIconWrapper_azkq7_19._hover_azkq7_31) {
+  background-color: #f3f8f9;
+}
+._phosphatePositionIconWrapper_azkq7_19._hover_azkq7_31 {
+  background-color: #E1E6ED;
+}
+._phosphatePositionIconWrapper_azkq7_19._hover_azkq7_31:hover {
+  border-color: #585858;
+  background-color: #F3F8F9;
+}
+._phosphatePositionIconWrapperOnPresetCard_azkq7_41 {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+._phosphatePositionIconWrapperOnPresetCardActive_azkq7_49:hover ._phosphatePositionSelector_azkq7_49 {
+  display: flex;
+}
+._phosphatePositionTrigger_azkq7_52 {
+  display: flex;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+._phosphatePositionTrigger_azkq7_52:disabled {
+  cursor: default;
+}
+._phosphatePositionSelector_azkq7_49 {
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  display: none;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid #b4b9d6;
+  border-radius: 6px;
+  background-color: #E1E6ED;
+  z-index: 1;
+}
+._phosphatePositionOption_azkq7_76 {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+._phosphatePositionOptionDisabled_azkq7_86 {
+  cursor: default;
+  opacity: 0.5;
+}
+/****************************************************************************
+ * Copyright 2021 EPAM Systems
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ***************************************************************************/
+._expandButton_aua99_16 {
+  margin-right: -8px !important;
+}
+._rulerArea_kxrhe_1 {
+  position: absolute;
+  width: 100%;
+  height: 36px;
+  background-color: transparent;
+  pointer-events: none;
+}
+._rulerInput_kxrhe_8 {
+  position: absolute;
+  top: 0;
+  height: 14px;
+  width: 35px;
+  border: var(--border-regular);
+  border-radius: 3px;
+  opacity: 40%;
+  text-align: center;
+  will-change: transform;
+  pointer-events: auto;
+}
+._rulerInput_kxrhe_8:hover {
+  cursor: pointer;
+  border: 1px solid var(--color-input-border-hover);
+  opacity: 100%;
+}
+._rulerInput_kxrhe_8:focus {
+  height: 18px;
+  outline: none;
+  border: 1px solid var(--color-input-border-hover);
+  opacity: 100%;
+}
+._rulerInput_kxrhe_8._rulerInputDragging_kxrhe_31 {
+  user-select: none;
+  opacity: 100%;
+}
+._rulerScale_kxrhe_35 {
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+._rulerHandle_kxrhe_42 {
+  position: absolute;
+  top: 0;
+  width: 16px;
+  height: 13px;
+  will-change: transform;
+}
+._rulerHandle_kxrhe_42:hover {
+  cursor: pointer;
+}
+._rulerInput_kxrhe_8::before,
+._rulerHandle_kxrhe_42::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+}
+._rulerInput_kxrhe_8:hover ~ ._rulerScale_kxrhe_35,
+._rulerHandle_kxrhe_42:hover ~ ._rulerScale_kxrhe_35 {
+  visibility: visible;
+  background-color: var(--color-background-canvas);
+}
+._rulerHandle_kxrhe_42:hover ~ ._rulerInput_kxrhe_8 {
+  opacity: 100%;
+}
+._dragGhost_16owi_1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  z-index: var(--zindex-overlay);
+}
+.Ketcher-polymer-editor-root {
+  --color-background-canvas: #F5F5F5;
+  --color-background-primary: #FFFFFF;
+  --color-background-secondary: #F8FEFF;
+  --color-background-overlay: rgba(94, 94, 94, 0.8);
+  --color-border-primary: #CAD3DD;
+  --color-border-secondary: #7C7C7F;
+  --color-text-primary: #333333;
+  --color-text-secondary: #167782;
+  --color-text-light: #585858;
+  --color-text-dark: #000000;
+  --color-text-error: #FF4A4A;
+  --color-text-lightgrey: #7C7C7F;
+  --color-tab-regular: #FFFFFF;
+  --color-tab-active: #E1E5EA;
+  --color-tab-hover: #00838F;
+  --color-tab-content: #EFF2F5;
+  --color-scroll-regular: #717171;
+  --color-scroll-inactive: #DDDDDD;
+  --color-button-primary-active: #167782;
+  --color-button-primary-hover: #00838F;
+  --color-button-primary-clicked: #4FB3BF;
+  --color-button-primary-disabled: rgba(113, 113, 113, 0.4);
+  --color-button-secondary-active: #585858;
+  --color-button-secondary-hover: #333333;
+  --color-button-secondary-clicked: #AEAEAE;
+  --color-button-secondary-disabled: rgba(113, 113, 113, 0.4);
+  --color-button-group-active: #167782;
+  --color-button-group-hover: #2E858F;
+  --color-button-transparent-active: transparent;
+  --color-button-text-primary: #FFFFFF;
+  --color-button-text-secondary: #005662;
+  --color-button-text-disabled: #7A7A7A;
+  --color-dropdown-primary: #333333;
+  --color-dropdown-secondary: #FFFFFF;
+  --color-dropdown-hover: #DDDDDD;
+  --color-dropdown-disabled: #7A7A7A;
+  --color-tooltip-background: #FFFFFF;
+  --color-tooltip-text: #333333;
+  --color-link-active: #00838F;
+  --color-link-hover: #005662;
+  --color-divider: #AEAEAE;
+  --color-spinner: #005662;
+  --color-error: #FF4A4A;
+  --color-input-text-default: #585858;
+  --color-input-text-active: #333333;
+  --color-input-text-disabled: #585858;
+  --color-input-text-error: #FF4A4A;
+  --color-input-background-primary: #FFFFFF;
+  --color-input-background-default: #EFF2F5;
+  --color-input-background-hover: #DDDDDD;
+  --color-input-background-disabled: #eff2f5;
+  --color-input-border-regular: #cad3dd;
+  --color-input-border-active: #FFFFFF;
+  --color-input-border-hover: #43b5c0;
+  --color-input-border-focus: #EFF2F5;
+  --color-input-border-error: #FF4A4A;
+  --color-icon-grey: #B4B9D6;
+  --color-icon-hover: #005662;
+  --color-icon-active: #525252;
+  --color-icon-activeMenu: #005662;
+  --color-icon-clicked: #FFFFFF;
+  --color-icon-disabled: rgba(82, 82, 82, 0.4);
+  --color-monomer-default: #C8C8C8;
+  --color-editMode-sequenceInRNABuilder: #99d7dc;
+  --font-size-small: 10px;
+  --font-size-regular: 12px;
+  --font-size-medium: 14px;
+  --font-size-xsmall: 6px;
+  --font-family-montserrat: Montserrat, sans-serif;
+  --font-family-inter: Inter, FreeSans, Arimo, 'Droid Sans', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-roboto: Roboto, FreeSans, Arimo, 'Droid Sans', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-bold: 600;
+  --border-regular: 1px solid #CAD3DD;
+  --border-small: 1px solid #E1E5EA;
+  --border-radius-regular: 4px;
+  --shadow-regular: 0px 1px 1px rgba(197, 203, 207, 0.7);
+  --shadow-mainLayoutBlocks: 0px 2px 5px rgba(103, 104, 132, 0.15);
+  --outline-small: 1px solid #B4B9D6;
+  --outline-medium: 2px solid #B4B9D6;
+  --outline-color: #B4B9D6;
+  --outline-selected-color: #167782;
+  --outline-selected-small: 1px solid #167782;
+  --outline-selected-medium: 2px solid #167782;
+  --outline-grey-small: 1px solid #585858;
+  --transition-regular: all 0.3s;
+  --zindex-base: 0;
+  --zindex-toolbar: 10;
+  --zindex-sticky: 100;
+  --zindex-overlay: 200;
+  --zindex-modal: 1000;
+  --zindex-critical: 9999;
+}

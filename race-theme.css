@@ -1,0 +1,99 @@
+/* Racing Molecule race controls. */
+:root {
+  --race-accent:var(--rm-accent); --race-on-accent:#fff;
+  --race-panel:var(--rm-panel); --race-chrome:var(--rm-chrome); --race-control:var(--rm-control);
+  --ink:var(--rm-ink); --muted:var(--rm-muted); --line:var(--rm-line); --paper:var(--rm-panel);
+  --accent:var(--race-accent); --dark:#202126;
+}
+:root[data-race-palette="cobalt"] {
+  --race-accent:#2454e8; --race-on-accent:#fff;
+  --race-panel:#fafcff; --race-chrome:#e8eef9; --race-control:#e3eaf7;
+  --ink:#111e3b; --muted:#59657b; --line:#cbd6ec; --paper:#fafcff;
+}
+:root[data-race-palette="acid"] {
+  --race-accent:#c7ff32; --race-on-accent:#161a12;
+  --race-panel:#20242a; --race-chrome:#161a20; --race-control:#30363e;
+  --ink:#f3f4ed; --muted:#adb6bf; --line:#424950; --paper:#20242a;
+}
+body,.app-header,.app-footer { background:var(--race-chrome); color:var(--ink); }
+.app-header,.app-footer,.control-panel { border-color:var(--line); }
+.brand-mark.racing-mark { stroke:var(--ink); }
+.brand small,.section-label,.field-label,.control-footer>span,.footer-mark { color:var(--muted); }
+.header-right .text-button { color:var(--ink); font-size:11px; }
+.control-panel { background:var(--race-panel); }
+.molecule-card h2,.section-heading h3 { color:var(--ink); }
+.molecule-card p,.molecule-chips span { color:var(--muted); }
+.molecule-chips span { background:var(--race-control); border-color:var(--line); border-radius:0; }
+.scene-heading h1 { color:#202126; }
+.telemetry { background:var(--race-panel); border-color:var(--line); border-radius:0; box-shadow:0 8px 28px #151a2010; }
+.telemetry-label,.main-metric strong,.metric-row b { color:var(--ink); }
+.metric-label,.main-metric div>span,.metric-row,.metric-row small,.telemetry-footer { color:var(--muted); }
+.telemetry-footer { border-color:var(--line); }
+.live-dot,.live-dot.running { background:var(--race-accent); }
+.distance-chart path { stroke:var(--race-accent); }
+.distance-chart .chart-baseline { stroke:var(--line); }
+.progress-track { background:var(--race-control); border-radius:0; }
+.progress-track>div { background:var(--race-accent); border-radius:0; }
+.progress-label,.run-reset-note,details summary,.race-config-note,.race-rules { color:var(--muted); }
+details,.run-section,.race-setup-section,.molecule-card { border-color:var(--line); }
+.race-setup-section { padding:0 0 18px; }
+.race-setup-section:not([open]) { padding:0; }
+.race-setup-section>summary { margin-bottom:0; padding:17px 0; }
+.race-setup-section[open]>summary { margin-bottom:12px; }
+.primary-button,.secondary-button,.race-mode-options button,.representation-options button,
+.load-example-button,.view-button,.icon-button,.upload-button,.pose-atom-row button,
+.control-footer button {
+  border-radius:0;
+  clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+}
+.primary-button,.primary-button.pausing {
+  background:var(--race-accent); color:var(--race-on-accent);
+  box-shadow:none; font-size:14px; font-weight:700;
+}
+.primary-button:hover:not(:disabled) { background-color:var(--race-accent); filter:brightness(1.035); }
+.secondary-button,.load-example-button,.view-button,.icon-button,.pose-atom-row button {
+  background:var(--race-control); color:var(--ink); border:0; box-shadow:none;
+}
+.secondary-button { font-size:12px; }
+.race-mode-options { gap:7px; margin-bottom:12px; }
+.race-mode-options button { background:var(--race-control); color:var(--ink); border:0; font-size:12px; font-weight:600; }
+.race-mode-options button[aria-pressed="true"] { background:var(--race-accent); color:var(--race-on-accent); }
+.representation-options { background:none; border:0; padding:0; gap:7px; }
+.representation-options button { background:var(--race-control); color:var(--ink); font-size:11px; }
+.representation-options button[aria-pressed="true"] { background:var(--race-accent); color:var(--race-on-accent); box-shadow:none; }
+.race-custom-fields input,.race-custom-fields select,.example-row select,.surface-select,
+.pose-angle-grid input,.pose-atom-row select {
+  background:var(--race-panel); color:var(--ink); border-color:var(--line); border-radius:0;
+}
+.race-custom-fields label,.start-pose-content p,.start-pose-content #start-pose-result { color:var(--muted); }
+.upload-button { background:var(--race-control); color:var(--ink); border:0; }
+.upload-button:hover { background-color:var(--race-control); filter:brightness(1.035); }
+.control-footer button { padding:8px 12px; background:var(--race-control); color:var(--ink); margin-top:6px; }
+.text-button { color:var(--ink); }
+.engine-badge { background:var(--race-control); color:var(--ink); border:0; border-radius:0; }
+.engine-badge i { background:#4f9568; }
+.feedback { border-radius:0; }
+.scene-toolbar { gap:8px; }
+/* Flat solid faces; no decorative bevels or texture. */
+.primary-button,.primary-button.pausing,.secondary-button,.race-mode-options button,
+.representation-options button,.load-example-button,.view-button,.icon-button,.upload-button,
+.pose-atom-row button,.control-footer button { background-image:none; box-shadow:none; }
+button:focus-visible,.upload-button:focus-visible {
+  outline:2px solid var(--race-accent); outline-offset:2px;
+  box-shadow:inset 0 0 0 2px var(--ink);
+}
+button:disabled { opacity:.43; }
+@media(max-width:760px) {
+  .header-right { gap:12px; }
+  .race-setup-section { padding-top:16px; }
+}
+
+body { font-family:var(--rm-font); }
+.drive-scene-badge { background:var(--rm-panel); color:var(--rm-muted); border-color:var(--rm-line); border-radius:0; }
+
+.shell-link { display:inline-flex; align-items:center; gap:6px; }
+.shell-link svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.6; }
+:root[data-reduced-motion=true] *, :root[data-reduced-motion=true] *::before, :root[data-reduced-motion=true] *::after { transition:none!important; animation:none!important; }
+
+.playback-control { margin-top:16px; }
+#playback-note { margin:8px 0 0; font-size:11px; color:var(--muted); }

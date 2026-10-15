@@ -1,0 +1,9 @@
+<svg color="#191b1a" xmlns="http://www.w3.org/2000/svg" viewBox="-21 -6 130 84" fill="none" stroke="#191b1a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+  <title>Racing Molecule</title>
+  <path fill="#c9c9c6" fill-rule="evenodd" d="M12 37.32H32L42 54.64 32 71.96H12L2 54.64ZM11.3 54.64a10.7 10.7 0 1 0 21.4 0a10.7 10.7 0 1 0-21.4 0Z"/>
+  <path fill="#c9c9c6" fill-rule="evenodd" d="M72 37.32H92L102 54.64 92 71.96H72L62 54.64ZM71.3 54.64a10.7 10.7 0 1 0 21.4 0a10.7 10.7 0 1 0-21.4 0Z"/>
+  <path d="M32 37.32 42 20H62L72 37.32M42 54.64H62"/>
+  <path d="M12 37.32 2 20M2 20-15.32 10 2 0Z"/>
+  <circle cx="22" cy="54.64" r="10.7"/>
+  <circle cx="82" cy="54.64" r="10.7"/>
+</svg>

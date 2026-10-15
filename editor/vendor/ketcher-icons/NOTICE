@@ -1,0 +1,28 @@
+ Ketcher
+ Copyright (C) 2018 EPAM Systems
+ This product includes software developed at EPAM Systems, Inc.
+
+ In addition, this product contains dependencies on files licensed under:
+
+ The FreeBSD Documentation License https://www.freebsd.org/copyright/freebsd-doc-license.html
+ The MIT License https://opensource.org/licenses/MIT
+ X11 License http://www.xfree86.org/3.3.6/COPYRIGHT2.html
+ Academic Free License https://opensource.org/licenses/AFL-3.0
+ Apache License, Version 1.0 http://www.apache.org/licenses/LICENSE-1.0
+ Apache License, Version 2.0 http://www.apache.org/licenses/LICENSE-2.0
+ The 2-Clause BSD License https://opensource.org/licenses/BSD-2-Clause
+ The 3-Clause BSD License https://opensource.org/licenses/BSD-3-Clause
+ ISC License (ISC) https://opensource.org/licenses/ISC
+ GNU Lesser General Public License version 2.1 https://opensource.org/licenses/LGPL-2.1
+ The Mozilla Public License https://opensource.org/licenses/MPL-1.0
+ Public Domain https://wiki.creativecommons.org/wiki/Public_domain
+ Unlicense http://unlicense.org/
+
+Molecular Car icon snapshot
+Ketcher 3.18.0, official tag v3.18.0, commit f4f013e1855b71b0cbd37fc79d55b0cbe51c2371.
+The Ketcher SVG files are copied without changes. Their paths and SHA-256 are recorded in manifest.json.
+The template-8 SVG comes from the local Molecular Car C60 source extension.
+workshop-* SVG files are new original UI drawings, not third-party artwork.
+Runtime rendering normalizes monochrome solid fill/stroke to currentColor and renders at 24px, preserving viewBox and geometry.
+The icons.js module is generated from these fixed SVG snapshots and adds no package dependency.
+This notice does not choose a license for the entire Molecular Car project.

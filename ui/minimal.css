@@ -1,0 +1,416 @@
+/* Shared page layout and branding. */
+.brand > .racing-mark {
+  width: 62px;
+  height: 44px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.site-header {
+  height: 84px;
+  gap: 28px;
+}
+
+.main-nav {
+  gap: clamp(20px, 2.4vw, 34px);
+  font-size: 13px;
+}
+
+body[data-page="home"] {
+  background: var(--paper);
+}
+
+.hero.home-minimal {
+  background: var(--paper);
+  color: var(--ink);
+  height: calc(100vh - 84px);
+  height: calc(100svh - 84px);
+  min-height: 600px;
+  max-height: 1050px;
+}
+
+.hero.home-minimal::before {
+  background: radial-gradient(ellipse at 74% 48%, #d5b67724, transparent 63%);
+}
+
+.home-minimal .hero-copy {
+  position: absolute;
+  top: 46%;
+  left: 5%;
+  width: 40%;
+  padding: 0;
+  transform: translateY(-50%);
+}
+
+.hero.home-minimal .hero-placeholder {
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: clamp(32px, 3.65vw, 56px);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: .07em;
+  white-space: nowrap;
+}
+
+.home-minimal .join-race {
+  margin-top: 30px;
+  min-width: 188px;
+  min-height: 54px;
+  background: #c44b3a;
+  color: #fff;
+  padding: 0 26px;
+  font-size: 14px;
+  letter-spacing: .04em;
+  pointer-events: auto;
+}
+
+.home-minimal .join-race:hover {
+  background: #b43f30;
+}
+
+.home-minimal .hero-stage {
+  top: 0;
+  right: -4%;
+  width: 70%;
+  height: 100%;
+}
+
+.home-minimal .hero-stage::after {
+  background: linear-gradient(90deg, var(--paper), transparent 24%),
+    linear-gradient(0deg, var(--paper), transparent 14%);
+}
+
+.page {
+  min-height: calc(100vh - 84px);
+  padding-top: 38px;
+  padding-bottom: 54px;
+}
+
+.page-heading {
+  align-items: center;
+  margin-bottom: 29px;
+}
+
+.page-heading h1 {
+  font-size: 32px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: .03em;
+}
+
+.race-layout {
+  gap: 40px;
+}
+
+.race-summary {
+  padding: 27px 25px 25px;
+}
+
+.race-summary h2 {
+  margin-top: 0;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.summary-distance {
+  margin: 15px 0 18px;
+  font-size: 68px;
+}
+
+.race-summary .button {
+  margin-top: 24px;
+}
+
+.spec-list > div {
+  min-width: 0;
+}
+
+.distance-choice {
+  min-height: 130px;
+  padding: 19px 18px;
+  display: flex;
+  align-items: center;
+}
+
+.distance-choice strong {
+  margin-top: 0;
+  font-size: 54px;
+}
+
+.custom-distance .distance-choice {
+  min-height: 104px;
+  padding: 15px 17px;
+}
+
+.custom-distance .distance-choice strong {
+  margin-top: 0;
+}
+
+.parameter-grid {
+  gap: 26px;
+}
+
+.parameter,
+.number-field,
+.preference-row > div {
+  min-width: 0;
+}
+
+.parameter-head {
+  min-height: 28px;
+}
+
+.parameter-help:empty {
+  display: none;
+}
+
+.garage-layout {
+  min-height: 460px;
+}
+
+.garage-library {
+  padding-top: 20px;
+}
+
+.garage-library h2,
+.garage-meta h2 {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.garage-meta h2 {
+  font-size: 19px;
+  margin-bottom: 19px;
+}
+
+.structure-stage {
+  min-height: 380px;
+}
+
+.garage-toolbar {
+  min-height: 57px;
+}
+
+.settings-section {
+  margin-bottom: 32px;
+}
+
+.settings-layout {
+  display: block;
+  max-width: 720px;
+}
+
+.fixed-label {
+  float: right;
+  padding: 2px 7px;
+  border: 1px solid #ffffff30;
+  color: #b8bdb0;
+  font-size: 10px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.preference-row {
+  padding: 19px 0;
+}
+
+@media (min-width: 1600px) {
+  .home-minimal .hero-copy {
+    left: max(5%, calc((100% - 1440px) / 2));
+  }
+}
+
+@media (max-width: 1180px) {
+  .site-header { gap: 20px; }
+  .main-nav { gap: 22px; font-size: 12px; }
+  .home-minimal .hero-copy { left: 4%; }
+  .home-minimal .hero-stage { width: 73%; right: -7%; }
+  .race-layout { gap: 28px; }
+}
+
+@media (max-width: 960px) {
+  .main-nav { gap: 18px; }
+  .home-minimal .hero-copy { width: 41%; }
+  .hero.home-minimal .hero-placeholder { font-size: 35px; }
+  .home-minimal .hero-stage { width: 76%; right: -12%; }
+  .race-layout { gap: 23px; }
+  .page-heading h1 { font-size: 29px; }
+  .distance-choice { padding: 16px 12px; min-height: 117px; }
+  .distance-choice strong { font-size: 46px; }
+  .race-summary { padding: 24px 21px; }
+}
+
+@media (max-width: 760px) {
+  .brand > .racing-mark { width: 54px; height: 39px; stroke-width: 2.8; }
+  .site-header { height: 72px; }
+  .main-nav { top: 72px; }
+  .main-nav.open { gap: 0; }
+  .main-nav > a { height: 46px; }
+  .hero.home-minimal {
+    height: calc(100vh - 72px);
+    height: calc(100svh - 72px);
+    min-height: 570px;
+    max-height: 940px;
+  }
+  .home-minimal .hero-copy {
+    top: 51px;
+    left: 6%;
+    width: 88%;
+    padding: 0;
+    transform: none;
+  }
+  .hero.home-minimal .hero-placeholder {
+    font-size: 34px;
+    line-height: 1.35;
+    letter-spacing: .065em;
+  }
+  .home-minimal .hero-stage {
+    top: 210px;
+    right: 0;
+    width: 100%;
+    height: calc(100% - 210px);
+  }
+  .home-minimal .hero-stage::after {
+    background: linear-gradient(180deg, var(--paper), transparent 13%),
+      linear-gradient(0deg, var(--paper), transparent 14%);
+  }
+  .page {
+    min-height: calc(100vh - 72px);
+    padding-top: 27px;
+    padding-bottom: 35px;
+  }
+  .page-heading { margin-bottom: 25px; gap: 16px; }
+  .page-heading h1 { font-size: 26px; line-height: 1.45; }
+  .race-layout { gap: 27px; }
+  .race-summary { padding: 24px 22px; }
+  .race-summary h2 { font-size: 16px; }
+  .summary-distance { font-size: 59px; margin: 13px 0 16px; }
+  .race-summary .spec-list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 22px; }
+  .distance-choice { min-height: 114px; padding: 17px 12px; }
+  .distance-choice strong { font-size: 46px; margin-top: 0; }
+  .custom-distance .distance-choice { min-height: 96px; padding: 15px 12px; }
+  .parameter-grid { gap: 23px 19px; }
+  .garage-layout { min-height: 0; }
+  .garage-library { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 11px 12px; }
+  .garage-library h2 { display: none; }
+  .library-item { width: 100%; min-width: 0; }
+  .garage-workspace { min-height: 360px; }
+  .structure-stage { min-height: 303px; }
+  .garage-meta h2 { font-size: 18px; margin-bottom: 15px; }
+  .garage-meta .spec-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .preference-row { gap: 18px; }
+  .preference-row .segmented { flex-shrink: 0; }
+  .settings-actions { flex-wrap: wrap; }
+}
+
+@media (max-width: 420px) {
+  .brand > .racing-mark { width: 50px; height: 37px; }
+  .home-minimal .hero-copy { top: 48px; }
+  .hero.home-minimal .hero-placeholder { font-size: 29px; }
+  .home-minimal .hero-stage { top: 198px; height: calc(100% - 198px); }
+  .home-minimal .join-race { min-height: 49px; min-width: 174px; margin-top: 23px; font-size: 13px; }
+  .page-heading h1 { font-size: 24px; }
+  .distance-choice { padding: 15px 10px; min-height: 106px; }
+  .distance-choice strong { font-size: 41px; }
+  .custom-distance .distance-choice { min-height: 88px; padding: 14px 10px; }
+  .parameter-grid { column-gap: 14px; }
+  .number-field input { width: 53px; }
+  .race-summary .spec-list { column-gap: 17px; }
+  .preference-row { gap: 13px; }
+  .preference-row .segmented button { padding: 8px 7px; font-size: 9px; }
+  .garage-toolbar { gap: 8px; }
+}
+
+/* The opening screen is the brand lockup, with a single race entry. */
+body[data-page="home"] .site-header {
+  position: absolute;
+  inset: 26px 0 auto;
+  height: 44px;
+  justify-content: flex-end;
+  border: 0;
+  background: transparent;
+}
+body[data-page="home"] .site-header > .brand,
+body[data-page="home"] .mobile-menu,
+body[data-page="home"] .main-nav > a:not(.settings-link) { display: none; }
+body[data-page="home"] .main-nav {
+  display: flex;
+  position: static;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+body[data-page="home"] .main-nav > .settings-link { height: 44px; gap: 10px; font-size: 13px; }
+.settings-link svg { width: 20px; height: 20px; stroke-width: 1.6; }
+.welcome {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 110px 24px 150px;
+}
+.welcome-lockup {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  transform: translateY(20px);
+}
+.welcome-mark { width: 210px; height: 136px; flex-shrink: 0; }
+.welcome-name {
+  font-family: Arial, 'Microsoft YaHei', sans-serif;
+  font-size: 51px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  line-height: 1.15;
+}
+.welcome-name > span { display: block; }
+.welcome-name small {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  margin-top: 18px;
+  line-height: 1.65;
+}
+.welcome-name i { color: #d93b25; font-style: normal; margin-right: 17px; }
+.welcome-join {
+  position: absolute;
+  top: calc(100% + 52px);
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: center;
+  min-width: 184px;
+  min-height: 50px;
+  font-size: 14px;
+  background: #c44b3a;
+  white-space: nowrap;
+}
+.welcome-join:hover { transform: translate(-50%, -2px); background: #b43f30; }
+@media (max-width: 640px) {
+  body[data-page="home"] .site-header { top: 18px; }
+  .welcome-lockup { flex-direction: column; gap: 25px; text-align: center; transform: translateY(20px); }
+  .welcome-mark { width: 180px; height: 116px; }
+  .welcome-name { font-size: 37px; letter-spacing: 2.2px; }
+  .welcome-name small { font-size: 11px; margin-top: 15px; }
+  .welcome-join { top: calc(100% + 38px); }
+}
+@media (max-width: 360px) {
+  .welcome-mark { width: 150px; height: 97px; }
+  .welcome-name { font-size: 32px; }
+  .welcome-lockup { gap: 20px; }
+}
+
+/* Solid double-cut primary action. */
+:root { --red:var(--rm-accent); --paper:var(--rm-paper); --ink:var(--rm-ink); }
+.button-primary,.welcome-join { background:var(--rm-accent); background-image:none; box-shadow:none; clip-path:var(--rm-cut); }
+.button-primary:hover,.welcome-join:hover { background:var(--rm-hover); }
+.welcome-name i { color:var(--rm-accent); }

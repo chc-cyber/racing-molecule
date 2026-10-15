@@ -1,0 +1,80 @@
+{
+  "schema": "fourier-saip-browser-v1",
+  "parameter_sha256": "9f0bbbbe7b044596ee1682d7d0c0ca37b3fc6835b40d94992700ccb2485472cb",
+  "base_model_sha256": "e48bdffdcda6c53d4a7267eeaf1bbcca9a983ff42b4709b6cf9335a09120a490",
+  "nz": 111,
+  "na": 21,
+  "modes": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      1,
+      -3
+    ],
+    [
+      1,
+      -1
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      2,
+      -4
+    ],
+    [
+      2,
+      -2
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      2,
+      4
+    ]
+  ],
+  "astep": 0.2,
+  "bound": 2.0,
+  "blend": 0.4,
+  "zstep": 0.05,
+  "zstart": 2.65,
+  "zmin": 2.8,
+  "zmax": 8.0,
+  "zblend": 0.3,
+  "arrays": [
+    {
+      "path": "assets/fourier-0.bin.gz",
+      "bytes": 37594368,
+      "download_bytes": 32552367,
+      "sha256": "08773a32ec7ce0450683edc5a68d5e0125b7a5fc8a4aaf6601407cbbea142f82"
+    },
+    {
+      "path": "assets/fourier-1.bin.gz",
+      "bytes": 37594368,
+      "download_bytes": 33967821,
+      "sha256": "36756b4f4d0361ea38ceddce883ffa501a9811cdfe4a8b307c47d1188b1a4b6c"
+    }
+  ],
+  "storage": "float64 interleaved complex; lossless gzip"
+}

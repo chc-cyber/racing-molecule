@@ -1,0 +1,389 @@
+{
+  "version": "ketcher-3.18.0-workshop-icons.3",
+  "upstream": {
+    "version": "3.18.0",
+    "tag": "v3.18.0",
+    "commit": "f4f013e1855b71b0cbd37fc79d55b0cbe51c2371",
+    "source": "https://github.com/epam/ketcher/tree/v3.18.0/packages/ketcher-react/src/assets/icons/files"
+  },
+  "license": "Ketcher originals Apache-2.0; original LICENSE and NOTICE retained",
+  "created": "2026-10-13",
+  "runtimeChanges": [
+    "Inline monochrome fill/stroke inherits currentColor; viewBox and path geometry retained.",
+    "SVG width and height set to 24px; accessible labels remain on controls."
+  ],
+  "icons": [
+    {
+      "name": "open",
+      "file": "open.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/open.svg",
+      "sha256": "e108a681c2881f0d50e3882f289790440b8bb1e8de1188e15a0273be814dab80",
+      "changes": "none"
+    },
+    {
+      "name": "save",
+      "file": "save.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/save.svg",
+      "sha256": "33f5c8c2d873a6ef904038bd21840fe7b0ae1fa26beeb37e56b3adddb38c8ff5",
+      "changes": "none"
+    },
+    {
+      "name": "undo",
+      "file": "undo.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/undo.svg",
+      "sha256": "4ab4858f7380efd9ad759b31e068735a26e4367b07a7422d084a3098cde80d40",
+      "changes": "none"
+    },
+    {
+      "name": "redo",
+      "file": "redo.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/redo.svg",
+      "sha256": "e856641657a2fa8025d4d2fcb3ab056a4069142784b7365b8ae7219627ba295d",
+      "changes": "none"
+    },
+    {
+      "name": "erase",
+      "file": "erase.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/erase.svg",
+      "sha256": "eeb7acbae31ac736173019182daf6e3e65b8aa19def6fb58f054a0a50d71dafa",
+      "changes": "none"
+    },
+    {
+      "name": "select-rectangle",
+      "file": "select-rectangle.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/select-rectangle.svg",
+      "sha256": "8ac221645e32999503f03f78d4b79a6657619fa324f8137e0655bf973a859c37",
+      "changes": "none"
+    },
+    {
+      "name": "bond-single",
+      "file": "bond-single.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/bond-single.svg",
+      "sha256": "55e27a9d51914e36dcfa9e24224a93a99bfdadd0378ccf3d8955a976fd398ac7",
+      "changes": "none"
+    },
+    {
+      "name": "bond-double",
+      "file": "bond-double.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/bond-double.svg",
+      "sha256": "e85559802ab477d119476b53793cbfd5a74ee70831db958e360d87761c32f177",
+      "changes": "none"
+    },
+    {
+      "name": "bond-triple",
+      "file": "bond-triple.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/bond-triple.svg",
+      "sha256": "dd645cc4ee768cb35361627ceca59f899797a87c34b53a6a834f84730d955a05",
+      "changes": "none"
+    },
+    {
+      "name": "period-table",
+      "file": "period-table.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/period-table.svg",
+      "sha256": "7e433ceb61227e4d49724abb62de4391985b1ca6e8470e7531cbad4244f30d59",
+      "changes": "none"
+    },
+    {
+      "name": "charge-minus",
+      "file": "charge-minus.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/charge-minus.svg",
+      "sha256": "b611148869a07b50f84d6cbd9c8fb2f2234813e9ce4ab63c6bc87467f6783f53",
+      "changes": "none"
+    },
+    {
+      "name": "charge-plus",
+      "file": "charge-plus.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/charge-plus.svg",
+      "sha256": "72c7ef8daf161fc966a728910f7d3f79fe54d56a27bc5751679aa042d4ff576d",
+      "changes": "none"
+    },
+    {
+      "name": "fullscreen-enter",
+      "file": "fullscreen-enter.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/fullscreen-enter.svg",
+      "sha256": "8a72febd6376c9a0a67c490927ec367e65db27881f9a1757186e521ed183dbe8",
+      "changes": "none"
+    },
+    {
+      "name": "zoom-reset",
+      "file": "zoom-reset.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/zoom-reset.svg",
+      "sha256": "f7ac19682b6a2874c58cf2fdefbeeb5690667c9b78ba7f64dcebbd4954fb6c06",
+      "changes": "none"
+    },
+    {
+      "name": "settings",
+      "file": "settings.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/settings.svg",
+      "sha256": "9f0f8df897c43659714e9c987deb64b87f5ccc005c762c6d0d85f53a89f835ba",
+      "changes": "none"
+    },
+    {
+      "name": "help",
+      "file": "help.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/help.svg",
+      "sha256": "bea4e1aae8ef04e27dbeb3cd03628214ca61806d756655d2636916ef130282be",
+      "changes": "none"
+    },
+    {
+      "name": "about",
+      "file": "about.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/about.svg",
+      "sha256": "9d21d96c38f930bd870473dd5040f5469a41225b83bc175527d490655f2fc94f",
+      "changes": "none"
+    },
+    {
+      "name": "clean",
+      "file": "clean.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/clean.svg",
+      "sha256": "f671a75abf1aae05f2c68e402706dbee6be95ae64f27f1ec634edbe335294bb9",
+      "changes": "none"
+    },
+    {
+      "name": "layout",
+      "file": "layout.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/layout.svg",
+      "sha256": "713babb5484016b4371a4e3d5b2f9c1db0734e10b11ffa69ee043fbcf0dac234",
+      "changes": "none"
+    },
+    {
+      "name": "check",
+      "file": "check.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/check.svg",
+      "sha256": "776a2f8daf53af0b8a9d685bf9451d957926c82946479f013cc50af89f3e4e33",
+      "changes": "none"
+    },
+    {
+      "name": "clear",
+      "file": "clear.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/clear.svg",
+      "sha256": "b41680e20fba690e86660138ad1074e63dcc82a6d898fc4c8bf3104edea4a581",
+      "changes": "none"
+    },
+    {
+      "name": "close",
+      "file": "close.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/close.svg",
+      "sha256": "ff5b9cffe088fc6a34a44be60985cdef5994e6449a79511af76715b0f103de03",
+      "changes": "none"
+    },
+    {
+      "name": "template-8",
+      "file": "template-8.svg",
+      "origin": "molecular-car-c60-extension",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/template-8.svg",
+      "sha256": "aa9d66a1678240231f5698d54d89190659af4809959229798b4bf01d2344f8c8",
+      "changes": "none"
+    },
+    {
+      "name": "explicit-hydrogens",
+      "file": "explicit-hydrogens.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/explicit-hydrogens.svg",
+      "sha256": "c9c874b18d100518d7867f50d7ec3ffa8a3923b2ba497ca81b0ea2324545e01d",
+      "changes": "none"
+    },
+    {
+      "name": "bond-up",
+      "file": "bond-up.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/bond-up.svg",
+      "sha256": "dbb289aacb997c298fab390bf9e76827489f63229cf8798e72589feb77ce7dcd",
+      "changes": "none"
+    },
+    {
+      "name": "bond-down",
+      "file": "bond-down.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/bond-down.svg",
+      "sha256": "385591fedf27157d5872a69be202f3b3f2cf68e0ae11c87c7a7a12ee3d335892",
+      "changes": "none"
+    },
+    {
+      "name": "dropdown-indicator",
+      "file": "dropdown-indicator.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/dropdown-indicator.svg",
+      "sha256": "aa1eb3511fd74e62298098214e34fb7faf2a12e471d37adef8a16c06e13bc572",
+      "changes": "none"
+    },
+    {
+      "name": "select-structure",
+      "file": "select-structure.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/select-structure.svg",
+      "sha256": "6835f9c44a9ffdc6ba295744a2db13e5d8f3053cf3791d13bb17b4dba3884f77",
+      "changes": "none"
+    },
+    {
+      "name": "delete",
+      "file": "delete.svg",
+      "origin": "ketcher",
+      "upstreamPath": "packages/ketcher-react/src/assets/icons/files/delete.svg",
+      "sha256": "e79d8d644ada34a79a77f619f2d4530b5868ab88befbbab0cb0f7696f52a4134",
+      "changes": "none"
+    },
+    {
+      "name": "workshop-new",
+      "file": "workshop-new.svg",
+      "origin": "workshop-original",
+      "sha256": "8377ed5101fd9073439dbdacc11e43dd536494f18c38e81b18425fbb72bdd3b8",
+      "changes": "new original 24px UI drawing"
+    },
+    {
+      "name": "workshop-export",
+      "file": "workshop-export.svg",
+      "origin": "workshop-original",
+      "sha256": "4c71289b279a58a7c35140eac6843943a7a07b9100becf0cbcf296e45fc12bcf",
+      "changes": "new original 24px UI drawing"
+    },
+    {
+      "name": "workshop-track",
+      "file": "workshop-track.svg",
+      "origin": "workshop-original",
+      "sha256": "1cb1dd614808ca5e42f9a66fdf6c861b33def43ea124218d30715b2703415dbc",
+      "changes": "new original 24px UI drawing"
+    },
+    {
+      "name": "workshop-external",
+      "file": "workshop-external.svg",
+      "origin": "workshop-original",
+      "sha256": "4b99ea5da3ce31238202a23dd86f59372fba4d1920dc650f15025192604111d6",
+      "changes": "new original 24px UI drawing"
+    },
+    {
+      "name": "workshop-move-atom",
+      "file": "workshop-move-atom.svg",
+      "origin": "workshop-original",
+      "sha256": "c9a3073e9da2198001a90cab616eca54590a4cc4e85bfeeb2cf2209869a2e924",
+      "changes": "new original 24px UI drawing"
+    },
+    {
+      "name": "workshop-move-group",
+      "file": "workshop-move-group.svg",
+      "origin": "workshop-original",
+      "sha256": "5578198439b0910a18619c8c7b3280b27f972d8abf113424da02de9c1d66444f",
+      "changes": "new original 24px UI drawing"
+    },
+    {
+      "name": "workshop-rotate-bond",
+      "file": "workshop-rotate-bond.svg",
+      "origin": "workshop-original",
+      "sha256": "f0b0f59d733693c5916c4b468eab4ca6aea3201a151dd6fb97feec9cd7567589",
+      "changes": "new original 24px UI drawing"
+    },
+    {
+      "name": "workshop-measure",
+      "file": "workshop-measure.svg",
+      "origin": "workshop-original",
+      "sha256": "f06d24d48c2c5eec9d1fc70ed391e5a0d93440aaad3a133e29e38596a7856c19",
+      "changes": "new original 24px UI drawing"
+    },
+    {
+      "name": "workshop-connect",
+      "file": "workshop-connect.svg",
+      "origin": "workshop-original",
+      "sha256": "2bb3c45bc90b963a66e25301614e154114805e2705173de47f0d26c9a01b7adc",
+      "changes": "new original 24px UI drawing"
+    },
+    {
+      "name": "workshop-3d",
+      "file": "workshop-3d.svg",
+      "origin": "workshop-original",
+      "sha256": "8ee97ec49a6aef8aa18883ad5d3990e262580486b300133ef14ac3667c50d26d",
+      "changes": "new original 24px UI drawing"
+    },
+    {
+      "name": "workshop-pin",
+      "file": "workshop-pin.svg",
+      "origin": "workshop-original",
+      "sha256": "18a2649936c33ac9e331d3d4f1748d5290e8f3c3cd1216a23ccf7c53149bf3d1",
+      "changes": "new original 24px UI drawing"
+    },
+    {
+      "name": "workshop-numbers",
+      "file": "workshop-numbers.svg",
+      "origin": "workshop-original",
+      "sha256": "ca0d16c8f740db3ba6d6c795a79465f64b2f0d2a2e45a6615fd720c945cbeed4",
+      "changes": "new original 24px UI drawing"
+    },
+    {
+      "name": "workshop-swap",
+      "file": "workshop-swap.svg",
+      "origin": "workshop-original",
+      "sha256": "d1fbe4bb8a62812d7b27b37f473875120a7d5b8c588bf1029ede2ce5014dd721",
+      "changes": "new original 24px UI drawing"
+    },
+    {
+      "name": "workshop-atom",
+      "file": "workshop-atom.svg",
+      "origin": "workshop-original",
+      "changes": "new original 24px UI drawing",
+      "sha256": "219bb9e1e3721874bcfaa052d36fc9c115b43c38857803e3322daba7bc7275fb"
+    },
+    {
+      "name": "workshop-hydrogen",
+      "file": "workshop-hydrogen.svg",
+      "origin": "workshop-original",
+      "changes": "new original 24px UI drawing",
+      "sha256": "08ed6c49eabcc262569890554618dd8b262da175dfb0c60090ae1351b00e8b16"
+    },
+    {
+      "name": "workshop-fit",
+      "file": "workshop-fit.svg",
+      "origin": "workshop-original",
+      "changes": "new original 24px UI drawing",
+      "sha256": "ebccf162b7d744beaa6757ec3f068bfbf682e5fa2cc7068ab97a00aae69d84ed"
+    },
+    {
+      "name": "workshop-uff",
+      "file": "workshop-uff.svg",
+      "origin": "workshop-original",
+      "changes": "new original 24px UI drawing",
+      "sha256": "248f332cb0d3f76a946f017becb12ed62b65b0fe4e6ecea6d1385ad798be0d25"
+    },
+    {
+      "name": "workshop-layout",
+      "file": "workshop-layout.svg",
+      "origin": "workshop-original",
+      "changes": "new original 24px UI drawing",
+      "sha256": "78ac44c8906d4906bc668ec2bb6c6988de4c979b16b4273764a634f593473601"
+    }
+  ],
+  "generatedModule": {
+    "file": "icons.js",
+    "sha256": "ebce6d9b3920ef599c6ba1a1d4e3847011870d54aaebb38c5da66ca1cfdb8bcd"
+  },
+  "licenseFiles": [
+    {
+      "file": "LICENSE",
+      "sha256": "3d54b234fa88c11d1d96380ff5fe29f3c5d8e1078ef914dfe8185ce4b1fbeac7"
+    },
+    {
+      "file": "NOTICE",
+      "sha256": "466c62d97c1d90d92e729a0714695c550773dee5f2869288806ab2c2c708b5b1"
+    }
+  ]
+}

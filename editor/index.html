@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN" data-engine="wasm">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>分子赛车工坊 · Racing Molecule</title>
+  <link rel="icon" type="image/svg+xml" href="../vendor/racing-molecule.svg">
+  <link rel="stylesheet" href="../design-system.css">
+  <link rel="stylesheet" href="./workshop.css">
+    <script src="./vendor/jsmol/JSmol.min.js"></script>
+<link rel="stylesheet" href="../competition.css">
+  <link rel="stylesheet" href="./workshop-theme.css">
+</head>
+<body data-dimension="2">
+  <header class="app-header">
+    <a class="brand" target="_top" href="../#home" data-app-route="home" aria-label="Racing Molecule 首页"><img src="../vendor/racing-molecule-logo.svg" width="44" height="30" alt=""><span>RACING <b>MOLECULE</b><small>分子工坊</small></span></a>
+    <input id="project-name" aria-label="工程名称" value="未命名赛车">
+    <span id="save-state" class="save-dot" title="浏览器自动暂存" aria-label="浏览器自动暂存"></span>
+    <div class="file-actions">
+      <details class="menu" id="file-menu"><summary class="icon-button" title="文件" aria-label="文件菜单"><i data-ketcher-icon="open"></i></summary><div class="menu-panel">
+        <button id="new-project" aria-label="新建工程"><i data-ketcher-icon="workshop-new"></i>新建工程</button>
+        <label class="button" for="open-file"><i data-ketcher-icon="open"></i>导入 / 打开</label><input type="file" id="open-file" accept=".mol,.sdf,.json,.mcar" hidden>
+        <hr><button id="example-tpb" aria-label="四苯基苯">四苯基苯</button><button id="example-chiral" aria-label="手性示例">手性示例</button>
+      </div></details>
+      <button id="save-project" class="icon-button" title="保存工程 · Ctrl+S" aria-label="保存工程"><i data-ketcher-icon="save"></i></button>
+      <details class="menu" id="export-menu"><summary class="icon-button" title="导出 MOL / SDF" aria-label="导出菜单"><i data-ketcher-icon="workshop-export"></i></summary><div class="menu-panel">
+        <label for="export-type">文件格式</label><select id="export-type"><option value="3:mol">3D MOL</option><option value="2:mol">2D MOL</option><option value="3:sdf">3D SDF</option><option value="2:sdf">2D SDF</option></select><button id="export-file">导出</button>
+      </div></details>
+    </div>
+    <div class="history-actions"><button id="undo" class="icon-button" title="撤销 · Ctrl+Z" aria-label="撤销"><i data-ketcher-icon="undo"></i></button><button id="redo" class="icon-button" title="重做 · Ctrl+Shift+Z" aria-label="重做"><i data-ketcher-icon="redo"></i></button></div>
+    <button id="send-track" class="primary" title="保存并进入赛道"><i data-ketcher-icon="workshop-track"></i><span>保存并进入赛道</span></button>
+    <a class="icon-button" href="../#track" data-app-route="track" title="返回赛道" aria-label="返回赛道" target="_top"><i data-ketcher-icon="workshop-external"></i></a>
+  </header>
+  <div class="topbar">
+    <div class="tabs" aria-label="分子视图"><button id="view-2d" class="active" aria-pressed="true">2D</button><button id="view-3d" aria-pressed="false">3D</button></div>
+    <div class="workshop-tools"><button id="open-properties" class="icon-button" title="对象属性" aria-label="工坊属性"><i data-ketcher-icon="settings"></i></button><button id="fit-view" class="icon-button" title="适配视图" aria-label="适配视图"><i data-ketcher-icon="workshop-fit"></i></button></div>
+    <div class="prepare-actions"><button id="generate-3d" class="icon-button" title="重建三维构象" aria-label="重建三维构象"><i data-ketcher-icon="workshop-3d"></i></button><button id="add-hydrogens" class="icon-button" title="补氢" aria-label="补氢"><i data-ketcher-icon="workshop-hydrogen"></i></button><button id="relax" class="icon-button" title="UFF 优化" aria-label="UFF 优化" hidden><i data-ketcher-icon="workshop-uff"></i></button><button id="layout-2d" class="icon-button" title="整理二维排版" aria-label="整理二维排版"><i data-ketcher-icon="workshop-layout"></i></button><button id="help" class="icon-button" title="操作与快捷键" aria-label="帮助"><i data-ketcher-icon="help"></i></button></div>
+  </div>
+  <main>
+    <section class="workspace">
+      <div id="viewport">
+        <nav class="toolstrip" id="modes" aria-label="三维构造工具">
+          <div class="tool-group" role="group" aria-label="选择与原子">
+            <button data-mode="select" class="active" title="选择 · V" aria-label="选择"><i data-ketcher-icon="select-rectangle"></i></button>
+            <button data-mode="atom" title="添加 / 替换原子 · A" aria-label="添加或替换原子"><i id="atom-tool-symbol" data-ketcher-icon="workshop-atom"></i></button>
+            <button data-mode="delete" title="删除原子或键 · D" aria-label="删除"><i data-ketcher-icon="erase"></i></button>
+          </div>
+          <div class="tool-group" role="group" aria-label="化学键">
+            <div class="bond-choice">
+              <button data-mode="bond" data-tool="bond-order" title="化学键 · B" aria-label="化学键"><span id="bond-tool-symbol" class="chemical-icon">—</span></button>
+          <details class="menu" id="bond-menu"><summary class="bond-summary" title="选择单 / 双 / 三键" aria-label="选择键型"><span id="bond-symbol" class="sr-only">—</span><i data-ketcher-icon="dropdown-indicator"></i></summary><div class="menu-panel bond-types">
+      <button data-bond-style="1:NONE" title="单键 · 1"><i data-ketcher-icon="bond-single"></i> <span>单键</span></button><button data-bond-style="2:NONE" title="双键 · 2"><i data-ketcher-icon="bond-double"></i> <span>双键</span></button><button data-bond-style="3:NONE" title="三键 · 3"><i data-ketcher-icon="bond-triple"></i> <span>三键</span></button>
+          </div></details><select id="bond-order" hidden aria-label="绘制键级"><option value="1">单键</option><option value="2">双键</option><option value="3">三键</option><option value="1.5">芳香键</option></select>
+            </div>
+          </div>
+          <div class="tool-group" role="group" aria-label="三维几何">
+            <button data-mode="move" title="移动原子 · M" aria-label="移动原子"><i data-ketcher-icon="workshop-move-atom"></i></button>
+            <button data-mode="molecule" title="移动基团" aria-label="移动分子或基团"><i data-ketcher-icon="workshop-move-group"></i></button>
+            <button data-mode="rotateBond" title="绕键旋转" aria-label="绕键旋转"><i data-ketcher-icon="workshop-rotate-bond"></i></button>
+            <button data-mode="measure" title="测量与几何调整 · G" aria-label="测量与精确几何"><i data-ketcher-icon="workshop-measure"></i></button>
+          </div>
+        </nav>
+        <nav class="element-tools" id="element-tools" aria-label="三维元素工具">
+          <div class="element-group" role="group" aria-label="常用元素">
+            <button data-element="H" title="氢 · H" aria-label="氢 H">H</button><button data-element="C" class="active" title="碳 · C" aria-label="碳 C">C</button><button data-element="N" title="氮 · N" aria-label="氮 N">N</button><button data-element="O" title="氧 · O" aria-label="氧 O">O</button><button data-element="S" title="硫 · S" aria-label="硫 S">S</button>
+            <hr><button data-element="P" title="磷 · P" aria-label="磷 P">P</button><button data-element="F" title="氟 · F" aria-label="氟 F">F</button><button data-element="Cl" title="氯 · Cl" aria-label="氯 Cl">Cl</button><button data-element="Br" title="溴 · Br" aria-label="溴 Br">Br</button><button data-element="I" title="碘 · I" aria-label="碘 I">I</button>
+            <hr><button id="element" value="C" title="元素周期表" aria-label="当前元素：碳">C</button><button id="periodic-table-trigger" class="icon-button" title="元素周期表" aria-label="元素周期表"><i data-ketcher-icon="period-table"></i></button>
+          </div>
+        </nav>
+        <iframe id="ketcher-frame" src="./vendor/ketcher-c60/index.html?hiddenControls=sgroup,rgroup,rgroup-label,rgroup-fragment,rgroup-attpoints,create-monomer,reaction-plus,arrows,reaction-mapping-tools,reaction-map,reaction-unmap,reaction-automap,shapes,shape-ellipse,shape-rectangle,shape-line,text,images,enhanced-stereo" title="Ketcher 二维分子绘图" allow="clipboard-read; clipboard-write"></iframe>
+        <div id="editor-loading" role="status"><span>正在载入本地绘图工具…</span><button id="retry-editor" hidden>重新载入</button></div>
+        <div id="canvas-3d" aria-label="JSmol 三维分子构造区域" hidden></div>
+        <div id="jsmol-loading" role="status" hidden>正在载入本地三维工具…</div>
+        <div id="empty-hint"><i data-ketcher-icon="select-rectangle"></i><span>选择元素，在空白处点击添加原子</span></div>
+        <div class="canvas-badge" id="view-badge">2D</div>
+        <div id="context-toolbar" class="floating-toolbar" aria-label="所选对象的操作" hidden>
+          <span id="context-atom" hidden><button id="atom-periodic" title="替换元素" aria-label="替换元素">C</button><button id="charge-down" class="icon-button" title="形式电荷 −1" aria-label="电荷减一"><i data-ketcher-icon="charge-minus"></i></button><span id="charge-value">0</span><button id="charge-up" class="icon-button" title="形式电荷 +1" aria-label="电荷加一"><i data-ketcher-icon="charge-plus"></i></button></span>
+          <span id="context-bond" hidden><button data-context-order="1" title="单键"><i data-ketcher-icon="bond-single"></i></button><button data-context-order="2" title="双键"><i data-ketcher-icon="bond-double"></i></button><button data-context-order="3" title="三键"><i data-ketcher-icon="bond-triple"></i></button><button id="context-wedge" title="实楔" aria-label="实楔"><i data-ketcher-icon="bond-up"></i></button><button id="context-dash" title="虚楔" aria-label="虚楔"><i data-ketcher-icon="bond-down"></i></button><button id="flip-bond" class="icon-button" title="翻转立体键端点" aria-label="翻转端点"><i data-ketcher-icon="workshop-swap"></i></button><button id="bond-torsion" class="icon-button" title="调整二面角" aria-label="调整二面角"><i data-ketcher-icon="workshop-rotate-bond"></i></button></span>
+          <button id="toggle-inspector" class="icon-button" title="更多属性" aria-label="更多属性"><i data-ketcher-icon="settings"></i></button><button id="delete-selection" class="icon-button" title="删除所选 · Delete" aria-label="删除所选"><i data-ketcher-icon="delete"></i></button>
+        </div>
+        <aside id="geometry-panel" class="overlay-panel geometry-panel" hidden>
+          <div class="panel-heading"><span id="geometry-title">几何调整</span><button id="close-geometry" class="icon-button" title="取消并关闭" aria-label="关闭几何面板"><i data-ketcher-icon="close"></i></button></div>
+          <div class="geometry-actions"><button id="set-distance" data-geometry="distance" title="调整键长">Å</button><button id="set-angle" data-geometry="angle" title="调整键角">∠</button><button id="set-dihedral" data-geometry="dihedral" title="调整二面角">φ</button></div>
+          <p id="measurement" class="small">依次选择原子</p>
+          <div class="geometry-value-row"><input id="geometry-value" aria-label="几何数值" type="number" value="1.5" step="0.1"><span id="geometry-unit">Å</span></div><input id="geometry-slider" aria-label="几何调整滑块" type="range" min="0.3" max="5" step="0.01" value="1.5">
+          <div class="fixed-row"><i data-ketcher-icon="workshop-pin"></i><span id="fixed-side">A 侧固定</span><button id="geometry-swap" class="icon-button" title="交换固定侧与移动侧" aria-label="交换固定侧"><i data-ketcher-icon="workshop-swap"></i></button></div>
+          <div class="panel-actions"><button id="geometry-cancel">取消</button><button id="geometry-apply" class="primary">应用</button></div>
+        </aside>
+        <aside id="inspector" class="overlay-panel inspector" hidden>
+          <div class="panel-heading"><span>属性</span><button id="close-inspector" class="icon-button" aria-label="关闭属性"><i data-ketcher-icon="close"></i></button></div><p id="selection-info" class="small"></p>
+          <section id="atom-properties" hidden><label>元素<button id="atom-element-picker">周期表</button><input id="atom-element" maxlength="2" aria-label="原子元素" hidden></label><div class="two"><label>形式电荷<input id="atom-charge" type="number" value="0" min="-8" max="8" step="1"></label><label>同位素<input id="atom-isotope" type="number" value="0" min="0" step="1"></label></div><details><summary>高级立体标记</summary><label>邻接顺序<select id="atom-chiral"><option value="CHI_UNSPECIFIED">未指定</option><option value="CHI_TETRAHEDRAL_CW">顺时针 CW</option><option value="CHI_TETRAHEDRAL_CCW">逆时针 CCW</option></select></label><p class="small">相对保存的邻接顺序，不等于 R/S。</p></details><button id="apply-atom" class="full">应用</button></section>
+          <section id="bond-properties" hidden><p id="bond-info" class="small"></p><label>键级<select id="edit-bond-order"><option value="1">单键</option><option value="2">双键</option><option value="3">三键</option><option value="1.5">芳香键</option></select></label><label>立体绘制<select id="bond-direction"><option value="NONE">普通</option><option value="BEGINWEDGE">实楔</option><option value="BEGINDASH">虚楔</option><option value="UNKNOWN">未知立体</option><option value="EITHERDOUBLE">未知双键方向</option><option value="ENDUPRIGHT">双键辅助 /</option><option value="ENDDOWNRIGHT">双键辅助 \</option></select></label><label>双键立体<select id="bond-stereo"><option value="STEREONONE">未指定</option><option value="STEREOE">E</option><option value="STEREOZ">Z</option><option value="STEREOCIS">顺式（导入）</option><option value="STEREOTRANS">反式（导入）</option><option value="STEREOANY">未知（导入）</option></select></label><button id="apply-bond" class="full">应用</button><p class="small">E/Z 需按 A—B—C—D 选参考原子。</p></section>
+          <section id="transform-properties" hidden><div class="three"><label>Δx<input id="move-x" type="number" value="0" step="0.1"></label><label>Δy<input id="move-y" type="number" value="0" step="0.1"></label><label>Δz<input id="move-z" type="number" value="0" step="0.1"></label></div><button id="translate" class="full">平移 · Å</button><div class="two"><label>轴<select id="rotate-axis"><option value="x">X</option><option value="y">Y</option><option value="z" selected>Z</option></select></label><label>角度<input id="rotate-degrees" type="number" value="15" step="1"></label></div><button id="rotate" class="full">旋转 · °</button></section>
+        </aside>
+        <div class="viewport-actions"><label class="toggle-button" title="固定所选原子"><input id="fixed-selection" type="checkbox" checked><i data-ketcher-icon="workshop-pin"></i><span class="sr-only">整理时固定选择</span></label><button id="show-numbers" class="icon-button" title="原子编号" aria-label="原子编号" aria-pressed="false"><i data-ketcher-icon="workshop-numbers"></i></button><button id="select-all" class="icon-button" title="全选 · Ctrl+A" aria-label="全选"><i data-ketcher-icon="select-structure"></i></button><button id="clear-selection" class="icon-button" title="清除选择 · Esc" aria-label="清除选择"><i data-ketcher-icon="close"></i></button><button id="reset-view" class="icon-button" title="视角复位" aria-label="视角复位"><i data-ketcher-icon="workshop-fit"></i></button></div>
+      </div>
+      <div class="mode-hint"><b id="mode-name">选择</b><span id="mode-help"></span><span id="counts">0 原子 · 0 键</span></div>
+      <div class="statusbar"><span id="feedback" role="status" aria-live="polite">正在载入…</span><span id="busy-state"></span><button id="warning-count" class="warning-count" title="查看当前结构提示" aria-label="查看当前结构提示" hidden></button><button id="feedback-details" class="icon-button" title="查看提示详情" aria-label="提示详情"><i data-ketcher-icon="about"></i></button></div>
+      
+    </section>
+  </main>
+  <footer><span id="revision-label">修订 0</span><span><a href="./README.md" target="_blank">说明</a> · <a href="./THIRD_PARTY.md" target="_blank">许可</a></span></footer>
+  <dialog id="periodic-dialog" aria-label="元素周期表"></dialog>
+  <dialog id="message-dialog" aria-labelledby="message-title"><div class="panel-heading"><h2 id="message-title">当前提示</h2><button data-close-dialog class="icon-button" aria-label="关闭"><i data-ketcher-icon="close"></i></button></div><div id="detail-message" class="detail-message"></div><hr><p id="validation-state" hidden></p></dialog>
+  <dialog id="help-dialog" aria-labelledby="help-title"><div class="panel-heading"><h2 id="help-title">操作</h2><button data-close-dialog class="icon-button" aria-label="关闭"><i data-ketcher-icon="close"></i></button></div><dl class="help-list">
+    <dt>二维绘图</dt><dd>左侧选择原子、键或选择工具，右侧选择元素，底部选择环模板。展开工具可选择更多键型；双击原子可编辑属性。</dd>
+    <dt>添加与替换原子</dt><dd>从元素栏或周期表选择元素。点击空白添加，点击已有原子替换。选中原子后，也可使用浮动工具栏的替换按钮。</dd>
+    <dt>C₆₀</dt><dd>C₆₀ 默认显示为化学式，右键可展开或折叠。先放在空白处，再用单键连接。连接笼碳时，相邻笼内双键按加成改为单键。</dd>
+    <dt>三维编辑</dt><dd>左侧选择工具。化学键工具点击已有键改变键型，从原子拖出连接或延伸结构。移动基团时，拖动平移、Alt 拖动旋转。绕键旋转先点击键，再拖动一侧原子。空白拖动转视角，滚轮缩放。</dd>
+    <dt>几何调整</dt><dd>测量工具按顺序选择 2、3、4 个连续原子，分别调整键长、键角和二面角。输入数值或拖动滑块预览，点击应用确认。属性面板可输入平移和旋转数值。</dd>
+    <dt>构象与排版</dt><dd>进入三维会构建新增结构并补氢。重建三维构象重新生成整个构象，补氢添加缺少的氢原子，UFF 优化调整当前构象。选中原子并打开图钉按钮可固定它们。整理二维排版调整绘图布局。</dd>
+    <dt>保存与快捷键</dt><dd>Ctrl+S 保存工程，Ctrl+Z 撤销，Ctrl+Shift+Z / Ctrl+Y 重做。三维工具：V 选择、A 原子、B 化学键、D 删除、M 移动、G 测量。</dd>
+    <dt>试跑</dt><dd>保存并进入赛道会保存工程、检查结构并准备赛车，完成后进入赛道。比赛前会补氢、松弛并摆放分子。上一场轨迹可在赛道的保存轨迹菜单下载。</dd>
+  </dl></dialog>
+  <dialog id="race-dialog" aria-labelledby="race-title">
+    <h2 id="race-title">准备赛车</h2>
+    <p id="race-message" role="status" aria-live="polite">检查结构…</p>
+    <div class="race-dialog-actions"><button id="race-retry" class="primary" hidden>重试</button><button id="race-cancel">取消</button></div>
+  </dialog>
+  <div id="tooltip" role="tooltip" hidden></div>
+  <script type="module" src="./workshop.js"></script>
+</body>
+</html>

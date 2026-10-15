@@ -1,0 +1,30 @@
+html,body { min-height:100%; }
+body { font-family:var(--rm-font); color:var(--rm-ink); background:var(--rm-paper); }
+body[data-page=garage],body[data-page=track] { overflow:hidden; }
+.app-screen { position:fixed; inset:0; visibility:hidden; pointer-events:none; z-index:1; background:var(--rm-paper); }
+.app-screen.active { visibility:visible; pointer-events:auto; }
+.app-screen iframe { width:100%; height:100%; border:0; display:block; }
+.settings-page { max-width:760px; margin:0 auto; padding:150px 28px 60px; }
+.settings-heading { display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; }
+.settings-heading h1 { margin:0; font-size:34px; letter-spacing:1px; }
+.settings-page form { display:block; }
+.settings-section { padding:24px 0; border-top:1px solid var(--rm-line); }
+.settings-section h2 { margin:0 0 22px; font-size:16px; }
+.settings-page .preference-row { display:flex; align-items:center; justify-content:space-between; padding:12px 0; gap:20px; }
+.settings-page select,.settings-page input[type=number] { border:1px solid var(--rm-line); padding:10px; background:var(--rm-panel); color:var(--rm-ink); border-radius:0; font-size:14px; }
+.settings-page .button { border:0; border-radius:0; clip-path:var(--rm-cut); background-image:none; box-shadow:none; }
+.settings-page .button-primary { background:var(--rm-accent); color:white; }
+.settings-page .button-primary:hover { background:var(--rm-hover); }
+.button-neutral { background:var(--rm-control); color:var(--rm-ink); clip-path:var(--rm-cut); }
+.motion-setting { display:flex; align-items:center; gap:10px; margin-top:18px; font-size:14px; }
+.motion-setting input { width:18px; height:18px; accent-color:var(--rm-accent); }
+.settings-actions { display:flex; justify-content:flex-end; gap:12px; padding-top:24px; border-top:1px solid var(--rm-line); }
+.site-header { background:var(--rm-paper); }
+body:not([data-page=home]) .main-nav { display:none; }
+body:not([data-page=home]) .site-header>.brand { display:flex; }
+.mobile-menu { display:none!important; }
+.button { background-image:none; box-shadow:none; border-radius:0; }
+.button::before,.button::after { content:none; }
+button:disabled { opacity:.43; }
+@media(max-width:640px){.settings-page{padding:110px 22px 40px}.settings-heading h1{font-size:28px}.settings-actions .button{padding:14px 18px;min-width:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}

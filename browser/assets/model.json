@@ -1,0 +1,266 @@
+{
+  "schema": "molecular-car-browser-assets-v1",
+  "rdkit_version": "2025.09.3",
+  "lammps_version": 20260930,
+  "track": {
+    "start_x": 0.0,
+    "finish_x": 200.0,
+    "half_width": 100.0,
+    "surface_z": 0.0
+  },
+  "settings": {
+    "temperature": 150.0,
+    "damping_fs": 350.0,
+    "corrugation": 0.08,
+    "lattice_scale": 1.5,
+    "surface": "fourier-au"
+  },
+  "drive": {
+    "mode": "gradient",
+    "strength": 0.6,
+    "growth": 1.0
+  },
+  "timestep_fs": 1.0,
+  "frame_steps": 50,
+  "max_steps": 5000000,
+  "seed": 98245165,
+  "start_pose": {
+    "protocol_version": "rigid-start-pose-v1",
+    "default": {
+      "mode": "auto",
+      "yaw_deg": 0.0,
+      "pitch_deg": 0.0,
+      "roll_deg": 0.0,
+      "axis_atoms": []
+    },
+    "heading_ratio": 1.3,
+    "plane_ratio": 0.25
+  },
+  "world_bounds": [
+    [
+      -110.0,
+      1110.0
+    ],
+    [
+      -350.0,
+      350.0
+    ],
+    [
+      -40.0,
+      120.0
+    ]
+  ],
+  "effective_polarizabilities": {
+    "H": 0.2,
+    "B": 1.2,
+    "C": 1.0,
+    "N": 0.85,
+    "O": 0.7,
+    "F": 0.4,
+    "Si": 2.5,
+    "P": 1.8,
+    "S": 1.6,
+    "Cl": 1.3,
+    "Br": 1.8,
+    "I": 2.8
+  },
+  "field_parameters": {
+    "ADSORPTION_DEPTH": 0.8,
+    "ADSORPTION_HEIGHT": 2.9,
+    "ADSORPTION_ALPHA": 1.0,
+    "SURFACE_SPACING": 2.88,
+    "CORRUGATION_DECAY": 1.0,
+    "TIP_SOFTENING": 1.5,
+    "FIELD_SCALE": 35.0,
+    "GRADIENT_BASE_FIELD": 0.5,
+    "GRADIENT_FIELD_SLOPE": 0.0015,
+    "GRADIENT_POLARIZATION_GAIN": 500.0,
+    "BOUNDARY_WIDTH": 1.0,
+    "BOUNDARY_STIFFNESS": 0.2,
+    "TRACK_X_MIN": -10.0,
+    "TRACK_X_MAX": 210.0,
+    "LANE_HALF_WIDTH": 100.0
+  },
+  "surface": {
+    "mode": "periodic-au",
+    "model": "periodic-saip-2",
+    "normal_policy": "bonded-saip-game-v1",
+    "normal_area_epsilon": 1e-06,
+    "period": [
+      2.884995667241114,
+      4.996959075277683
+    ],
+    "layer_heights_angstrom": [
+      -11.689081987700003,
+      -9.3334928894,
+      -6.978904182999998,
+      -4.625157328100001,
+      -2.2545640300000005,
+      0.0
+    ],
+    "surface_period_xy_angstrom": [
+      2.884995667241114,
+      4.996959075277683
+    ],
+    "lattice_spacing_angstrom": 2.884995667241114,
+    "grid_dz": 0.025,
+    "z_start": 1.925,
+    "parameters": [
+      [
+        [
+          3.6913278482,
+          3.674982391150916,
+          1.0354109330460737,
+          0.0070964784,
+          -0.0010368264000000002,
+          11.0586486772,
+          3.9939388177677384,
+          81.5847131142
+        ],
+        [
+          3.6913278482,
+          3.674982391150916,
+          1.0354109330460737,
+          0.0070964784,
+          -0.0010368264000000002,
+          11.0586486772,
+          3.9939388177677384,
+          81.5847131142
+        ]
+      ],
+      [
+        [
+          3.7899616131,
+          1.1362914465979237,
+          114.08765993155914,
+          0.2250887843,
+          -0.111689152,
+          18.6149213872,
+          3.294863335242451,
+          70.686538178
+        ],
+        [
+          3.7899616131,
+          1.1362914465979237,
+          114.08765993155914,
+          0.2250887843,
+          -0.111689152,
+          18.6149213872,
+          3.294863335242451,
+          70.686538178
+        ]
+      ]
+    ],
+    "parameter_sha256": "9f0bbbbe7b044596ee1682d7d0c0ca37b3fc6835b40d94992700ccb2485472cb",
+    "hetero_au": {
+      "schema": "hetero-au-uff-vdw-game-v1",
+      "status": "provisional game model; not fitted Au adsorption parameters",
+      "gold_reference_type": "UFF Au4+3 vdW entries only; not a charged surface atom",
+      "gold_rmin_angstrom": 3.293,
+      "gold_well_depth_kcal_mol": 0.039,
+      "atomic_parameters": "RDKit GetUFFVdWParams(mol, i, i), after UFF coverage validation",
+      "mixing": "rmin_XAu=sqrt(rmin_XX*rmin_AuAu); epsilon_XAu=sqrt(epsilon_XX*epsilon_AuAu)",
+      "pair_potential": "Tap(r) * epsilon_XAu * ((rmin_XAu/r)^12 - 2*(rmin_XAu/r)^6)",
+      "cutoff_angstrom": 16.0,
+      "supported_elements": [
+        "B",
+        "N",
+        "O",
+        "F",
+        "Si",
+        "P",
+        "S",
+        "Cl",
+        "Br",
+        "I"
+      ],
+      "source": "https://github.com/rdkit/rdkit/blob/Release_2025_09_3/Code/ForceField/UFF/Params.cpp",
+      "reference": "https://doi.org/10.1021/ja00051a040",
+      "limitations": [
+        "No element-specific Au chemisorption or coordination.",
+        "No dynamic charge transfer or image potential.",
+        "Not a SAIP parameter extension."
+      ]
+    },
+    "arrays": {
+      "tile": {
+        "path": "assets/tile.bin.gz",
+        "shape": [
+          902,
+          3
+        ],
+        "dtype": "float64-le",
+        "encoding": "gzip",
+        "bytes": 21648,
+        "download_bytes": 2709,
+        "sha256": "6102f2038126996a6603f99bd74f3541c2d15c88d1fbcbfdb41f42ecf0367fc0"
+      },
+      "saip-grid": {
+        "path": "assets/saip-grid.bin.gz",
+        "shape": [
+          2,
+          407,
+          32,
+          60
+        ],
+        "dtype": "float64-le",
+        "encoding": "gzip",
+        "bytes": 12503040,
+        "download_bytes": 3890685,
+        "sha256": "c4b3e7c48317d41f5f73d5194abe523d0803cef2edbc0e44da2bcbbd2ee97ea9"
+      },
+      "hetero-grid": {
+        "path": "assets/hetero-grid.bin.gz",
+        "shape": [
+          2,
+          407,
+          32,
+          60
+        ],
+        "dtype": "float64-le",
+        "encoding": "gzip",
+        "bytes": 12503040,
+        "download_bytes": 3792284,
+        "sha256": "4a25d3510e46dacd328a232ee08668a20d42a5c2080937396c3c1d0dfb7a014d"
+      }
+    }
+  },
+  "preparation": {
+    "protocol_version": "joint-force-relaxation-v2",
+    "force_tolerance": 0.0001,
+    "wall_time_limit_seconds": 30.0,
+    "evaluation_limit": 25000,
+    "stages": [
+      [
+        "fire",
+        350,
+        3500
+      ],
+      [
+        "hftn",
+        500,
+        10000
+      ],
+      [
+        "cg",
+        4000,
+        12000
+      ],
+      [
+        "hftn",
+        500,
+        5000
+      ]
+    ],
+    "bfgs_rescue_options": {
+      "maximum_iterations": 400,
+      "hessian_step_angstrom": 0.0001,
+      "maximum_atom_displacement_angstrom": 0.1,
+      "maximum_line_search_trials": 30,
+      "armijo_coefficient": 0.0001,
+      "curvature_relative_threshold": 1e-12,
+      "diagonal_shift_relative_start": 1e-08,
+      "maximum_cholesky_attempts": 12
+    }
+  }
+}

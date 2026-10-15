@@ -1,0 +1,14 @@
+/* Shared Racing Molecule palette and control geometry. */
+:root {
+  --rm-paper:#f2f1eb; --rm-panel:#fcfaf5; --rm-chrome:#f1eee5;
+  --rm-control:#e9e5dc; --rm-ink:#202126; --rm-muted:#68645e;
+  --rm-line:#d6d0c5; --rm-accent:#c44b3a; --rm-hover:#ad3d30;
+  --rm-success:#4f9568; --rm-soft:#f4e5df;
+  --rm-cut:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+  --rm-font:Arial,"Microsoft YaHei","Segoe UI",sans-serif;
+}
+button,a,input,select,summary { -webkit-tap-highlight-color:transparent; }
+button,input,select { font:inherit; }
+button:disabled { cursor:default; }
+:focus-visible { outline:2px solid var(--rm-accent); outline-offset:3px; }
+[hidden] { display:none!important; }

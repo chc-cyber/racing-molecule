@@ -1,0 +1,38 @@
+{
+  "dependencies": {
+    "schema": "molecular-car-wasm-dependencies-v1",
+    "emscripten": "6.0.12",
+    "emsdk_commit": "35ff8a6d150541276abbc6bae512ca90bcfbe220",
+    "lammps_tag": "stable_30Sep2026",
+    "lammps_git_object": "752e990c8d4c30bb134f6c1b630a2ab056cbc087",
+    "rdkit_tag": "Release_2025_09_3",
+    "rdkit_commit": "fd677c59b21ffbf50157752102216660324ac1f1",
+    "boost": "1.85.0",
+    "cmake": "3.31.10",
+    "ninja": "1.13.2",
+    "catch2": "v3.4.0",
+    "better_enums_commit": "c35576bed0295689540b39873126129adfa0b4c8"
+  },
+  "source_archives": {
+    "emsdk.tar.gz": "b1d10c3d4a5dc714cc558622f9828f591635aec3f9172a63925f0a71280ec07a",
+    "lammps.tar.gz": "68b9644841208a7409a34e38e1fd8d4f260f44c3eada58ad5d15b00975c8d6bb",
+    "rdkit.tar.gz": "e403131567f2f55998f6dbbf40d05b049fbaeb991e0c90703c07f58168ab0e78",
+    "boost.tar.gz": "be0d91732d5b0cc6fbb275c7939974457e79b54d6f07ce2e3dfdd68bef883b0b",
+    "catch2.tar.gz": "122928b814b75717316c71af69bd2b43387643ba076a6ec16e7882bfb2dfacbb",
+    "better-enums.tar.gz": "9b78dcef7f88d1345b6f25335bfbcba5f024b08990c7d6dc605b833f4128b8dd"
+  },
+  "own_sources": {
+    "wasm/src/editor.hpp": "b351c03dbe1677586d675032c05941c4b98ff3805dc4fde3ee9d243acb2bdb7d",
+    "wasm/src/engine.cpp": "0fadae2a9e1c14e7d8a01d2432d0844959b3b0de8b2803e8dd34f80ffd485985",
+    "wasm/src/potentials.cpp": "30e8c54e191e7a28f7371e9828380553476a59b4ec2cd7fc75c1da6b22296a2d",
+    "wasm/src/potentials.hpp": "b6da4dbfa65b243ab1a90f2e124daa659503901741d98c05ce349d0ad6ef6e69",
+    "wasm/src/preparation_bfgs.hpp": "2475cccb4e9167144cfad186aef8877b9b77d1a68c3df43c1724acf53a57c0c3",
+    "wasm/src/start_pose.hpp": "31e2e8fc1f450a0ee68ae02ea2378a9f1b253fbd403b9376e61534cbdc731b94"
+  },
+  "precision": "float64",
+  "threads": 1,
+  "fast_math": false,
+  "python_runtime": false,
+  "reference_model": "native UFF / frozen Au bonded-saip-game-v1 / fixed-gradient-race-v1",
+  "validation": "Run tools/validate.mjs; build completion alone does not confirm numerical agreement."
+}
