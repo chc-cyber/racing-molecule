@@ -37,7 +37,7 @@ export function prepareBrowserRace(data,onProgress) {
       cleanup();if(sequence!==loadSerial)return;
       event.data.error?reject(new NativeError(event.data.error)):resolve(event.data);
     };
-    const timer=setTimeout(()=>{cleanup();reject(new NativeError('准备超时，请返回编辑后重试。'));},180000);
+    const timer=setTimeout(()=>{cleanup();reject(new NativeError('准备超时，请返回编辑后重试。'));},610000);
     function cleanup(){clearTimeout(timer);removeEventListener('message',handler);cancelPending=null;}
     addEventListener('message',handler);parent.postMessage({channel:'racing-molecule',type:'prepare',id,data},location.origin);
   });

@@ -1,4 +1,5 @@
 import createMolecularCar from './runtime/molecular-car.mjs';
+import {loadTable,loadJSON} from './assets.mjs';
 import {raceFinished} from '../race-course.mjs';
 
 let module, engine, metadata, settings, frameSteps, maxTimeFs, running = false, timer;
@@ -12,42 +13,23 @@ function message(error) {
   return error?.message || String(error);
 }
 
-async function loadAssets() {
-  const response = await fetch(new URL('./assets/model.json', import.meta.url));
-  if (!response.ok) throw new Error('模型参数下载失败。');
-  metadata = await response.json();
-  const load = async descriptor => {
-    const response = await fetch(new URL(`./${descriptor.path}`, import.meta.url));
-    if (!response.ok) throw new Error('金表面势表下载失败。');
-    const bytes = await new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
-    if (bytes.byteLength !== descriptor.bytes) throw new Error('势表大小不正确。');
-    const hash = await crypto.subtle.digest('SHA-256', bytes);
-    const hex = Array.from(new Uint8Array(hash), n => n.toString(16).padStart(2, '0')).join('');
-    if (hex !== descriptor.sha256) throw new Error('势表校验失败，请重新加载网页。');
-    return new Float64Array(bytes);
-  };
-  const arrays = metadata.surface.arrays;
-  const [tile, saip, hetero] = await Promise.all([load(arrays.tile), load(arrays['saip-grid']), load(arrays['hetero-grid'])]);
-  module = await createMolecularCar({print: () => {}, printErr: value => console.warn(value)});
-  engine = new module.BrowserEngine(metadata, tile, saip, hetero);
-}
-
-async function loadFourier() {
-  const response=await fetch(new URL('./assets/fourier-atlas.json',import.meta.url));
-  if(!response.ok)throw new Error('傅里叶参数下载失败。');
-  const info=await response.json();
-  if(info.parameter_sha256!==metadata.surface.parameter_sha256)throw new Error('傅里叶与周期势参数版本不一致。');
-  engine.installFourier(info);
-  // Ordinary bonded H has no direction term; uncommon directional H falls back
-  // to the complete lattice sum. Download only the carbon coefficients.
-  const descriptor=info.arrays[0];
-  const data=await fetch(new URL('./'+descriptor.path,import.meta.url));
-  if(!data.ok)throw new Error('傅里叶势表下载失败。');
-  const bytes=await new Response(data.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
-  const hash=await crypto.subtle.digest('SHA-256',bytes);
-  const hex=Array.from(new Uint8Array(hash),n=>n.toString(16).padStart(2,'0')).join('');
-  if(bytes.byteLength!==descriptor.bytes||hex!==descriptor.sha256)throw new Error('傅里叶势表校验失败。');
-  engine.loadFourierSpecies(0,new Float64Array(bytes));
+async function loadAssets(settings) {
+  send({kind:'progress',message:'加载赛道资源…'});
+  metadata=await loadJSON(new URL('./assets/model.json',import.meta.url));
+  const info=settings.surface==='fourier-au'?await loadJSON(new URL('./assets/fourier-atlas.json',import.meta.url)):null;
+  if(info&&info.parameter_sha256!==metadata.surface.parameter_sha256)throw new Error('赛道参数版本不一致，请刷新页面。');
+  const arrays=metadata.surface.arrays,descriptors=[arrays.tile,arrays['saip-grid'],arrays['hetero-grid'],...(info?[info.arrays[0]]:[])];
+  const counts=descriptors.map(()=>0),total=descriptors.reduce((n,d)=>n+d.download_bytes,0);let last=0;
+  const runtime=createMolecularCar({print:()=>{},printErr:value=>console.warn(value)});
+  const tables=descriptors.map((descriptor,index)=>loadTable(descriptor,{base:import.meta.url,onProgress:(bytes,cached)=>{
+    counts[index]=bytes;const now=performance.now();if(now-last<200&&!cached&&bytes!==0)return;last=now;
+    const loaded=counts.reduce((a,b)=>a+b,0);
+    send({kind:'progress',message:`加载赛道资源… ${(loaded/1e6).toFixed(1)} / ${(total/1e6).toFixed(1)} MB`});
+  }}));
+  const [loadedModule,values]=await Promise.all([runtime,Promise.all(tables)]);module=loadedModule;
+  send({kind:'progress',message:'初始化模拟…'});
+  engine=new module.BrowserEngine(metadata,values[0],values[1],values[2]);
+  if(info){engine.installFourier(info);engine.loadFourierSpecies(0,values[3]);}
 }
 
 function tick() {
@@ -74,8 +56,8 @@ function tick() {
 onmessage = async ({data: event}) => {
   try {
     if (event.kind === 'load') {
-      await loadAssets();settings = event.settings;
-      if(settings.surface==='fourier-au')await loadFourier();
+      settings=event.settings;await loadAssets(settings);
+      send({kind:'progress',message:'整理起跑构象…'});
       const info = engine.prepareWithPose(event.content, event.filename,
         {...settings, drive_strength:event.drive.strength, field_growth:event.drive.growth}, event.start_pose);
       // Keep sampling, controls and race limits in physical time across the

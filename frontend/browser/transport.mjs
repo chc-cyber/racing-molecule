@@ -43,7 +43,7 @@ export class BrowserTransport {
     this.worker?.terminate(); this.worker = null;
     this.frames = []; this.droppedFrames = 0;
     this.startPose = structuredClone(pose);
-    this.state = {...this.state, generation, status: 'preparing', error: null, frame: null, molecule: null,
+    this.state = {...this.state, generation, status: 'preparing', error: null, preparation:'加载赛道资源…', frame: null, molecule: null,
       runtime: null, stats: null, finish_reason: null, competition:structuredClone(this.competition), settings: {...this.settings}, start_pose: structuredClone(this.startPose)};
     let content = data.content, filename = data.filename;
     if (data.example) {
@@ -61,7 +61,8 @@ export class BrowserTransport {
     this.worker = worker;
     worker.onmessage = ({data: event}) => {
       if (generation !== this.generation) return;
-      if (event.kind === 'ready') {
+      if(event.kind==='progress'){this.state={...this.state,preparation:event.message};
+      } else if (event.kind === 'ready') {
         this.state = {...this.state, ...event.data, status: 'paused'};
         this.appendFrame(event.data.frame);
       } else if (event.kind === 'frame') {

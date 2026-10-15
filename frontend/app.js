@@ -863,9 +863,10 @@ if(execution==='browser-wasm'){
   };
   applyPreferences(readPreferences());
   installRaceBridge({request,pause:()=>action('pause'),snapshot:()=>state?{...state,status:displayStatus(),started:raceStarted,unsavedReplay:unsavedReplay()}:null,preferences:applyPreferences,load:async data=>{
-    if(busy||state?.status==='preparing')throw new Error('赛道正在准备，请稍后再试。');
-    if(raceLocked())throw new Error('请先重置本场比赛。');
-    const previous=state?.generation;
+    const current=await request('/api/state');
+    if(busy||current.status==='preparing')throw new Error('赛道正在准备，请稍后再试。');
+    if(raceLocked(current))throw new Error('请先重置本场比赛。');
+    const previous=current.generation;
     if(data.competition)raceSetup.set(data.competition);draftInput={filename:data.filename,content:data.content};draftChanged=true;
     await loadStructure(draftInput);
     const loaded=await request('/api/state');
