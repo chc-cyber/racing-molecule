@@ -62,3 +62,7 @@ hover, selection and shared periodic-table replacement acceptance is recorded
 in `../VALIDATION.md`.
 
 Version 3 gives independent native menu entries for coordinate rebuilding (`mcar:rebuild`), adding real H (`mcar:hydrogenate`) and UFF optimization (`mcar:relax`). The host combines ordinary bond-order picking and atom-to-atom/blank dragging in one UI tool, using declared targets and shared canonical transactions. These gestures retain native ModelKit rendering and editor IDs.
+
+## Public hosting
+
+The host disables the upstream `Jmol._tracker` hook before creating an applet, so public deployments do not insert a third-party analytics iframe. This is host configuration, not a modification to the LGPL library. The full Jmol 16.3.31 source archive accompanies the release.

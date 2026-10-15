@@ -34,7 +34,11 @@ export class JSmolHost {
   get height(){return this.container.getBoundingClientRect().height;}
   get viewer(){return this.applet?._applet?.viewer;}
   async initialize(){
-    this.Jmol=await loadRuntime();this.Jmol.setDocument(0);
+    this.Jmol=await loadRuntime();
+    // JSmol enables a remote tracking iframe outside localhost. This game is
+    // self-contained; disable the upstream opt-out hook before applet startup.
+    delete this.Jmol._tracker;
+    this.Jmol.setDocument(0);
     let ready;const loaded=new Promise(resolve=>{ready=resolve;});
     // Bootstrap at a concrete size even when the parent initially shows 2D.
     // Percentage dimensions inside display:none otherwise initialize to zero.
