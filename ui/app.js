@@ -5,6 +5,24 @@ const origin=location.origin,appRoot=new URL('../',import.meta.url);
 const frames=new Map(),waiters=new Map();
 let preferences=readPreferences(),route='',returnRoute='home',toastTimer,preparing=null,raceState=null,raceStarted=false,trackReadyPromise;
 const channel='racing-molecule';
+let preloadWorker,preloadTimer;
+function schedulePreload(){
+  clearTimeout(preloadTimer);
+  preloadTimer=setTimeout(()=>{
+    if(preloadWorker||!navigator.locks||!globalThis.caches)return;
+    if(route==='garage'){
+      const editor=frames.get('garage')?.contentWindow?.workshop;
+      if(!editor?.mature?.ready||!editor?.views?.ready){schedulePreload();return;}
+    }
+    const start=()=>{
+      if(preloadWorker)return;
+      preloadWorker=new Worker(new URL('browser/preload.mjs',appRoot),{type:'module'});
+      preloadWorker.onmessage=({data})=>{document.documentElement.dataset.racePreload=data.status;};
+      preloadWorker.onerror=()=>{document.documentElement.dataset.racePreload='unavailable';};
+    };
+    if(globalThis.requestIdleCallback)requestIdleCallback(start,{timeout:5000});else start();
+  },2000);
+}
 const post=(frame,data)=>frame?.contentWindow?.postMessage({channel,...data},origin);
 function notify(text){const el=document.querySelector('#toast');el.textContent=text;el.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),4000);}
 function locked(){return isRaceInProgress(raceState,raceStarted);}
@@ -55,7 +73,7 @@ addEventListener('message',async event=>{
   const {type,id,data}=event.data;
   if(type==='navigate'){const target=event.data.route;if(['home','garage','track','settings'].includes(target))location.hash=target;return;}
   if(type==='workshop-notice'&&event.source===workshop?.contentWindow){notify(String(event.data.message||''));return;}
-  if(type==='workshop-ready'){post(workshop,{type:'preferences',data:preferences});return;}
+  if(type==='workshop-ready'){workshop.dataset.ready='true';schedulePreload();post(workshop,{type:'preferences',data:preferences});return;}
   if(type==='race-ready'){track.dataset.ready='true';waiters.get('ready')?.resolve();waiters.delete('ready');post(track,{type:'preferences',data:preferences});post(track,{type:'screen-visibility',active:route==='track'});return;}
   if(type==='race-status'){
     const changed=raceState?.generation!==event.data.state.generation;
@@ -83,6 +101,7 @@ addEventListener('beforeunload',event=>{
 addEventListener('hashchange',render);
 nav.innerHTML=nav.querySelector('.settings-link').outerHTML;
 render();
+schedulePreload();
 
 function homePage() {
   return `<section class="welcome" aria-label="分子赛车首页"><div class="welcome-lockup"><svg class="welcome-mark" aria-hidden="true" color="#191b1a" xmlns="http://www.w3.org/2000/svg" viewBox="-21 -6 130 84" fill="none" stroke="#191b1a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">

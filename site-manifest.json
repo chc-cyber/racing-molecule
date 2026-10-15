@@ -135,8 +135,8 @@
     },
     {
       "path": "browser/assets.mjs",
-      "bytes": 2390,
-      "sha256": "8cb67ec3444c589864c2abb9b113a7cdfc7bbf71d78fb14786d8508ddd3c7f01"
+      "bytes": 2833,
+      "sha256": "0774b92123c3797a1454d730973724efd975af5d516d5963e9084ca09cef5f78"
     },
     {
       "path": "browser/editor-worker.mjs",
@@ -147,6 +147,11 @@
       "path": "browser/embedded.mjs",
       "bytes": 2438,
       "sha256": "27abd5284c807895ad6b36b7ab896b46e7b19f865b36b7867521e6193431f2c0"
+    },
+    {
+      "path": "browser/preload.mjs",
+      "bytes": 989,
+      "sha256": "ad1ae6de4738dae56fb7f3a80c6ada55bae5dc677e71ec3c6e78cb13915b1d37"
     },
     {
       "path": "browser/runtime/build.json",
@@ -10485,8 +10490,8 @@
     },
     {
       "path": "ui/app.js",
-      "bytes": 9695,
-      "sha256": "e07d4331101f7f5f2f1e3fb981feb86c7c5ad3baa8695a880a89d5a35916d498"
+      "bytes": 10602,
+      "sha256": "d8f4b83bb31b3b5b497d3e69aab5a212154a4c837c267c9cf3db417b1cd9d72b"
     },
     {
       "path": "ui/assets/BARLOW-OFL.txt",
