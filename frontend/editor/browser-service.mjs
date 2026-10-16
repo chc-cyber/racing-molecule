@@ -10,7 +10,7 @@ export async function browserRequest(path,data) {
   if(!['import','export','geometry'].includes(operation))throw new NativeError('未知工坊操作。');
   if(!worker){
     worker=new Worker(new URL('../browser/editor-worker.mjs',import.meta.url),{type:'module',name:'Racing Molecule workshop'});
-    worker.onmessage=({data})=>{const task=pending.get(data.id);if(!task)return;clearTimeout(task.timer);pending.delete(data.id);data.error?task.reject(new NativeError(data.error)):task.resolve(data.result);};
+    worker.onmessage=({data})=>{const task=pending.get(data.id);if(!task)return;if(data.kind==='download'){dispatchEvent(new CustomEvent('runtime-download',{detail:data.percent}));return;}dispatchEvent(new CustomEvent('runtime-download',{detail:null}));clearTimeout(task.timer);pending.delete(data.id);data.error?task.reject(new NativeError(data.error)):task.resolve(data.result);};
     worker.onerror=()=>resetWorker('构象计算中断，请重试。');
   }
   return new Promise((resolve,reject)=>{

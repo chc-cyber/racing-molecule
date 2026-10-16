@@ -132,6 +132,8 @@ def main():
         metadata = json.loads(legacy_proxy.read_text())
         metadata["base_model_sha256"] = hashlib.sha256((target / "browser/assets/model.json").read_bytes()).hexdigest()
         legacy_proxy.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+    runtime_bytes = (target / "browser/runtime/molecular-car.wasm").read_bytes()
+    (target / "browser/runtime/download.json").write_text(json.dumps({"path": "runtime/molecular-car.wasm", "bytes": len(runtime_bytes), "download_bytes": len(runtime_bytes), "sha256": hashlib.sha256(runtime_bytes).hexdigest()}), encoding="utf-8")
     manifest = {"schema": "molecular-car-static-site-v1", "execution": "browser-wasm",
         "backend_required": False, "files": []}
     for path in sorted(target.rglob("*")):
