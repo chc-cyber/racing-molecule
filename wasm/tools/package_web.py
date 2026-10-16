@@ -7,6 +7,7 @@ import shutil
 import re
 import zipfile
 import argparse
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -27,6 +28,7 @@ def main():
     for source in (frontend / "browser").glob("*.mjs"):
         shutil.copyfile(source, target / "browser" / source.name)
     shutil.copytree(frontend / "vendor", target / "vendor", dirs_exist_ok=True)
+    shutil.copytree(frontend / "browser/vendor", target / "browser/vendor", dirs_exist_ok=True)
     # Keep home, workshop and race under one origin and under relative paths,
     # including a GitHub Pages repository prefix.
     html = (frontend / "index.html").read_text(encoding="utf-8")
@@ -93,6 +95,12 @@ def main():
     for license_file in zlib_source.rglob("LICENSE"):
         shutil.copyfile(license_file, notices / "ZLIB.txt")
     (target / "THIRD_PARTY.md").write_text((ROOT / "THIRD_PARTY.md").read_text(encoding="utf-8"), encoding="utf-8")
+    tool_html = (editor / "vendor/ketcher-c60/index.html").read_text(encoding="utf-8")
+    paths = sorted(set(re.findall(r'(?:src|href)="(?:\./)?(assets/[^"?]+\.(?:js|css))"', tool_html)))
+    paths = sorted(set(paths) | {"assets/"+p.name for p in (editor/"vendor/ketcher-c60/assets").glob("*.js")})
+    tools = {"2d": [{"path": "vendor/ketcher-c60/"+p, "bytes": (editor/"vendor/ketcher-c60"/p).stat().st_size} for p in paths],
+             "3d": [{"path": p, "bytes": (editor/p).stat().st_size} for p in ["vendor/jsmol/JSmol.min.js", "vendor/jsmol/j2s/core/corejmol.z.js"]]}
+    (editor/"tool-assets.json").write_text(json.dumps(tools), encoding="utf-8")
     # Independently verified compressed chunks survive interrupted visits.
     for metadata_name in ("model.json", "fourier-atlas.json"):
         metadata_path = target / "browser" / "assets" / metadata_name
@@ -114,6 +122,11 @@ def main():
         if metadata_name == "fourier-atlas.json":
             metadata["base_model_sha256"] = hashlib.sha256((target / "browser/assets/model.json").read_bytes()).hexdigest()
         metadata_path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+    subprocess.run(["node", str(ROOT / "wasm/tools/compress_tables.cjs")], check=True)
+    atlas_path = target / "browser/assets/fourier-atlas.json"
+    atlas = json.loads(atlas_path.read_text())
+    atlas["base_model_sha256"] = hashlib.sha256((target / "browser/assets/model.json").read_bytes()).hexdigest()
+    atlas_path.write_text(json.dumps(atlas, indent=2) + "\n", encoding="utf-8")
     legacy_proxy = target / "browser/assets/fourier.json"
     if legacy_proxy.exists():
         metadata = json.loads(legacy_proxy.read_text())

@@ -61,7 +61,7 @@ export class BrowserTransport {
     this.worker = worker;
     worker.onmessage = ({data: event}) => {
       if (generation !== this.generation) return;
-      if(event.kind==='progress'){this.state={...this.state,preparation:event.message};
+      if(event.kind==='progress'){this.state={...this.state,preparation:event.message,preparationPercent:event.percent};
       } else if (event.kind === 'ready') {
         this.state = {...this.state, ...event.data, status: 'paused'};
         this.appendFrame(event.data.frame);

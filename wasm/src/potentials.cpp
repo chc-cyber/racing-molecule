@@ -385,7 +385,7 @@ double substrate(const std::vector<Vec3>& x,const std::vector<Response>& atoms,c
   s.fourier.counts={};
   if(!s.fourier.enabled && (scale==1. || s.optimization==0))return reference_substrate(x,atoms,s,topology,force,scale);
   if(s.optimization>=2 && !s.means_ready) {
-    s.saip_mean=phase_average(s.saip);s.hetero_mean=phase_average(s.hetero);s.means_ready=true;
+    s.saip_mean=phase_average(s.saip);if(!s.hetero.values.empty())s.hetero_mean=phase_average(s.hetero);s.means_ready=true;
   }
   if(s.optimization>=3 && !s.stencil_ready)prepare_stencil(s);
   const size_t count=x.size();auto& work=s.workspace;

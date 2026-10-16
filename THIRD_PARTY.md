@@ -94,3 +94,9 @@ Compiler downloads and upstream development trees live in ignored
 `.local/wasm/`; generated websites live in ignored `wasm/dist/`. Neither tree
 belongs in a normal source checkout. The static website package contains
 only the required browser runtime, shared renderer, model tables and notices.
+
+## Brotli resource decoder
+
+- brotli-wasm 3.0.1, Apache-2.0: https://github.com/httptoolkit/brotli-wasm
+- Browser wrapper and losslessly gzipped WASM: `frontend/browser/vendor/brotli/`. License and pinned npm source are preserved there.
+- Used only to decode losslessly compressed simulation tables; it does not alter the numerical model.

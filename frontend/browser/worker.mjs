@@ -1,5 +1,6 @@
+import {needsHetero} from './needs-hetero.mjs';
 import createMolecularCar from './runtime/molecular-car.mjs';
-import {loadTable,loadJSON} from './assets.mjs';
+import {loadTable,loadJSON,tableDownloadBytes} from './assets.mjs';
 import {raceFinished} from '../race-course.mjs';
 
 let module, engine, metadata, settings, frameSteps, maxTimeFs, running = false, timer;
@@ -13,23 +14,23 @@ function message(error) {
   return error?.message || String(error);
 }
 
-async function loadAssets(settings) {
+async function loadAssets(settings,content) {
   send({kind:'progress',message:'加载赛道资源…'});
   metadata=await loadJSON(new URL('./assets/model.json',import.meta.url));
   const info=settings.surface==='fourier-au'?await loadJSON(new URL('./assets/fourier-atlas.json',import.meta.url)):null;
   if(info&&info.parameter_sha256!==metadata.surface.parameter_sha256)throw new Error('赛道参数版本不一致，请刷新页面。');
-  const arrays=metadata.surface.arrays,descriptors=[arrays.tile,arrays['saip-grid'],arrays['hetero-grid'],...(info?[info.arrays[0]]:[])];
-  const counts=descriptors.map(()=>0),total=descriptors.reduce((n,d)=>n+d.download_bytes,0);let last=0;
+  const arrays=metadata.surface.arrays,hetero=needsHetero(content),descriptors=[arrays.tile,arrays['saip-grid'],...(hetero?[arrays['hetero-grid']]:[]),...(info?[info.arrays[0]]:[])];
+  const counts=descriptors.map(()=>0),total=descriptors.reduce((n,d)=>n+tableDownloadBytes(d),0);let last=0;
   const runtime=createMolecularCar({print:()=>{},printErr:value=>console.warn(value)});
   const tables=descriptors.map((descriptor,index)=>loadTable(descriptor,{base:import.meta.url,onProgress:(bytes,cached)=>{
     counts[index]=bytes;const now=performance.now();if(now-last<200&&!cached&&bytes!==0)return;last=now;
     const loaded=counts.reduce((a,b)=>a+b,0);
-    send({kind:'progress',message:`加载赛道资源… ${(loaded/1e6).toFixed(1)} / ${(total/1e6).toFixed(1)} MB`});
+    send({kind:'progress',percent:Math.min(100,Math.floor(loaded/total*100)),message:'下载赛道资源'});
   }}));
   const [loadedModule,values]=await Promise.all([runtime,Promise.all(tables)]);module=loadedModule;
   send({kind:'progress',message:'初始化模拟…'});
-  engine=new module.BrowserEngine(metadata,values[0],values[1],values[2]);
-  if(info){engine.installFourier(info);engine.loadFourierSpecies(0,values[3]);}
+  engine=new module.BrowserEngine(metadata,values[0],values[1],hetero?values[2]:new Float64Array());
+  if(info){engine.installFourier(info);engine.loadFourierSpecies(0,values.at(-1));}
 }
 
 function tick() {
@@ -56,7 +57,7 @@ function tick() {
 onmessage = async ({data: event}) => {
   try {
     if (event.kind === 'load') {
-      settings=event.settings;await loadAssets(settings);
+      settings=event.settings;await loadAssets(settings,event.content);
       send({kind:'progress',message:'整理起跑构象…'});
       const info = engine.prepareWithPose(event.content, event.filename,
         {...settings, drive_strength:event.drive.strength, field_growth:event.drive.growth}, event.start_pose);

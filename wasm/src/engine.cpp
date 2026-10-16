@@ -453,7 +453,7 @@ class BrowserEngine {
       g.values=emscripten::convertJSArrayToNumberVector<double>(v);
       if(g.values.size()!=static_cast<size_t>(2*g.nz*g.nx*g.ny))throw std::runtime_error("Invalid browser potential table size");
     };
-    initialize_grid(gold.saip,saip,"saip-grid");initialize_grid(gold.hetero,hetero,"hetero-grid");
+    initialize_grid(gold.saip,saip,"saip-grid");if(hetero["length"].as<unsigned>()>0)initialize_grid(gold.hetero,hetero,"hetero-grid");
   }
   ~BrowserEngine() {close();}
   void close() {if(lmp){lammps_close(lmp);lmp=nullptr;}uff.reset();molecule.reset();}
@@ -473,6 +473,7 @@ class BrowserEngine {
     if(surface_mode!="periodic-au"&&surface_mode!="continuum"&&surface_mode!="fourier-au")throw std::runtime_error("Unknown browser surface");
     fourier_enabled(surface_mode=="fourier-au");
     chemistry(content,file,pose);
+    if(surface_mode!="continuum" && gold.hetero.values.empty() && std::any_of(atoms.begin(),atoms.end(),[](const Response& a){return a.code<0;}))throw std::runtime_error("Hetero-element surface table is required");
     char a0[]="molecular-car",a1[]="-log",a2[]="none",a3[]="-screen",a4[]="none",a5[]="-nocite";
     char* argv[]={a0,a1,a2,a3,a4,a5};lmp=lammps_open_no_mpi(6,argv,nullptr);
     if(lammps_version(lmp)!=20260930)throw std::runtime_error("Unexpected LAMMPS browser build version");

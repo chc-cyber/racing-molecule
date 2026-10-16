@@ -5,6 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 import zipfile
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -33,6 +34,7 @@ def main():
                 assert len(data) == part["bytes"] and hashlib.sha256(data).hexdigest() == part["sha256"]
                 pieces.append(data)
             assert b"".join(pieces) == (site / "browser" / descriptor["path"]).read_bytes()
+    subprocess.run(["node", str(ROOT / "wasm/tools/verify_compression.cjs")], check=True)
     build = json.loads((site / "browser" / "runtime" / "build.json").read_text(encoding="utf-8"))
     for source, digest in build["own_sources"].items():
         assert hashlib.sha256((ROOT / source).read_bytes()).hexdigest() == digest, f"WASM is stale: {source}"

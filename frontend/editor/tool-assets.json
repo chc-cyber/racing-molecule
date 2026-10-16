@@ -1,0 +1,70 @@
+{
+  "2d": [
+    {
+      "path": "vendor/ketcher-c60/assets/chunk-CMxvf4Kt.js",
+      "bytes": 1216
+    },
+    {
+      "path": "vendor/ketcher-c60/assets/index-BnQdYZPk.js",
+      "bytes": 217524
+    },
+    {
+      "path": "vendor/ketcher-c60/assets/index.modern-B6cI25A5.js",
+      "bytes": 1221625
+    },
+    {
+      "path": "vendor/ketcher-c60/assets/indigoWorker-CJu2c6VH.js",
+      "bytes": 15809459
+    },
+    {
+      "path": "vendor/ketcher-c60/assets/lodash-CAXnQx-1.js",
+      "bytes": 78890
+    },
+    {
+      "path": "vendor/ketcher-c60/assets/raphael.min-BY2ezoSR.js",
+      "bytes": 92864
+    },
+    {
+      "path": "vendor/ketcher-c60/assets/src-BzxRGs3g.js",
+      "bytes": 320062
+    },
+    {
+      "path": "vendor/ketcher-c60/assets/src-Da1lyvkG.js",
+      "bytes": 2137127
+    },
+    {
+      "path": "vendor/ketcher-c60/assets/src-DoRb_mC_.js",
+      "bytes": 10812
+    },
+    {
+      "path": "vendor/ketcher-c60/assets/src-vag22C18.js",
+      "bytes": 5197447
+    },
+    {
+      "path": "vendor/ketcher-c60/assets/ucs2length-AdFavQG7.js",
+      "bytes": 341
+    },
+    {
+      "path": "vendor/ketcher-c60/assets/index-OGbBB0fz.css",
+      "bytes": 7148
+    },
+    {
+      "path": "vendor/ketcher-c60/assets/src-BWa5CXlH.css",
+      "bytes": 8698
+    },
+    {
+      "path": "vendor/ketcher-c60/assets/src-zIo67U67.css",
+      "bytes": 322760
+    }
+  ],
+  "3d": [
+    {
+      "path": "vendor/jsmol/JSmol.min.js",
+      "bytes": 220796
+    },
+    {
+      "path": "vendor/jsmol/j2s/core/corejmol.z.js",
+      "bytes": 1432059
+    }
+  ]
+}

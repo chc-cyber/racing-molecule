@@ -37,3 +37,5 @@ button:disabled { opacity:.4; }
 .shell-link { gap:6px; white-space:nowrap; font-size:12px; color:var(--rm-ink); text-decoration:none; }
 .shell-link svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.6; }
 @media(max-width:650px){.app-header>a.icon-button[data-app-route=track]{display:inline-flex}.brand>span{font-size:11px;letter-spacing:1px}.brand small{font-size:8px}.app-header .shell-link{padding:6px}}
+
+.tool-download{display:grid;gap:8px;min-width:210px;padding:10px}.tool-download progress{width:100%;height:8px;accent-color:var(--rm-accent,#c44b3a)}
