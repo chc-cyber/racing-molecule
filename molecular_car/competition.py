@@ -29,7 +29,7 @@ def validate_competition(data=None):
         if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or not low <= value <= high:
             raise ValueError(f"{key} 必须在 {low}–{high} 范围内。")
     result["start_pose"] = validate_start_pose(result["start_pose"])
-    if result["mode"] == "standard" and result != DEFAULT_COMPETITION:
+    if result["mode"] == "standard" and any(result[k] != v for k, v in DEFAULT_COMPETITION.items() if k != "start_pose"):
         raise ValueError("标准赛事参数固定；请切换到自定义赛事。")
     return result
 

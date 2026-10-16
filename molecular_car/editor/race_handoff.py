@@ -241,6 +241,7 @@ class RaceHandoff:
                     game.state.update(status="paused", error=None, stats=None, finish_reason=None,
                                       generation=game.generation, start_pose=copy.deepcopy(job["pose"]),
                                       competition=copy.deepcopy(job["competition"]))
+                    game.initial_frame = copy.deepcopy(game.state["frame"])
                     game.frames.append(game.state["frame"])
                     job.update(status="committed", generation=game.generation, ready=None,
                                process=None, commands=None, events=None)

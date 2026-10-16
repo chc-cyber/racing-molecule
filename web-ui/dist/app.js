@@ -79,6 +79,7 @@ addEventListener('message',async event=>{
   const workshop=frames.get('garage'),track=frames.get('track');
   if(event.source!==workshop?.contentWindow&&event.source!==track?.contentWindow)return;
   const {type,id,data}=event.data;
+  if(type==='rename-design'){post(event.source===workshop?.contentWindow?track:workshop,{type,data});return;}
   if(type==='navigate'){const target=event.data.route;if(['home','garage','track','settings'].includes(target))location.hash=target;return;}
   if(type==='workshop-notice'&&event.source===workshop?.contentWindow){notify(String(event.data.message||''));return;}
   if(type==='tool-progress'&&event.source===workshop?.contentWindow){downloadProgress(event.data.percent,'下载计算工具');return;}

@@ -56,7 +56,7 @@ export class BrowserTransport {
     if (typeof content !== 'string' || !content.trim()) throw new Error('分子文件不能为空。');
     if (typeof filename !== 'string' || !/\.(mol|sdf)$/i.test(filename)) throw new Error('请导入 MOL 或单记录 SDF 文件。');
     if (new TextEncoder().encode(content).length > 1_000_000) throw new Error('文件超过 1 MB。');
-    this.input = {content, filename};
+    this.input = {content, filename, name:data.name, designId:data.designId};
     const worker = new Worker(new URL('./worker.mjs', import.meta.url), {type: 'module', name: 'Racing Molecule MD'});
     this.worker = worker;
     worker.onmessage = ({data: event}) => {
@@ -64,6 +64,8 @@ export class BrowserTransport {
       if(event.kind==='progress'){this.state={...this.state,preparation:event.message,preparationPercent:event.percent};
       } else if (event.kind === 'ready') {
         this.state = {...this.state, ...event.data, status: 'paused'};
+        if(this.input.name)this.state.molecule.name=this.input.name;
+        this.state.designId=this.input.designId;this.initialFrame=structuredClone(event.data.frame);
         this.appendFrame(event.data.frame);
       } else if (event.kind === 'frame') {
         this.state = {...this.state, frame: event.frame, stats: event.stats, control: event.control};
@@ -99,10 +101,15 @@ export class BrowserTransport {
       const frames = this.frames.filter(f => f.seq > after).slice(0,250);
       return {generation: this.generation, frames, dropped: frames.length > 0 && frames[0].seq > after + 1};
     }
+    if(path==='/api/name'){
+      if(!this.state.molecule||data.designId&&data.designId!==this.input?.designId)return this.state;
+      const name=String(data.name||'').trim().slice(0,120)||'未命名赛车';
+      this.input.name=name;this.state.molecule={...this.state.molecule,name};return this.state;
+    }
     if (path === '/api/load') return this.load(data);
     if (path === '/api/start-pose') {
       const pose = validateStartPose(data, this.state.molecule?.atoms.length);
-      if (!this.input || ['preparing', 'running', 'idle'].includes(this.state.status))
+      if (!this.input || ['preparing', 'running', 'idle'].includes(this.state.status) || this.state.status==='paused'&&this.state.frame?.step>0)
         throw new Error('请等待准备完成或暂停比赛，再修改起跑姿态。');
       this.competition=validateCompetition({...this.competition,start_pose:pose});
       this.startPose = pose;
@@ -123,7 +130,7 @@ export class BrowserTransport {
   async replay() {
     return {schema: 'molecular-car-browser-replay-v1', execution: 'browser-wasm',
       competition:structuredClone(this.competition), molecule: this.state.molecule, runtime: this.state.runtime, settings: this.settings,
-      track: this.state.track, input: this.input, frames: this.frames, generation: this.generation,
+      initial_frame:this.initialFrame, track: this.state.track, input: this.input, frames: this.frames, generation: this.generation,
       start_pose: structuredClone(this.startPose),
       finish_reason: this.state.finish_reason,
       replay_complete: this.droppedFrames === 0, dropped_frames: this.droppedFrames,

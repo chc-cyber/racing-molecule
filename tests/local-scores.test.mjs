@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createScore,bestScores,structuralInput,scorePayload} from '../frontend/local-scores.mjs';
+import {validateCompetition} from '../frontend/competition.mjs';
+const content=fs.readFileSync(new URL('../examples/benzene.mol',import.meta.url),'utf8');
+const state={status:'finished',finish_reason:'finish',competition:validateCompetition(),frame:{progress:1,time_fs:110300,distance_angstrom:200},molecule:{name:'苯',atoms:[{element:'C'}],bonds:[]},start_pose:validateCompetition().start_pose};
+const replay={input:{content,filename:'benzene.mol'},initial_frame:{step:0,positions:[0,0,3]}};
+test('only completed standard races produce versioned scores with independent snapshots',async()=>{const r=await createScore(state,replay,'engine-1');assert.equal(r.timeFs,110300);assert.equal(r.schema,'racing-molecule-score-v1');assert.equal(r.verification,'local');assert.deepEqual(scorePayload(r),r);r.initialFrame.positions[0]=999;assert.equal(replay.initial_frame.positions[0],0);for(const override of [{status:'paused'},{finish_reason:'time_limit'},{competition:{...state.competition,mode:'custom'}},{frame:{...state.frame,progress:.9}}])assert.equal(await createScore({...state,...override},replay,'engine-1'),null);});
+test('names and coordinates do not split identical V2000 connectivity; bond edits do',()=>{const lines=content.replace(/\r/g,'').split('\n');lines[0]='renamed';lines[4]='  100.0000  100.0000  100.0000'+lines[4].slice(30);assert.equal(structuralInput(content),structuralInput(lines.join('\n')));lines[4]=lines[4].replace(' C ',' N ');assert.notEqual(structuralInput(content),structuralInput(lines.join('\n')));});
+test('best time is retained per structure and engine/rules version, independent of pose',async()=>{const first=await createScore(state,replay,'engine-1'),renamed=await createScore({...state,molecule:{...state.molecule,name:'新名称'},competition:validateCompetition({start_pose:{mode:'manual',yaw_deg:90}})},replay,'engine-1');assert.equal(first.ruleset,renamed.ruleset);assert.equal(bestScores([first],{...renamed,timeFs:120000})[0].id,first.id);assert.equal(bestScores([first],{...renamed,timeFs:100000})[0].id,renamed.id);const other=await createScore(state,replay,'engine-2');assert.equal(bestScores([first],other).length,2);});

@@ -1,9 +1,10 @@
+import {LocalLeaderboard} from './local-scores-ui.mjs';
 import {installRaceBridge} from './browser/embedded.mjs';
 import {readPreferences} from './app-state.mjs';
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
 import { GoldSurface, AU_LATTICE, latticeForSurface } from './gold-surface.js';
-import { request, downloadReplay, execution } from './transport.js';
+import { request, downloadReplay, readReplay, execution } from './transport.js';
 import { raceCourse } from './race-course.mjs';
 import {RaceResultDialog} from './race-result.mjs';
 import {PlaybackClock} from './playback.mjs';
@@ -56,7 +57,7 @@ const raceSetup = new RaceSetup($('race-setup'), () => {draftChanged=true;update
 function updateRaceDraft(){
   $('race-draft-note').textContent = '';
   $('race-draft-note').hidden = true;
-  $('start-pose-panel').hidden = raceSetup.mode !== 'custom';
+  $('start-pose-panel').hidden = false;
 }
 let trackKey = '', runway = null, ground = null, goldSurface = null;
 
@@ -306,7 +307,7 @@ function setPosePicking(kind) {
 
 function updateStartPoseUI(data = state) {
   if (!data) return;
-  const available = data.competition?.mode === 'custom' && Boolean(data.start_pose) && !busy && !raceLocked(data) && !['idle', 'preparing', 'running'].includes(data.status);
+  const available = Boolean(data.start_pose) && !busy && !raceLocked(data) && !['idle', 'preparing', 'running'].includes(data.status);
   if (posePicking && !available) setPosePicking(null);
   const signature = (molecule?.atoms || []).map(atom => `${atom.id}:${atom.element}`).join(',');
   if (signature && signature !== poseAtomSignature) {
@@ -393,7 +394,8 @@ function atomDisplayRadius(element) {
 }
 
 function setMolecule(data) {
-  const signature = data ? JSON.stringify([data.name, data.atoms, data.bonds]) : '';
+  if(data){molecule=data;if(document.activeElement!==$('molecule-name'))$('molecule-name').value=data.name||'';$('molecule-name').disabled=false;}
+  const signature = data ? JSON.stringify([data.atoms, data.bonds]) : '';
   if (signature === moleculeKey) return;
   moleculeKey = signature;
   molecule = data;
@@ -405,7 +407,7 @@ function setMolecule(data) {
   clearPlayback();
   if (!atomCount) {
     moleculeFormula = '';
-    $('molecule-name').textContent = '准备中';
+    $('molecule-name').value = ''; $('molecule-name').disabled=true;
     $('molecule-info').textContent = '';
     $('atom-chip').textContent = '— 原子';
     $('bond-chip').textContent = '— 键';
@@ -431,7 +433,7 @@ function setMolecule(data) {
     moleculeGroup.add(bondsMesh);
   }
   const knownNames = {'1,2,4,5-Tetraphenylbenzene test car': '四苯基苯', 'Benzene test molecule': '苯'};
-  $('molecule-name').textContent = knownNames[data.name] || data.name || '已载入分子';
+  if(document.activeElement!==$('molecule-name'))$('molecule-name').value = data.name || ''; $('molecule-name').disabled=false;
   $('molecule-name').title = knownNames[data.name] || data.name || '';
   const composition = {};
   for (const atom of data.atoms) composition[atom.element] = (composition[atom.element] || 0) + 1;
@@ -491,6 +493,7 @@ function updateState(data) {
   if (data.status === 'running' && previousStatus !== 'running') {playback.playing = true; playback.lastWall = null;}
   if (data.status === 'paused' && previousStatus === 'running') playback.playing = false;
   raceResults.update(data);
+  leaderboard.reset(data.generation);leaderboard.update(data);
   if (data.status === 'running' || Number(data.frame?.step) > 0) raceStarted = true;
   connected = true;
   setMolecule(data.molecule);
@@ -849,6 +852,14 @@ window.__molecularCarDebug = {
   }),
 };
 
+let engineIdentity;
+const leaderboard=new LocalLeaderboard({replay:readReplay,onError:message=>feedback(message,true),
+ engine:()=>engineIdentity??=(async()=>{if(execution!=='browser-wasm')return 'native-'+(state.runtime?.model||'uff-gradient-v3');const urls=['./browser/runtime/download.json','./browser/assets/model.json','./browser/assets/fourier-atlas.json'];const data=await Promise.all(urls.map(async url=>{const r=await fetch(new URL(url,import.meta.url));if(!r.ok)throw new Error('赛事版本读取失败。');return r.text();}));return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(data.join('\n')))),b=>b.toString(16).padStart(2,'0')).join('');})(),
+ rerun:async record=>{if(busy||raceLocked()||state?.status==='preparing')throw new Error('请先结束或重置当前比赛。');raceSetup.set(record.competition);await loadStructure({...record.input,name:record.name});}
+});
+$('molecule-name').addEventListener('keydown',event=>{if(event.key==='Enter')event.target.blur();if(event.key==='Escape'){event.target.value=state?.molecule?.name||'';event.target.blur();}});
+$('molecule-name').addEventListener('change',async event=>{try{const name=event.target.value.trim().slice(0,120)||'未命名赛车';await request('/api/name',{name});if(parent!==window&&state?.designId)parent.postMessage({channel:'racing-molecule',type:'rename-design',data:{name,designId:state.designId}},location.origin);await pollState();}catch(error){feedback(error.message,true);}});
+
 await pollState();
 setInterval(pollState, 650);
 setInterval(pollFrames, 150);
@@ -867,7 +878,7 @@ if(execution==='browser-wasm'){
     if(busy||current.status==='preparing')throw new Error('赛道正在准备，请稍后再试。');
     if(raceLocked(current))throw new Error('请先重置本场比赛。');
     const previous=current.generation;
-    if(data.competition)raceSetup.set(data.competition);draftInput={filename:data.filename,content:data.content};draftChanged=true;
+    if(data.competition)raceSetup.set(data.competition);draftInput={filename:data.filename,content:data.content,name:data.name,designId:data.designId};draftChanged=true;
     await loadStructure(draftInput);
     const loaded=await request('/api/state');
     if(loaded.generation===previous)throw new Error(loaded.error||'赛车未能载入，请重新准备。');

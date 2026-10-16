@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/editor/race-handoff.css">
   <link rel="stylesheet" href="/race-theme.css">
   <link rel="stylesheet" href="/race-result.css">
+  <link rel="stylesheet" href="/local-scores.css">
   <script type="importmap">{"imports":{"three":"/vendor/three.module.js"}}</script>
 </head>
 <body>
@@ -57,19 +58,14 @@
       </details>
       <details class="race-rules" hidden><summary>本场规则</summary><p id="race-rules">尚未准备</p></details>
       <section class="molecule-card">
-        <span class="section-label">当前分子</span><h2 id="molecule-name">请选择分子</h2><p id="molecule-info"></p>
+        <span class="section-label">当前分子</span><label class="editable-name"><input id="molecule-name" aria-label="赛车名称" placeholder="为赛车命名" maxlength="120" disabled><span aria-hidden="true">✎</span></label><p id="molecule-info"></p>
         <div class="molecule-chips"><span id="atom-chip">— 原子</span><span id="bond-chip">— 键</span></div>
         <div class="representation-control"><span class="section-label">显示模型</span><div class="representation-options" role="group" aria-label="分子显示模型"><button type="button" id="ball-stick-model" aria-pressed="true">球棍模型</button><button type="button" id="space-filling-model" aria-pressed="false">空间填充</button></div><p id="representation-note" hidden></p></div>
         <div class="representation-control playback-control"><span class="section-label">播放速度</span><div class="representation-options" role="group" aria-label="动画播放速度"><button type="button" id="playback-1x" aria-pressed="true">1×</button><button type="button" id="playback-2x" aria-pressed="false">2×</button></div><p id="playback-note">100 ps / 50 秒</p></div>
       </section>
 
-      <section class="run-section">
-        <div class="run-buttons"><button class="primary-button" id="start-button" disabled><span id="start-icon">▶</span><span id="start-label">开始试跑</span></button><button class="secondary-button reset-button" id="reset-button" title="重置并清空当前轨迹" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 .5 6"/><path d="M4 4v6h6"/></svg><span>重置</span></button></div>
-        <p class="run-reset-note">重置会清空当前轨迹并重新准备赛车。</p><div class="progress-label"><span id="progress-label">等待开始</span><span id="progress-value">0%</span></div><div class="progress-track"><div id="progress-fill"></div></div>
-      </section>
-
-      <details class="start-pose-section" id="start-pose-panel">
-        <summary><span>起跑摆放</span><span class="chevron">⌄</span></summary>
+      <details class="start-pose-section" id="start-pose-panel" open>
+        <summary><span>分子摆放</span><span class="chevron">⌄</span></summary>
         <div class="start-pose-content">
           <label class="field-label" for="start-pose-mode">摆放方式</label>
           <select id="start-pose-mode" class="surface-select"><option value="auto">自动摆放</option><option value="manual">手动旋转</option><option value="preserve">采用文件朝向</option></select>
@@ -84,6 +80,11 @@
         </div>
       </details>
 
+
+      <section class="run-section">
+        <div class="run-buttons"><button class="primary-button" id="start-button" disabled><span id="start-icon">▶</span><span id="start-label">开始试跑</span></button><button class="secondary-button reset-button" id="reset-button" title="重置并清空当前轨迹" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 .5 6"/><path d="M4 4v6h6"/></svg><span>重置</span></button></div>
+        <p class="run-reset-note">重置会清空当前轨迹并重新准备赛车。</p><div class="progress-label"><span id="progress-label">等待开始</span><span id="progress-value">0%</span></div><div class="progress-track"><div id="progress-fill"></div></div>
+      </section>
 
       <div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div>
       <div class="control-footer"><details id="replay-menu"><summary class="text-button">保存轨迹</summary><div><button id="download-button" class="text-button" disabled>当前比赛</button><button id="download-previous" class="text-button" hidden>上一场比赛</button></div></details><span id="engine-version">LAMMPS</span></div>

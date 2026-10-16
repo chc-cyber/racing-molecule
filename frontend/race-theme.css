@@ -97,3 +97,15 @@ body { font-family:var(--rm-font); }
 
 .playback-control { margin-top:16px; }
 #playback-note { margin:8px 0 0; font-size:11px; color:var(--muted); }
+.control-panel {font-size:14px;}
+.control-panel summary,.control-panel .section-label {font-size:16px;font-weight:700;color:var(--ink);letter-spacing:0;}
+.control-panel button,.control-panel select,.control-panel input,.control-panel label,.control-panel .field-label,.control-panel .progress-label {font-size:14px;}
+.control-panel input,.control-panel select {min-height:38px;}
+.control-panel p,.control-panel small,.control-panel #playback-note,.control-panel .molecule-chips span {font-size:13px;line-height:1.6;}
+.control-panel .run-section {position:sticky;bottom:-1px;background:var(--race-panel);z-index:3;padding:16px 0;border-top:1px solid var(--line);}
+#start-pose-panel {padding:16px 0;border-top:1px solid var(--line);grid-column:1/-1;}
+#start-pose-panel>summary {font-size:18px;color:var(--ink);}
+#start-pose-panel[open]>summary {margin-bottom:14px;}
+.molecule-card .editable-name {margin:10px 0;}
+#show-leaderboard {margin-top:12px;min-height:38px;}
+@media(max-width:760px){.control-panel {display:block;}.control-panel .run-section {position:static;}}

@@ -146,6 +146,7 @@ class GameController:
                     for key in ("molecule", "runtime", "frame", "control", "settings"):
                         self.state[key] = event[key]
                     self.state["status"] = "paused"
+                    self.initial_frame = copy.deepcopy(event["frame"])
                     self.frames.append(event["frame"])
                 elif kind == "frame":
                     self.state["frame"] = event["frame"]
@@ -181,7 +182,8 @@ class GameController:
         pose = validate_start_pose(data)
         with self.lifecycle:
             with self.lock:
-                if not self.input or self.state["status"] in ("preparing", "running", "idle"):
+                if (not self.input or self.state["status"] in ("preparing", "running", "idle")
+                        or self.state["status"] == "paused" and (self.state.get("frame") or {}).get("step", 0) > 0):
                     raise ValueError("请等待准备完成或暂停比赛，再修改起跑姿态。")
                 if self.state.get("molecule"):
                     validate_start_pose(pose, atom_count=len(self.state["molecule"]["atoms"]))
@@ -190,6 +192,17 @@ class GameController:
                 self.requested_start_pose = pose
                 content, filename = self.input
             self._load_locked(content, filename)
+
+    def rename(self, data):
+        name = str(data.get("name", "")).strip()[:120] or "未命名赛车"
+        with self.lifecycle, self.lock:
+            if self.state.get("molecule"):
+                self.state["molecule"]["name"] = name
+                if self.input:
+                    content, filename = self.input
+                    lines = content.splitlines()
+                    lines[0] = name
+                    self.input = ("\n".join(lines) + "\n", filename)
 
     def control(self, data):
         raise ValueError("赛事参数在准备时固定，请选择赛事配置后重新准备。")
@@ -221,6 +234,8 @@ class GameController:
                     "model": (self.state["runtime"] or {}).get("model", "uff-gradient-v3"),
                     "finish_reason": self.state.get("finish_reason"),
                     "truncated": bool(self.frames and self.frames[0]["seq"] > 0),
+                    "input": {"content": self.input[0], "filename": self.input[1]} if self.input else None,
+                    "initial_frame": copy.deepcopy(getattr(self, "initial_frame", None)),
                     "frames": list(self.frames)}
 
 
@@ -333,6 +348,8 @@ class Handler(BaseHTTPRequestHandler):
                     self.game.load(selected.read_text(encoding="utf-8"), selected.name, start_pose=data.get("start_pose"), competition=data.get("competition"))
                 else:
                     self.game.load(data.get("content"), data.get("filename"), start_pose=data.get("start_pose"), competition=data.get("competition"))
+            elif path == "/api/name":
+                self.game.rename(data)
             elif path == "/api/start-pose":
                 self.game.start_pose(data)
             elif path == "/api/action":

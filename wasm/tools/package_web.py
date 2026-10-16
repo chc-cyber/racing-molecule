@@ -23,7 +23,7 @@ def main():
                      "browser/assets/fourier-atlas.json", "browser/assets/fourier-atlas-0.bin.gz"):
         if not (target / required).is_file():
             raise RuntimeError(f"Build and export browser assets before packaging: {required}")
-    for filename in ("app.js", "style.css", "gold-surface.js", "transport.js", "start-pose.js", "start-pose.css", "race-course.mjs", "competition.mjs", "competition.css", "race-theme.css", "design-system.css", "app-state.mjs", "race-result.mjs", "race-result.css", "playback.mjs"):
+    for filename in ("app.js", "style.css", "gold-surface.js", "transport.js", "start-pose.js", "start-pose.css", "race-course.mjs", "competition.mjs", "competition.css", "race-theme.css", "design-system.css", "app-state.mjs", "race-result.mjs", "race-result.css", "playback.mjs", "local-scores.mjs", "local-scores-ui.mjs", "local-scores.css"):
         shutil.copyfile(frontend / filename, target / filename)
     for source in (frontend / "browser").glob("*.mjs"):
         shutil.copyfile(source, target / "browser" / source.name)

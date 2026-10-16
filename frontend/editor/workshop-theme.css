@@ -39,3 +39,5 @@ button:disabled { opacity:.4; }
 @media(max-width:650px){.app-header>a.icon-button[data-app-route=track]{display:inline-flex}.brand>span{font-size:11px;letter-spacing:1px}.brand small{font-size:8px}.app-header .shell-link{padding:6px}}
 
 .tool-download{display:grid;gap:8px;min-width:210px;padding:10px}.tool-download progress{width:100%;height:8px;accent-color:var(--rm-accent,#c44b3a)}
+.app-header .editable-name {width:clamp(150px,25vw,340px);flex-shrink:1;}
+.app-header .editable-name #project-name {width:100%;max-width:none;padding:5px 0;margin:0;font-size:16px;}

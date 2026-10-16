@@ -132,3 +132,12 @@ test('playback stream pages chronologically and only grants current-generation c
   const second=await client.request(`/api/frames?after=249&played=100&generation=${client.generation-1}`);
   assert.equal(second.frames[0].seq,250);assert.equal(client.worker.sent.length,count);
 });
+
+test('standard pose changes preserve rules; rename preserves worker, generation and trajectory',async()=>{
+ const client=await ready({mode:'standard'});client.state.molecule={name:'old',atoms:[{id:1,element:'C'}],bonds:[]};client.input.designId='design-1';
+ const generation=client.generation,worker=client.worker;client.frames=[{seq:0,step:0}];
+ await client.request('/api/name',{name:'新名字',designId:'design-other'});assert.equal(client.state.molecule.name,'old');
+ await client.request('/api/name',{name:'新名字',designId:'design-1'});assert.equal(client.state.molecule.name,'新名字');assert.equal(client.generation,generation);assert.equal(client.worker,worker);assert.equal(client.frames.length,1);
+ await client.request('/api/start-pose',{mode:'manual',yaw_deg:45});assert.equal(client.competition.mode,'standard');assert.equal(client.competition.start_pose.yaw_deg,45);assert.equal(client.input.name,'新名字');assert(client.generation>generation);
+ client.state.status='paused';client.state.frame={step:50};await assert.rejects(client.request('/api/start-pose',{mode:'auto'}));
+});
