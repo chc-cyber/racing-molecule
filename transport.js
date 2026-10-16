@@ -18,6 +18,8 @@ export async function request(path, data) {
   return result;
 }
 
+export async function readReplay(){return browser?browser.replay():request('/api/replay');}
+
 export async function downloadReplay() {
   const link = document.createElement('a');
   const localURL = browser ? URL.createObjectURL(new Blob([JSON.stringify(await browser.replay())], {type: 'application/json'})) : null;

@@ -41,13 +41,14 @@ function rotateVector(vector, axis, value) {
 }
 
 export function createProject(name = '未命名赛车') {
-  return {format: PROJECT_FORMAT, name, atoms: [], bonds: [], fragments: [], has3d: false};
+  return {format: PROJECT_FORMAT, projectId:id('project'), name, atoms: [], bonds: [], fragments: [], has3d: false};
 }
 
 /** Structural validation only: do not mistake simulator admission for editing validity. */
 export function validateProject(input) {
   ensure(input && typeof input === 'object' && !Array.isArray(input), '项目必须是一个对象。');
   const p = clone(input);
+  if(!p.projectId)p.projectId=id('project');
   ensure(p.format === PROJECT_FORMAT, '这不是受支持的分子赛车工坊项目格式。');
   ensure(typeof p.name === 'string', '项目名称必须是文本。');
   ensure(Array.isArray(p.atoms) && Array.isArray(p.bonds) && Array.isArray(p.fragments), '项目必须包含原子、键和片段列表。');

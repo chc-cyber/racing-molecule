@@ -34,7 +34,7 @@ function closeMenus(){document.querySelectorAll('.menu[open]').forEach(x=>x.open
 async function api(path,data){if(browserMode)return browserRequest(path,data);const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});let value;try{value=await r.json();}catch{throw NativeError('本地服务没有返回 JSON，请使用支持工坊接口的服务。');}if(!r.ok)throw NativeError(value.error||`请求失败 (${r.status})`);return value;}
 function download(name,content,type='application/json'){const a=document.createElement('a'),url=URL.createObjectURL(new Blob([content],{type}));a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function flushDrawing(){if(dimension===2)mature?.flush();else views?.flush();}
-function commitProjectName(){if(projectNameDraft===null)return;const name=projectNameDraft.slice(0,120)||'未命名赛车';projectNameDraft=null;if(name!==model.project.name)model.commit('修改名称',p=>{p.name=name;});}
+function commitProjectName(){if(projectNameDraft===null)return;const name=projectNameDraft.trim().slice(0,120)||'未命名赛车';projectNameDraft=null;if(name!==model.project.name)model.commit('修改名称',p=>{p.name=name;});}
 async function settleEditors(){commitProjectName();flushDrawing();if(dimension===2)await mature?.settled();else await views?.settled();}
 function resetView(){if(dimension===2)mature?.resetView();else views?.resetView();}
 function syncDrawing(fit=false){if(mature?.ready)return mature.push(clone(model.project),{fit}).catch(e=>tell(e.message,true));}
@@ -192,7 +192,7 @@ async function browserSendToTrack(){
     catch{savedDraft=false;$('save-state').title='暂存失败，请使用保存工程下载备份';$('save-state').setAttribute('aria-label','暂存失败');}
     const exported=await browserRequest('/api/editor/export',{project,dimension:project.has3d?3:2,format:'mol'});
     if(serial!==browserSendSerial)return;
-    await prepareBrowserRace(exported,message=>$('race-message').textContent=message);
+    await prepareBrowserRace({...exported,name:project.name,designId:project.projectId},message=>$('race-message').textContent=message);
     const notice=savedDraft?'赛车已就绪。':'赛车已就绪，但浏览器暂存失败。请返回工坊，点击“保存工程”下载备份。';
     tell(notice);
     if(!savedDraft&&parent!==window)parent.postMessage({channel:'racing-molecule',type:'workshop-notice',message:notice},location.origin);
@@ -249,3 +249,8 @@ async function ensure3D(){
 }
 
 addEventListener('runtime-download',({detail:percent})=>{if(parent!==window){parent.postMessage({channel:'racing-molecule',type:'tool-progress',percent},location.origin);}else{const status=$('busy-state');status.replaceChildren();if(percent!=null){const bar=document.createElement('progress');bar.max=100;bar.value=percent;bar.setAttribute('aria-label','计算工具下载进度');status.append(`下载计算工具 ${percent}% `,bar);}}});
+
+$('project-name').addEventListener('keydown',event=>{if(event.key==='Enter')event.target.blur();if(event.key==='Escape'){projectNameDraft=null;event.target.value=model.project.name;event.target.blur();}});
+let reportedName='';
+model.addEventListener('change',()=>{const p=model.project,key=p.projectId+'|'+p.name;if(key===reportedName)return;reportedName=key;if(parent!==window)parent.postMessage({channel:'racing-molecule',type:'rename-design',data:{designId:p.projectId,name:p.name}},location.origin);});
+addEventListener('message',event=>{if(event.source!==parent||event.origin!==location.origin||event.data?.channel!=='racing-molecule'||event.data.type!=='rename-design')return;const d=event.data.data;if(d?.designId===model.project.projectId&&typeof d.name==='string'&&d.name!==model.project.name){projectNameDraft=null;model.commit('修改名称',p=>{p.name=d.name.trim().slice(0,120)||'未命名赛车';});}});

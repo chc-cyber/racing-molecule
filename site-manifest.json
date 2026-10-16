@@ -15,8 +15,8 @@
     },
     {
       "path": "app.js",
-      "bytes": 48647,
-      "sha256": "9aa054a37abeeb13678b4f923b5c5fb9d1813884d3809c11afc3379ae59934ed"
+      "bytes": 50467,
+      "sha256": "a8f24e06704b56cd420e9104e257294074a05f0f63db10005ec70f538a8d7550"
     },
     {
       "path": "browser/assets/benzene.mol",
@@ -505,8 +505,8 @@
     },
     {
       "path": "browser/embedded.mjs",
-      "bytes": 2530,
-      "sha256": "60d981e201fa5d14c3784ec01f1f8baa2bcc6f6a7551f0874ee78dde5c2f2d14"
+      "bytes": 2651,
+      "sha256": "771793d92d58341e21f3c6aa5fe3d62fe1666efbe5d4db9933fb2f39006f14b8"
     },
     {
       "path": "browser/needs-hetero.mjs",
@@ -545,8 +545,8 @@
     },
     {
       "path": "browser/transport.mjs",
-      "bytes": 8010,
-      "sha256": "76f3d60941d6c6475bccf1108f298352d6b8c44cabc869612c8c3021753529e4"
+      "bytes": 8629,
+      "sha256": "1a760b7e887d58aa5f4e7773a0991f15584a96378e9e0104b73f45b337d54c29"
     },
     {
       "path": "browser/vendor/brotli/brotli_wasm.js",
@@ -580,13 +580,13 @@
     },
     {
       "path": "competition.mjs",
-      "bytes": 7036,
-      "sha256": "6cb324b572cc66571068c41923591a077fe923e6e716bd2525f53a14d155b99f"
+      "bytes": 7086,
+      "sha256": "95a6be1d7088b8f41e1b4982cd5cb669d4413666821d086276af30344c0ac531"
     },
     {
       "path": "design-system.css",
-      "bytes": 710,
-      "sha256": "e753efef64cea43f126a46fe704297c09b3b1396b4425c7cfb74f5d820d4eba6"
+      "bytes": 1287,
+      "sha256": "e4eb42e6e5c4cb3d915b897fdb8464c34d55649169ab3f30f80bb4da657c0613"
     },
     {
       "path": "editor/browser-service.mjs",
@@ -630,8 +630,8 @@
     },
     {
       "path": "editor/index.html",
-      "bytes": 19794,
-      "sha256": "6b592e37306f9b6789ac1ab79f74391503cf2c94eb10bd0290deb0f546dfbb5a"
+      "bytes": 19912,
+      "sha256": "13701a6cee64b69b56c8c28e6dd1cd3b3365284317343f87eb980067729f0ec9"
     },
     {
       "path": "editor/jsmol-adapter.js",
@@ -665,8 +665,8 @@
     },
     {
       "path": "editor/model.js",
-      "bytes": 50018,
-      "sha256": "430eb33bcf91090fb149b76a4cc268e917114ddc1379abeba25f3ba069b9db6b"
+      "bytes": 50089,
+      "sha256": "6412d19f75c1dc166f21c305bbdd30c27c6575c2e3557222ab7bac0afe35f1f6"
     },
     {
       "path": "editor/native-c60-data.js",
@@ -10775,8 +10775,8 @@
     },
     {
       "path": "editor/workshop-theme.css",
-      "bytes": 4204,
-      "sha256": "71d753f334616467a6a3b7e77a6b6d7417fbcc069e1f3d2160ab42f56146baf8"
+      "bytes": 4386,
+      "sha256": "c41400276323caf109651221a9391990c631d6e3ad2128e7ad9588a67815e009"
     },
     {
       "path": "editor/workshop.css",
@@ -10785,8 +10785,8 @@
     },
     {
       "path": "editor/workshop.js",
-      "bytes": 41774,
-      "sha256": "9fc11ba334e9281f893ab3747091bda8115e632a8384f5cac7c5a00a0e570639"
+      "bytes": 42755,
+      "sha256": "44a8d455b58fdb9b48353b033573a0b433e20e965801f12ecf8fded036d084ae"
     },
     {
       "path": "gold-surface.js",
@@ -10834,6 +10834,21 @@
       "sha256": "e32ff4e00d9d94930537635291da39e7e612703334bf6fde8c7f1686fe8a45a2"
     },
     {
+      "path": "local-scores-ui.mjs",
+      "bytes": 5299,
+      "sha256": "f1fc86d311351eb93c186145891c13a4f651e4f776fcb214d22e87fe9460858f"
+    },
+    {
+      "path": "local-scores.css",
+      "bytes": 1365,
+      "sha256": "0e30e9b0f2a950cda80d227383657be61ab4a9ece780f1c6ce81c54d53d4e6d3"
+    },
+    {
+      "path": "local-scores.mjs",
+      "bytes": 3610,
+      "sha256": "8dd635b189cc4fb424ed8f54ca42afb25f97ab6201e4fad3131945ee924a4e6d"
+    },
+    {
       "path": "playback.mjs",
       "bytes": 956,
       "sha256": "1adfea8eb1278a412a9c6876a07e7f28e8d57b6ea35e7767bb4b7f3fd4895780"
@@ -10855,13 +10870,13 @@
     },
     {
       "path": "race-theme.css",
-      "bytes": 6082,
-      "sha256": "38713ba7b6ca11ea4d32ea52549a975ff8a82872318b855ff01f42d07f1dbc81"
+      "bytes": 7161,
+      "sha256": "223056be9c684e1c9385f14e57d95b539405b0874774078bf577f925ed20371c"
     },
     {
       "path": "race.html",
-      "bytes": 9907,
-      "sha256": "75255e8d901619d6633914c13ec2849e1010034758dfe9d1224a8ae16a37c726"
+      "bytes": 10101,
+      "sha256": "43ea2d0d187123af96ab5b1df49e90d1c49285c494978e391f6422bb570327fb"
     },
     {
       "path": "SOURCE.md",
@@ -10890,13 +10905,13 @@
     },
     {
       "path": "transport.js",
-      "bytes": 1407,
-      "sha256": "e53a22769d2aa0a62961c1770c5af9d4df7050cadb965640bd60fea4d2b6250e"
+      "bytes": 1500,
+      "sha256": "733bf8c4d7928d2c72d8252baea16a5f0fce35ba7c1b02a25b862d9d8a3c0ac2"
     },
     {
       "path": "ui/app.js",
-      "bytes": 11803,
-      "sha256": "f1159326fd8f03d9b7dab6f601dbccfe8a04df06eabef42f2ab3e28dba05187c"
+      "bytes": 11914,
+      "sha256": "74eec98d18e25bfa46e67d0c74609a4584dc4654c0c8897ae6b155de28e7d5f4"
     },
     {
       "path": "ui/assets/BARLOW-OFL.txt",

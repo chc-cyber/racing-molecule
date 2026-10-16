@@ -22,6 +22,7 @@ export function installRaceBridge({load,request,snapshot,preferences,pause}){
         }
         throw new Error('赛车准备超时，请检查结构后重试。');
       }
+      if(type==='rename-design'){await request('/api/name',data);dispatchEvent(new Event('race-state-change'));return;}
       if(type==='cancel-load'){++loadSerial;await request('/api/cancel-load');}
       if(type==='pause-race'&&snapshot()?.status==='running')await (pause ? pause() : request('/api/action',{action:'pause'}));
       if(type==='preferences')preferences(data);

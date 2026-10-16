@@ -11,7 +11,7 @@ export function validateCompetition(data = {}) {
   for (const [key,low,high] of [['temperature',0,1000],['strength',0,1],['lattice_scale',0,3],['corrugation',0,.6],['growth',.1,2]])
     if(typeof result[key]!=='number'||!Number.isFinite(result[key])||result[key]<low||result[key]>high) throw new Error(`${key} 必须在 ${low}–${high} 范围内。`);
   result.start_pose = validateStartPose(result.start_pose);
-  if(result.mode==='standard' && Object.keys(DEFAULT_COMPETITION).some(k=>JSON.stringify(result[k])!==JSON.stringify(DEFAULT_COMPETITION[k]))) throw new Error('标准赛事参数固定；请切换到自定义赛事。');
+  if(result.mode==='standard' && Object.keys(DEFAULT_COMPETITION).filter(k=>k!=='start_pose').some(k=>JSON.stringify(result[k])!==JSON.stringify(DEFAULT_COMPETITION[k]))) throw new Error('标准赛事参数固定；请切换到自定义赛事。');
   return result;
 }
 export function engineParameters(c) {
@@ -59,7 +59,7 @@ export class RaceSetup {
     this.host.querySelector('.race-pose-angles').hidden=this.host.querySelector('[data-key="pose_mode"]').value!=='manual';
   }
   read() {
-    if(this.mode==='standard')return validateCompetition();
+    if(this.mode==='standard')return validateCompetition({start_pose:this.pose});
     const result={mode:'custom'};
     for(const key of ['temperature','strength','surface','lattice_scale','corrugation','growth']){const v=this.host.querySelector(`[data-key="${key}"]`).value;result[key]=key==='surface'?v:(v.trim()?Number(v):NaN);}
     result.start_pose={...this.pose, mode:this.host.querySelector('[data-key="pose_mode"]').value};

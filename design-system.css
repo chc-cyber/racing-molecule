@@ -12,3 +12,8 @@ button,input,select { font:inherit; }
 button:disabled { cursor:default; }
 :focus-visible { outline:2px solid var(--rm-accent); outline-offset:3px; }
 [hidden] { display:none!important; }
+/* Shared editable title for workshop and race. */
+.editable-name {display:flex;align-items:center;gap:8px;border:1px solid var(--rm-line);background:var(--rm-panel);padding:5px 10px;min-width:0;}
+.editable-name:focus-within {border-color:var(--rm-accent);outline:2px solid var(--rm-accent);outline-offset:1px;}
+.editable-name input {min-width:0;width:100%;border:0!important;background:transparent!important;color:var(--rm-ink);font:600 16px var(--rm-font);outline:none;box-shadow:none!important;}
+.editable-name span {font-size:20px;color:var(--rm-ink);pointer-events:none;}
