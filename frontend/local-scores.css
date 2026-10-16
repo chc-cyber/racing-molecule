@@ -8,3 +8,5 @@
 .score-row:hover {background:var(--rm-control);}.score-row strong {overflow-wrap:anywhere;}.score-row b {font-size:18px;}.score-row small {grid-column:1/-1;font-size:13px;color:var(--rm-muted);}
 #score-detail {border-top:2px solid var(--rm-accent);padding-top:14px;}#score-detail p {white-space:pre-line;line-height:1.8;}#score-detail button {padding:12px;margin:8px 8px 0 0;}
 #local-rank {font-size:16px;font-weight:600;color:var(--rm-accent);}.result-actions {flex-wrap:wrap;}
+#score-detail button {display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:96px;font-size:14px;}
+.score-row {font:inherit;}
