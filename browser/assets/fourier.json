@@ -1,7 +1,7 @@
 {
   "schema": "fourier-saip-browser-v1",
   "parameter_sha256": "9f0bbbbe7b044596ee1682d7d0c0ca37b3fc6835b40d94992700ccb2485472cb",
-  "base_model_sha256": "663ce7363aea7772e7a3d62a5383917a3bd0d1b44bf004f677bea1c9ce8d2350",
+  "base_model_sha256": "8736e51dd4a911364192549d6b2299a115c91c5ffa7873daa7ef839caffd61af",
   "nz": 111,
   "na": 21,
   "modes": [

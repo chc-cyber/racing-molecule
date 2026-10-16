@@ -24,8 +24,8 @@
   "own_sources": {
     "wasm/src/editor.hpp": "b18a388b443f8bdb39803540626542ad81896ff8cc746bdbd4a55ed8ce7a40ab",
     "wasm/src/editor_construction.hpp": "3618dfa19d034b7f26a9d421e7a81255285d5f550efe3a725532d0f0320337b8",
-    "wasm/src/engine.cpp": "0fadae2a9e1c14e7d8a01d2432d0844959b3b0de8b2803e8dd34f80ffd485985",
-    "wasm/src/potentials.cpp": "30e8c54e191e7a28f7371e9828380553476a59b4ec2cd7fc75c1da6b22296a2d",
+    "wasm/src/engine.cpp": "9761e23f138e027182f2ff420c16170bc009d41763b6213eede92c2687b23dea",
+    "wasm/src/potentials.cpp": "80296c54e42b7502b4b9d53ec0cacd6ecea4a886db6b4b65c97068d96ab326eb",
     "wasm/src/potentials.hpp": "b6da4dbfa65b243ab1a90f2e124daa659503901741d98c05ce349d0ad6ef6e69",
     "wasm/src/preparation_bfgs.hpp": "2475cccb4e9167144cfad186aef8877b9b77d1a68c3df43c1724acf53a57c0c3",
     "wasm/src/start_pose.hpp": "31e2e8fc1f450a0ee68ae02ea2378a9f1b253fbd403b9376e61534cbdc731b94"

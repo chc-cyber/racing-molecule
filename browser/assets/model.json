@@ -3,14 +3,14 @@
   "rdkit_version": "2025.09.3",
   "lammps_version": 20260930,
   "track": {
-    "start_x": 0.0,
-    "finish_x": 200.0,
-    "half_width": 100.0,
-    "surface_z": 0.0
+    "start_x": 0,
+    "finish_x": 200,
+    "half_width": 100,
+    "surface_z": 0
   },
   "settings": {
-    "temperature": 150.0,
-    "damping_fs": 350.0,
+    "temperature": 150,
+    "damping_fs": 350,
     "corrugation": 0.08,
     "lattice_scale": 1.5,
     "surface": "fourier-au"
@@ -18,9 +18,9 @@
   "drive": {
     "mode": "gradient",
     "strength": 0.6,
-    "growth": 1.0
+    "growth": 1
   },
-  "timestep_fs": 1.0,
+  "timestep_fs": 1,
   "frame_steps": 50,
   "max_steps": 5000000,
   "seed": 98245165,
@@ -28,9 +28,9 @@
     "protocol_version": "rigid-start-pose-v1",
     "default": {
       "mode": "auto",
-      "yaw_deg": 0.0,
-      "pitch_deg": 0.0,
-      "roll_deg": 0.0,
+      "yaw_deg": 0,
+      "pitch_deg": 0,
+      "roll_deg": 0,
       "axis_atoms": []
     },
     "heading_ratio": 1.3,
@@ -38,22 +38,22 @@
   },
   "world_bounds": [
     [
-      -110.0,
-      1110.0
+      -110,
+      1110
     ],
     [
-      -350.0,
-      350.0
+      -350,
+      350
     ],
     [
-      -40.0,
-      120.0
+      -40,
+      120
     ]
   ],
   "effective_polarizabilities": {
     "H": 0.2,
     "B": 1.2,
-    "C": 1.0,
+    "C": 1,
     "N": 0.85,
     "O": 0.7,
     "F": 0.4,
@@ -67,25 +67,25 @@
   "field_parameters": {
     "ADSORPTION_DEPTH": 0.8,
     "ADSORPTION_HEIGHT": 2.9,
-    "ADSORPTION_ALPHA": 1.0,
+    "ADSORPTION_ALPHA": 1,
     "SURFACE_SPACING": 2.88,
-    "CORRUGATION_DECAY": 1.0,
+    "CORRUGATION_DECAY": 1,
     "TIP_SOFTENING": 1.5,
-    "FIELD_SCALE": 35.0,
+    "FIELD_SCALE": 35,
     "GRADIENT_BASE_FIELD": 0.5,
     "GRADIENT_FIELD_SLOPE": 0.0015,
-    "GRADIENT_POLARIZATION_GAIN": 500.0,
-    "BOUNDARY_WIDTH": 1.0,
+    "GRADIENT_POLARIZATION_GAIN": 500,
+    "BOUNDARY_WIDTH": 1,
     "BOUNDARY_STIFFNESS": 0.2,
-    "TRACK_X_MIN": -10.0,
-    "TRACK_X_MAX": 210.0,
-    "LANE_HALF_WIDTH": 100.0
+    "TRACK_X_MIN": -10,
+    "TRACK_X_MAX": 210,
+    "LANE_HALF_WIDTH": 100
   },
   "surface": {
     "mode": "periodic-au",
     "model": "periodic-saip-2",
     "normal_policy": "bonded-saip-game-v1",
-    "normal_area_epsilon": 1e-06,
+    "normal_area_epsilon": 0.000001,
     "period": [
       2.884995667241114,
       4.996959075277683
@@ -96,7 +96,7 @@
       -6.978904182999998,
       -4.625157328100001,
       -2.2545640300000005,
-      0.0
+      0
     ],
     "surface_period_xy_angstrom": [
       2.884995667241114,
@@ -161,7 +161,7 @@
       "atomic_parameters": "RDKit GetUFFVdWParams(mol, i, i), after UFF coverage validation",
       "mixing": "rmin_XAu=sqrt(rmin_XX*rmin_AuAu); epsilon_XAu=sqrt(epsilon_XX*epsilon_AuAu)",
       "pair_potential": "Tap(r) * epsilon_XAu * ((rmin_XAu/r)^12 - 2*(rmin_XAu/r)^6)",
-      "cutoff_angstrom": 16.0,
+      "cutoff_angstrom": 16,
       "supported_elements": [
         "B",
         "N",
@@ -233,7 +233,31 @@
             "download_bytes": 744957,
             "sha256": "d577f2c0bdbe8a30fe4dbb0b98e9f30cb2e6cb7eb5b90998e3975ff3119a44b0"
           }
-        ]
+        ],
+        "brotli": {
+          "path": "assets/saip-grid.bin.br",
+          "download_bytes": 3090090,
+          "chunks": [
+            {
+              "path": "assets/chunks/c61d2958f7b4616fb4ab0d8a79fc92a54cd8d6112d4efe8fd4b941313c0f319c.bin",
+              "bytes": 1048576,
+              "download_bytes": 1048576,
+              "sha256": "c61d2958f7b4616fb4ab0d8a79fc92a54cd8d6112d4efe8fd4b941313c0f319c"
+            },
+            {
+              "path": "assets/chunks/fcb28d78c7228e799922ba7a81b3581ed044766d86f8122bb9ba01cd89ab4dcb.bin",
+              "bytes": 1048576,
+              "download_bytes": 1048576,
+              "sha256": "fcb28d78c7228e799922ba7a81b3581ed044766d86f8122bb9ba01cd89ab4dcb"
+            },
+            {
+              "path": "assets/chunks/bf53883defbe9a71b9cb463f18a5769185c68807f6f8c0b9d48af22de9a95f88.bin",
+              "bytes": 992938,
+              "download_bytes": 992938,
+              "sha256": "bf53883defbe9a71b9cb463f18a5769185c68807f6f8c0b9d48af22de9a95f88"
+            }
+          ]
+        }
       },
       "hetero-grid": {
         "path": "assets/hetero-grid.bin.gz",
@@ -273,14 +297,38 @@
             "download_bytes": 646556,
             "sha256": "5cb7407aca5311a40086b678c8f397e76d584873793b2e9a166e7ad575186f40"
           }
-        ]
+        ],
+        "brotli": {
+          "path": "assets/hetero-grid.bin.br",
+          "download_bytes": 3055455,
+          "chunks": [
+            {
+              "path": "assets/chunks/1a47f6a1007e2d64d1f49134ba085b9ce0b8bc765ad8a39ffaccb2cf05ee9179.bin",
+              "bytes": 1048576,
+              "download_bytes": 1048576,
+              "sha256": "1a47f6a1007e2d64d1f49134ba085b9ce0b8bc765ad8a39ffaccb2cf05ee9179"
+            },
+            {
+              "path": "assets/chunks/74f2ce4f0691088bb52ff126443e8b5c2e7af12e7dfa31acd1afc9e28990382d.bin",
+              "bytes": 1048576,
+              "download_bytes": 1048576,
+              "sha256": "74f2ce4f0691088bb52ff126443e8b5c2e7af12e7dfa31acd1afc9e28990382d"
+            },
+            {
+              "path": "assets/chunks/a974bd90d3c861ad3801408d7162f141f681ddf747e8126fedec0d4d1041c04d.bin",
+              "bytes": 958303,
+              "download_bytes": 958303,
+              "sha256": "a974bd90d3c861ad3801408d7162f141f681ddf747e8126fedec0d4d1041c04d"
+            }
+          ]
+        }
       }
     }
   },
   "preparation": {
     "protocol_version": "joint-force-relaxation-v2",
     "force_tolerance": 0.0001,
-    "wall_time_limit_seconds": 30.0,
+    "wall_time_limit_seconds": 30,
     "evaluation_limit": 25000,
     "stages": [
       [
@@ -311,7 +359,7 @@
       "maximum_line_search_trials": 30,
       "armijo_coefficient": 0.0001,
       "curvature_relative_threshold": 1e-12,
-      "diagonal_shift_relative_start": 1e-08,
+      "diagonal_shift_relative_start": 1e-8,
       "maximum_cholesky_attempts": 12
     }
   }

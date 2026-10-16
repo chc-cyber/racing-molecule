@@ -1,8 +1,24 @@
+import {decodeBrotli} from './brotli.mjs';
+export const tableDownloadBytes=d=>d.brotli?.download_bytes??d.download_bytes;
 // Cache only checksum-verified tables; a cancelled worker cannot publish partial data.
 export async function loadTable(descriptor, options={}) {
   const locks=options.locks??globalThis.navigator?.locks;
   const key=new URL("./"+descriptor.path,options.base??import.meta.url).href+descriptor.sha256;
-  return locks ? locks.request("race-table:"+key,()=>readTable(descriptor,options)) : readTable(descriptor,options);
+  const read=async()=>{
+    let selected=descriptor;
+    if(descriptor.brotli){
+      let legacy=false;
+      try{const cache=await (options.cacheStorage??globalThis.caches)?.open('racing-molecule-tables-v1');
+        for(const part of [descriptor,...(descriptor.chunks||[])]){
+          const url=new URL('./'+part.path,options.base??import.meta.url);url.searchParams.set('sha256',part.sha256);
+          if(await cache?.match(url.href)){legacy=true;break;}
+        }
+      }catch{}
+      if(!legacy)selected={...descriptor.brotli,bytes:descriptor.bytes,sha256:descriptor.sha256,encoding:'brotli'};
+    }
+    return readTable(selected,{...options,onProgress:(n,cached)=>options.onProgress?.(n/selected.download_bytes*tableDownloadBytes(descriptor),cached)});
+  };
+  return locks ? locks.request("race-table:"+key,read) : read();
 }
 
 async function readTable(descriptor, {base=import.meta.url,onProgress=()=>{},fetcher=fetch,cacheStorage=globalThis.caches,stallMs=45000,priority="auto",requireCache=false}={}) {
@@ -10,7 +26,7 @@ async function readTable(descriptor, {base=import.meta.url,onProgress=()=>{},fet
   let cache;
   try{cache=await cacheStorage?.open('racing-molecule-tables-v1');}catch{}
   const decode=async bytes=>{
-    const raw=descriptor.encoding==='raw'?bytes:await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+    const raw=descriptor.encoding==='raw'?bytes:descriptor.encoding==='brotli'?await decodeBrotli(bytes):await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
     if(raw.byteLength!==descriptor.bytes)throw Error('赛道资源大小不正确，请重试。');
     const hash=await crypto.subtle.digest('SHA-256',raw);
     if(Array.from(new Uint8Array(hash),n=>n.toString(16).padStart(2,'0')).join('')!==descriptor.sha256)throw Error('赛道资源校验失败，请重试。');

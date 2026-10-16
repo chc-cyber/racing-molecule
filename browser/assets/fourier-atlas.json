@@ -19,7 +19,7 @@
     ]
   ],
   "parameter_sha256": "9f0bbbbe7b044596ee1682d7d0c0ca37b3fc6835b40d94992700ccb2485472cb",
-  "base_model_sha256": "663ce7363aea7772e7a3d62a5383917a3bd0d1b44bf004f677bea1c9ce8d2350",
+  "base_model_sha256": "8736e51dd4a911364192549d6b2299a115c91c5ffa7873daa7ef839caffd61af",
   "nz": 95,
   "na": 13,
   "modes": [
@@ -267,7 +267,157 @@
           "download_bytes": 175432,
           "sha256": "95e078efdce1d785b925262c43d2178699487fcd97ff5b64ae5c3ca1166dbb1e"
         }
-      ]
+      ],
+      "brotli": {
+        "path": "assets/fourier-atlas-0.bin.br",
+        "download_bytes": 24803757,
+        "chunks": [
+          {
+            "path": "assets/chunks/0b97038c0779517d4131a8a147a5d738ac70eec9acd53280c2161eee205dddc0.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "0b97038c0779517d4131a8a147a5d738ac70eec9acd53280c2161eee205dddc0"
+          },
+          {
+            "path": "assets/chunks/d130fa66ad949af58acb137943a54cd06de5ea20f342b982722265e85969abd5.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "d130fa66ad949af58acb137943a54cd06de5ea20f342b982722265e85969abd5"
+          },
+          {
+            "path": "assets/chunks/6436fda00def7f03f643c0ac1d88cceedc2ed50e56f7c611c25c2912bc899823.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "6436fda00def7f03f643c0ac1d88cceedc2ed50e56f7c611c25c2912bc899823"
+          },
+          {
+            "path": "assets/chunks/d4dbd16ea125cf06edebc25d303dc246bc6fe099d2fc4a17b41ee9027616528c.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "d4dbd16ea125cf06edebc25d303dc246bc6fe099d2fc4a17b41ee9027616528c"
+          },
+          {
+            "path": "assets/chunks/b1194f5c7ba9df9e1de28ce10082b0cdc5f4ff51b93a846a78d6860522733cf2.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "b1194f5c7ba9df9e1de28ce10082b0cdc5f4ff51b93a846a78d6860522733cf2"
+          },
+          {
+            "path": "assets/chunks/e2c2de3e031d9e43d7cd5d6761611616a24b816f9f807f3b35ef7aff110edc25.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "e2c2de3e031d9e43d7cd5d6761611616a24b816f9f807f3b35ef7aff110edc25"
+          },
+          {
+            "path": "assets/chunks/6be86ff418ed65c3a2d175c4e30cac41b1f24763bccce5a30df5a5b459cd66d3.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "6be86ff418ed65c3a2d175c4e30cac41b1f24763bccce5a30df5a5b459cd66d3"
+          },
+          {
+            "path": "assets/chunks/df302eb21890856eb832c7159f570e31255a3054597affe346c522ff2ff157ed.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "df302eb21890856eb832c7159f570e31255a3054597affe346c522ff2ff157ed"
+          },
+          {
+            "path": "assets/chunks/7030de82a5566cbe1e68eb9f10ca673ecc1caeebe30e1b0c10dc06c9c0d6a992.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "7030de82a5566cbe1e68eb9f10ca673ecc1caeebe30e1b0c10dc06c9c0d6a992"
+          },
+          {
+            "path": "assets/chunks/593dc98f2e8f52e4a29355fcb0b1673aa33fd8f34df3555d778b5773c114fdf6.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "593dc98f2e8f52e4a29355fcb0b1673aa33fd8f34df3555d778b5773c114fdf6"
+          },
+          {
+            "path": "assets/chunks/37ed4b07ed506a54a7173a6755f45971bd14f21159c3119bfba7570e356fb608.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "37ed4b07ed506a54a7173a6755f45971bd14f21159c3119bfba7570e356fb608"
+          },
+          {
+            "path": "assets/chunks/eae739a25011960eaae442836183b5dddfab19ffa819174fb9d8081ffd5e9f8f.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "eae739a25011960eaae442836183b5dddfab19ffa819174fb9d8081ffd5e9f8f"
+          },
+          {
+            "path": "assets/chunks/b53848de4c5bc883a8e00bbe95350e549cf33eab5ff78df23d036c21456accad.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "b53848de4c5bc883a8e00bbe95350e549cf33eab5ff78df23d036c21456accad"
+          },
+          {
+            "path": "assets/chunks/d857f1035bfe91f9981234b5e77e5c0bc2bd8eb57483f7c75572a0b3bea7efad.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "d857f1035bfe91f9981234b5e77e5c0bc2bd8eb57483f7c75572a0b3bea7efad"
+          },
+          {
+            "path": "assets/chunks/9a304fcf0aca6473b639127c25c80828753bd7680e424c27d420fb17629e27a7.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "9a304fcf0aca6473b639127c25c80828753bd7680e424c27d420fb17629e27a7"
+          },
+          {
+            "path": "assets/chunks/b259383fa7bb8d1ac0f51b481f601bd664a358145ce7a18b056589d064ba61b4.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "b259383fa7bb8d1ac0f51b481f601bd664a358145ce7a18b056589d064ba61b4"
+          },
+          {
+            "path": "assets/chunks/d7de7a48160e560ee7b0e3ca2007e8a478acd01c0fff6cc1aaf92dda67fb5f5c.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "d7de7a48160e560ee7b0e3ca2007e8a478acd01c0fff6cc1aaf92dda67fb5f5c"
+          },
+          {
+            "path": "assets/chunks/f8044390393e44a6303b08b056e6672dd18331c2e892f19834ef19eb1b55ec00.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "f8044390393e44a6303b08b056e6672dd18331c2e892f19834ef19eb1b55ec00"
+          },
+          {
+            "path": "assets/chunks/4b1a591dd1a826c30d35da8fe60290c0da23bbaa73c93359f3cd3f46aeb3b27a.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "4b1a591dd1a826c30d35da8fe60290c0da23bbaa73c93359f3cd3f46aeb3b27a"
+          },
+          {
+            "path": "assets/chunks/c39e44253209524899e3e190d26d7a0742233ec5b16af345c5eab52d0cc50072.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "c39e44253209524899e3e190d26d7a0742233ec5b16af345c5eab52d0cc50072"
+          },
+          {
+            "path": "assets/chunks/9cd028cf2c1cbc099b31e6893c0c6934ce4792601b139e9c27a0e243444aa127.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "9cd028cf2c1cbc099b31e6893c0c6934ce4792601b139e9c27a0e243444aa127"
+          },
+          {
+            "path": "assets/chunks/51f1b0217efc3015ca1e71c6589f3c11be43e194ac55b5b17f5a587177dad176.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "51f1b0217efc3015ca1e71c6589f3c11be43e194ac55b5b17f5a587177dad176"
+          },
+          {
+            "path": "assets/chunks/8750b036e9b217e8ce92e1d44b9c9dc4bddeca3879c72237463ab8337753921b.bin",
+            "bytes": 1048576,
+            "download_bytes": 1048576,
+            "sha256": "8750b036e9b217e8ce92e1d44b9c9dc4bddeca3879c72237463ab8337753921b"
+          },
+          {
+            "path": "assets/chunks/5880d6d0857dcc10b2b42d3205046a69086e5d6239be151c26300bb6736e3f0c.bin",
+            "bytes": 686509,
+            "download_bytes": 686509,
+            "sha256": "5880d6d0857dcc10b2b42d3205046a69086e5d6239be151c26300bb6736e3f0c"
+          }
+        ]
+      }
     }
   ],
   "storage": "[species,chart,z,a,b,component,mode,re/im] float64 interleaved complex; lossless gzip"

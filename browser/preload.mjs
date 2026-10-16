@@ -1,21 +1,27 @@
-import {loadJSON,loadTable} from './assets.mjs';
-
-// No engine or molecular preparation runs in this worker.
-try {
-  const cache=await caches.open('racing-molecule-tables-v1');
-  const probe=new URL('./cache-probe',import.meta.url).href;
+import {loadJSON,loadTable,tableDownloadBytes} from './assets.mjs';
+let requestedHetero=false,active=false,completedHetero=false,commonReady=false;
+onmessage=({data})=>{if(data.hetero){requestedHetero=true;run();}};
+async function run(){
+ if(active)return;active=true;
+ try{
+  const cache=await caches.open('racing-molecule-tables-v1'),probe=new URL('./cache-probe',import.meta.url).href;
   await cache.put(probe,new Response('ok'));await cache.delete(probe);
-  postMessage({status:'loading'});
   const model=await loadJSON(new URL('./assets/model.json',import.meta.url));
   const atlas=await loadJSON(new URL('./assets/fourier-atlas.json',import.meta.url));
   if(atlas.parameter_sha256!==model.surface.parameter_sha256)throw Error('Asset version mismatch');
   const arrays=model.surface.arrays;
-  for(const descriptor of [arrays.tile,arrays['saip-grid'],arrays['hetero-grid'],atlas.arrays[0]]) {
-    await loadTable(descriptor,{base:import.meta.url,priority:'low',requireCache:true});
-    await new Promise(resolve=>setTimeout(resolve,100));
-  }
-  postMessage({status:'ready'});
-} catch {
-  postMessage({status:'unavailable'});
+  do{
+   const withHetero=requestedHetero&&!completedHetero;
+   const list=[...(!commonReady?[arrays.tile,arrays['saip-grid'],atlas.arrays[0]]:[]),...(withHetero?[arrays['hetero-grid']]:[])];
+   const total=list.reduce((n,d)=>n+tableDownloadBytes(d),0);let done=0;
+   for(const descriptor of list){
+    await loadTable(descriptor,{base:import.meta.url,priority:'low',requireCache:true,onProgress:n=>postMessage({status:'loading',percent:Math.min(100,Math.floor((done+n)/total*100))})});
+    done+=tableDownloadBytes(descriptor);await new Promise(r=>setTimeout(r,100));
+   }
+   commonReady=true;if(withHetero)completedHetero=true;
+  }while(requestedHetero&&!completedHetero);
+  postMessage({status:'ready',percent:100});
+ }catch(error){postMessage({status:'unavailable',error:error.message});}
+ finally{active=false;}
 }
-close();
+run();

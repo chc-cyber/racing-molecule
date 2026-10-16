@@ -15,7 +15,7 @@ export function installRaceBridge({load,request,snapshot,preferences,pause}){
         while(performance.now()-started<590000){
           if(serial!==loadSerial)return;
           const state=await request('/api/state');
-          if(state.preparation&&state.preparation!==progress){progress=state.preparation;send({type:'race-progress',id,message:progress});}
+          if(state.preparation&&state.preparation+state.preparationPercent!==progress){progress=state.preparation+state.preparationPercent;send({type:'race-progress',id,message:state.preparation,percent:state.preparationPercent});}
           if(state.status==='error')throw new Error(state.error||'赛车准备失败。');
           if(state.status==='paused'&&state.frame&&state.molecule){send({type:'race-loaded',id,generation:state.generation});return;}
           await new Promise(resolve=>setTimeout(resolve,150));

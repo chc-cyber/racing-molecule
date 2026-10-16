@@ -5,7 +5,14 @@ const origin=location.origin,appRoot=new URL('../',import.meta.url);
 const frames=new Map(),waiters=new Map();
 let preferences=readPreferences(),route='',returnRoute='home',toastTimer,preparing=null,raceState=null,raceStarted=false,trackReadyPromise;
 const channel='racing-molecule';
-let preloadWorker,preloadTimer;
+let preloadWorker,preloadTimer,needHetero=false,downloadHide;
+const downloadStatus=document.createElement('aside');downloadStatus.id='download-status';downloadStatus.hidden=true;downloadStatus.setAttribute('role','status');
+downloadStatus.innerHTML='<span></span><progress max="100" value="0" aria-label="赛道资源下载进度"></progress>';document.body.append(downloadStatus);
+function downloadProgress(percent,label='下载赛道资源'){
+ clearTimeout(downloadHide);downloadStatus.hidden=percent==null;if(percent==null)return;
+ downloadStatus.querySelector('span').textContent=`${label} ${percent}%`;downloadStatus.querySelector('progress').value=percent;
+ if(percent===100)downloadHide=setTimeout(()=>downloadStatus.hidden=true,1500);
+}
 function schedulePreload(){
   clearTimeout(preloadTimer);
   preloadTimer=setTimeout(()=>{
@@ -17,7 +24,8 @@ function schedulePreload(){
     const start=()=>{
       if(preloadWorker)return;
       preloadWorker=new Worker(new URL('browser/preload.mjs',appRoot),{type:'module'});
-      preloadWorker.onmessage=({data})=>{document.documentElement.dataset.racePreload=data.status;};
+      preloadWorker.onmessage=({data})=>{document.documentElement.dataset.racePreload=data.status;if(!preparing)downloadProgress(data.percent);};
+      preloadWorker.postMessage({hetero:needHetero});
       preloadWorker.onerror=()=>{document.documentElement.dataset.racePreload='unavailable';};
     };
     if(globalThis.requestIdleCallback)requestIdleCallback(start,{timeout:5000});else start();
@@ -63,7 +71,7 @@ async function trackReady(){
   trackReadyPromise??=new Promise((resolve,reject)=>{const timer=setTimeout(()=>{waiters.delete('ready');trackReadyPromise=null;reject(new Error('赛道载入失败，请刷新页面。'));},45000);waiters.set('ready',{resolve:()=>{clearTimeout(timer);resolve();}});});await trackReadyPromise;return frame;
 }
 function finishPreparation(error){
-  if(!preparing)return;const task=preparing;preparing=null;clearTimeout(task.timer);post(frames.get('garage'),{type:'prepare-result',id:task.id,...(error?{error}:{})});
+  if(!preparing)return;downloadProgress(null);const task=preparing;preparing=null;clearTimeout(task.timer);post(frames.get('garage'),{type:'prepare-result',id:task.id,...(error?{error}:{})});
   if(!error){location.hash='track';}
 }
 addEventListener('message',async event=>{
@@ -73,6 +81,7 @@ addEventListener('message',async event=>{
   const {type,id,data}=event.data;
   if(type==='navigate'){const target=event.data.route;if(['home','garage','track','settings'].includes(target))location.hash=target;return;}
   if(type==='workshop-notice'&&event.source===workshop?.contentWindow){notify(String(event.data.message||''));return;}
+  if(type==='resource-needs'&&event.source===workshop?.contentWindow){needHetero=!!event.data.hetero;preloadWorker?.postMessage({hetero:needHetero});return;}
   if(type==='workshop-ready'){workshop.dataset.ready='true';schedulePreload();post(workshop,{type:'preferences',data:preferences});return;}
   if(type==='race-ready'){track.dataset.ready='true';waiters.get('ready')?.resolve();waiters.delete('ready');post(track,{type:'preferences',data:preferences});post(track,{type:'screen-visibility',active:route==='track'});return;}
   if(type==='race-status'){
@@ -89,7 +98,7 @@ addEventListener('message',async event=>{
     catch(error){if(preparing?.id===id)finishPreparation(error.message);}return;
   }
   if(type==='cancel-prepare'&&event.source===workshop?.contentWindow){post(frames.get('track'),{type:'cancel-load'});finishPreparation('已返回编辑。');return;}
-  if(type==='race-progress'&&event.source===track?.contentWindow&&preparing?.id===id)post(workshop,{type:'prepare-progress',id,message:event.data.message});
+  if(type==='race-progress'&&event.source===track?.contentWindow&&preparing?.id===id){downloadProgress(event.data.percent);post(workshop,{type:'prepare-progress',id,message:event.data.message,percent:event.data.percent});}
   if(type==='race-loaded'&&event.source===track?.contentWindow&&preparing?.id===id)finishPreparation(event.data.error);
 });
 // A full navigation destroys the in-memory worker and trajectory. Internal
