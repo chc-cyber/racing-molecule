@@ -500,8 +500,8 @@
     },
     {
       "path": "browser/editor-worker.mjs",
-      "bytes": 616,
-      "sha256": "35444c23719d0944ba2f16f914b71314519bde77ea3ca09ba678e3cf281e3ff2"
+      "bytes": 712,
+      "sha256": "c67f41b55ebf55a6a4c2cef2aac0d6b413a47a4791b6b1d5b41d69b94d7f35df"
     },
     {
       "path": "browser/embedded.mjs",
@@ -524,6 +524,11 @@
       "sha256": "f26202ed2b8c4e39c19b4fcd971446b687dff32489eadc99ee91ea3309e29916"
     },
     {
+      "path": "browser/runtime/download.json",
+      "bytes": 161,
+      "sha256": "329714e61a655aa5f471682279b7dbe5678c2c5b4c6e2a04ea4e2c6b96d881fa"
+    },
+    {
       "path": "browser/runtime/molecular-car.mjs",
       "bytes": 131540,
       "sha256": "21a91a06c1d5452b095cd0e7907b82ffa109ce62e111a5877e68a1c76fadc964"
@@ -532,6 +537,11 @@
       "path": "browser/runtime/molecular-car.wasm",
       "bytes": 9975666,
       "sha256": "d84a7ac9d2359956cef900e924a430832eb22ef5665129c5ddfac4f31e531aaf"
+    },
+    {
+      "path": "browser/runtime-loader.mjs",
+      "bytes": 677,
+      "sha256": "08911315b8af92e3030d60ba0db89c52e679683aee90c9cbc73b8da3fea17d85"
     },
     {
       "path": "browser/transport.mjs",
@@ -561,7 +571,7 @@
     {
       "path": "browser/worker.mjs",
       "bytes": 4928,
-      "sha256": "a6931e6283389ddd57e41c15a441bf1ae4e6cbdeaa63d1775633a76714f65b3e"
+      "sha256": "f65db254edf716e54ae6897592a1b7bdcc8cd2e17953287d8a65b9c326bec359"
     },
     {
       "path": "competition.css",
@@ -580,8 +590,8 @@
     },
     {
       "path": "editor/browser-service.mjs",
-      "bytes": 3034,
-      "sha256": "ecf0673a4a0a7b6585e6c062454ead5c4a5ae76b32f3f8c0cdcdc91ff5dd474a"
+      "bytes": 3207,
+      "sha256": "3d96a4c7e577d2d90f3875f79277ffc33407bea9bde6ec355cc9ef16aa5238e7"
     },
     {
       "path": "editor/BUGFIX-2026-10-15.md",
@@ -10775,8 +10785,8 @@
     },
     {
       "path": "editor/workshop.js",
-      "bytes": 41331,
-      "sha256": "03866f8e4230499e6660dd53a28b41f710688eacbf57a9d7d006cf79a91e9836"
+      "bytes": 41774,
+      "sha256": "9fc11ba334e9281f893ab3747091bda8115e632a8384f5cac7c5a00a0e570639"
     },
     {
       "path": "gold-surface.js",
@@ -10885,8 +10895,8 @@
     },
     {
       "path": "ui/app.js",
-      "bytes": 11647,
-      "sha256": "fb4f61579b1ca2121624c82a04ffcd094ab74847bbbe0c8430342fdfc7792e35"
+      "bytes": 11803,
+      "sha256": "f1159326fd8f03d9b7dab6f601dbccfe8a04df06eabef42f2ab3e28dba05187c"
     },
     {
       "path": "ui/assets/BARLOW-OFL.txt",

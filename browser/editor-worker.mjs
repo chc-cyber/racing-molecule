@@ -1,9 +1,10 @@
-import createModule from './runtime/molecular-car.mjs';
+import {loadRuntime} from './runtime-loader.mjs';
 let modulePromise;
 self.onmessage=async({data})=>{
   let module;
   try {
-    module=await(modulePromise??=createModule({print:()=>{},printErr:()=>{}}));
+    module=await(modulePromise??=loadRuntime(percent=>postMessage({id:data.id,kind:'download',percent})));
+    postMessage({id:data.id,kind:'download',percent:null});
     const result=module.workshopRequest(data.operation,data.payload);
     postMessage({id:data.id,result});
   } catch(error) {

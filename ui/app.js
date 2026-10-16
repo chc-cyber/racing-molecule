@@ -81,6 +81,7 @@ addEventListener('message',async event=>{
   const {type,id,data}=event.data;
   if(type==='navigate'){const target=event.data.route;if(['home','garage','track','settings'].includes(target))location.hash=target;return;}
   if(type==='workshop-notice'&&event.source===workshop?.contentWindow){notify(String(event.data.message||''));return;}
+  if(type==='tool-progress'&&event.source===workshop?.contentWindow){downloadProgress(event.data.percent,'下载计算工具');return;}
   if(type==='resource-needs'&&event.source===workshop?.contentWindow){needHetero=!!event.data.hetero;preloadWorker?.postMessage({hetero:needHetero});return;}
   if(type==='workshop-ready'){workshop.dataset.ready='true';schedulePreload();post(workshop,{type:'preferences',data:preferences});return;}
   if(type==='race-ready'){track.dataset.ready='true';waiters.get('ready')?.resolve();waiters.delete('ready');post(track,{type:'preferences',data:preferences});post(track,{type:'screen-visibility',active:route==='track'});return;}
@@ -98,7 +99,7 @@ addEventListener('message',async event=>{
     catch(error){if(preparing?.id===id)finishPreparation(error.message);}return;
   }
   if(type==='cancel-prepare'&&event.source===workshop?.contentWindow){post(frames.get('track'),{type:'cancel-load'});finishPreparation('已返回编辑。');return;}
-  if(type==='race-progress'&&event.source===track?.contentWindow&&preparing?.id===id){downloadProgress(event.data.percent);post(workshop,{type:'prepare-progress',id,message:event.data.message,percent:event.data.percent});}
+  if(type==='race-progress'&&event.source===track?.contentWindow&&preparing?.id===id){downloadProgress(event.data.percent,event.data.message);post(workshop,{type:'prepare-progress',id,message:event.data.message,percent:event.data.percent});}
   if(type==='race-loaded'&&event.source===track?.contentWindow&&preparing?.id===id)finishPreparation(event.data.error);
 });
 // A full navigation destroys the in-memory worker and trajectory. Internal

@@ -1,5 +1,5 @@
 import {needsHetero} from './needs-hetero.mjs';
-import createMolecularCar from './runtime/molecular-car.mjs';
+import {loadRuntime} from './runtime-loader.mjs';
 import {loadTable,loadJSON,tableDownloadBytes} from './assets.mjs';
 import {raceFinished} from '../race-course.mjs';
 
@@ -21,7 +21,7 @@ async function loadAssets(settings,content) {
   if(info&&info.parameter_sha256!==metadata.surface.parameter_sha256)throw new Error('赛道参数版本不一致，请刷新页面。');
   const arrays=metadata.surface.arrays,hetero=needsHetero(content),descriptors=[arrays.tile,arrays['saip-grid'],...(hetero?[arrays['hetero-grid']]:[]),...(info?[info.arrays[0]]:[])];
   const counts=descriptors.map(()=>0),total=descriptors.reduce((n,d)=>n+tableDownloadBytes(d),0);let last=0;
-  const runtime=createMolecularCar({print:()=>{},printErr:value=>console.warn(value)});
+  const runtime=loadRuntime(percent=>send({kind:'progress',percent,message:'下载计算工具'}));
   const tables=descriptors.map((descriptor,index)=>loadTable(descriptor,{base:import.meta.url,onProgress:(bytes,cached)=>{
     counts[index]=bytes;const now=performance.now();if(now-last<200&&!cached&&bytes!==0)return;last=now;
     const loaded=counts.reduce((a,b)=>a+b,0);

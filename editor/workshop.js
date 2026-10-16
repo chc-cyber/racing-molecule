@@ -247,3 +247,5 @@ async function ensure3D(){
   })().catch(error=>{threeLoading=null;views=null;throw error;});
   return threeLoading;
 }
+
+addEventListener('runtime-download',({detail:percent})=>{if(parent!==window){parent.postMessage({channel:'racing-molecule',type:'tool-progress',percent},location.origin);}else{const status=$('busy-state');status.replaceChildren();if(percent!=null){const bar=document.createElement('progress');bar.max=100;bar.value=percent;bar.setAttribute('aria-label','计算工具下载进度');status.append(`下载计算工具 ${percent}% `,bar);}}});
