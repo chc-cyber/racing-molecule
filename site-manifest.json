@@ -10835,13 +10835,13 @@
     },
     {
       "path": "local-scores-ui.mjs",
-      "bytes": 5299,
-      "sha256": "f1fc86d311351eb93c186145891c13a4f651e4f776fcb214d22e87fe9460858f"
+      "bytes": 5383,
+      "sha256": "cd58fc3af3c366426bc3554543f6e56d3cfcfed1db687d3df3e7ece76680326f"
     },
     {
       "path": "local-scores.css",
-      "bytes": 1365,
-      "sha256": "0e30e9b0f2a950cda80d227383657be61ab4a9ece780f1c6ce81c54d53d4e6d3"
+      "bytes": 1520,
+      "sha256": "34720507d86b2d67f2b67db97e3f6129f4657ce383684e457cf38cebd25c1708"
     },
     {
       "path": "local-scores.mjs",
