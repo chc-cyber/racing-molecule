@@ -1,8 +1,8 @@
 # 赛道交互与本地榜验收（2026-10-16）
 
-- 功能源码：`ad18ca6`。
-- Pages：`49350a96fa7e4ce8cb0f40bbe9ba0323648cab29`。
-- GitHub 部署任务：38875985178，成功。
+- 功能源码：`ad18ca6`（功能）和 `a1b185d`（榜单显示）。
+- Pages：`8a42e232c35e0b3149c0764c9a6317c36a280304`。
+- GitHub 部署任务：38876773358，成功。
 - 公开网址：https://chc-cyber.github.io/racing-molecule/
 
 本地及公开网站均使用独立 Chrome 环境，通过 `scripts/verify_local_scores.cjs` 实际操作验证：
@@ -16,10 +16,10 @@
 7. 成绩导出保留结构、赛事参数、随机种子、准备后的初始坐标与最终成绩。
 8. 刷新后榜单仍在；再次试跑复用名称和 45° 摆放，初始坐标与原比赛逐值相等。
 
-两个环境页面错误均为 0。公开网站原始记录和截图在 `outputs/local-scores-public/`；本地记录在 `outputs/local-scores/`。输出目录不纳入 Git。
+最终线上版本另验证了易读的赛事版本名称及详情按钮并排布局。两个环境页面错误均为 0。公开网站原始记录和截图在 `outputs/local-scores-public/`；本地记录在 `outputs/local-scores/`。输出目录不纳入 Git。
 
 相关成绩、赛事规则、工坊模型、交接、结果和浏览器控制回归通过；Python 赛事与候选赛车交接的 42 项测试通过。
 
-正式包验证通过：2203 个文件，源码来源、势表字节、Brotli 解码和 ZIP CRC 均通过。ZIP SHA-256：`a9ac856d5cd21072bff51233077bc7f2673baab3d6f6ad7b3c79e6078d86bafe`。
+正式包验证通过：2203 个文件，源码来源、势表字节、Brotli 解码和 ZIP CRC 均通过。ZIP SHA-256：`961444feb97b126d4bd1b88ea92c0990d8b032a0c86dce653070257d9e1b1595`。
 
 本次没有修改模拟力场、时间步或比赛计时。排行榜数据接口和第一版结构指纹边界见 `LOCAL_SCORES.md`。全球排行榜未实现。
